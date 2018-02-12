@@ -13,7 +13,7 @@ export class IndexComponent implements OnInit {
 
   openLoginDialog(role: string): void {
     const dialogRef = this.dialog.open(LoginComponent, {
-      width: '529px',
+      width: '360px',
       data: { type: role }
     });
   }

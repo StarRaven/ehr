@@ -7,6 +7,7 @@
       </div>
 
       <div *ngSwitchCase="'checkbox'">
+        
         <div *ngIf="question.layout=='1row'">
           <label [attr.for]="question.key">{{question.key}}. {{question.label}}: </label>
           <mat-checkbox *ngFor="let opt of question.options" [value]="opt.key" class="right-push">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
@@ -15,11 +16,19 @@
           <label [attr.for]="question.key" class="block">{{question.key}}. {{question.label}}: </label>
           <mat-checkbox *ngFor="let opt of question.options" [value]="opt.key" class="right-push">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
         </div>
+        <div *ngIf="question.layout=='2row subq'" class="subq">
+          <label [attr.for]="question.key" class="block">{{question.key}}. {{question.label}}: </label>
+          <mat-checkbox *ngFor="let opt of question.options" [value]="opt.key" class="right-push">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
+        </div>
         <div *ngIf="question.layout=='2column'">
           <label [attr.for]="question.key" class="block">{{question.key}}. {{question.label}}: </label>
           <div class="twoColumn">
             <mat-checkbox *ngFor="let opt of question.options" [value]="opt.key" class="block">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
           </div>
+        </div>
+        <div *ngIf="question.layout=='half'" class="half">
+          <label [attr.for]="question.key">{{question.key}}. {{question.label}}: </label>
+          <mat-checkbox *ngFor="let opt of question.options" [value]="opt.key" class="block">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
         </div>
       </div>
 

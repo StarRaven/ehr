@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   type: string;
+  hide: string;
 
   constructor(
     public dialogRef: MatDialogRef<LoginComponent>,
@@ -25,21 +26,28 @@ export class LoginComponent implements OnInit {
     if (this.type === 'admin') {
       if ((this.username === 'admin') && (this.password === 'admin')) {
           this.dialogRef.close();
-          this.router.navigate(['admin']);
+          this.global.username = 'admin';
+          this.global.role = 'admin';
+          this.router.navigate(['admin/doctor']);
        }
     } else {
       if ((this.username === 'doctor') && (this.password === 'doctor')) {
         this.dialogRef.close();
+        this.global.username = 'doctor';
+        this.global.role = 'doctor';
         this.router.navigate(['doctor']);
       }
       if ((this.username === 'nurse') && (this.password === 'nurse')) {
         this.dialogRef.close();
-        this.router.navigate(['nurse']);
+        this.global.username = 'doctor';
+        this.global.role = 'doctor';
+        this.router.navigate(['doctor']);
       }
     }
   }
 
   ngOnInit() {
+    this.hide = 'password';
   }
 
 }

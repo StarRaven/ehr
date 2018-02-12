@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material';
 import { DataSource } from '@angular/cdk/collections';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DoctorAddComponent } from '../doctor-add/doctor-add.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-doctor-control',
@@ -17,7 +18,7 @@ export class DoctorControlComponent implements OnInit {
   doctors: Doctor[] = [];
   uids: number;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private router: Router) {
     let d = new Doctor();
     d.uid = 0;
     d.username = 'doctor1';
@@ -46,7 +47,7 @@ export class DoctorControlComponent implements OnInit {
 
   addDoctor() {
     const dialogRef = this.dialog.open(DoctorAddComponent, {
-      width: '529px',
+      width: '360px',
       data: this.uids,
     });
     dialogRef.afterClosed().subscribe(result => {

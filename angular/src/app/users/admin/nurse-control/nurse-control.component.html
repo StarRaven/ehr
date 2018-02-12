@@ -29,8 +29,8 @@
   </mat-drawer>
   <mat-drawer-content>
     <div class="content-wrapper">
-      <button mat-raised-button color="primary" (click)="addDoctor()">
-        Add Doctor
+      <button mat-raised-button color="primary" (click)="addNurse()">
+        Add Nurse
       </button>
       <br /><br />
       <mat-card>
@@ -46,7 +46,7 @@
         <ng-container matColumnDef="operations">
           <mat-header-cell *matHeaderCellDef> Operations </mat-header-cell>
           <mat-cell *matCellDef="let element">
-            <button mat-raised-button color="primary" (click)="deleteDoctor(element.uid)">
+            <button mat-raised-button color="primary" (click)="deleteNurse(element.uid)">
               Delete
             </button>
           </mat-cell>
