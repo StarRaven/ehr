@@ -1,0 +1,124 @@
+<mat-tab-group class="demo-tab-group">
+  <mat-tab label="Customer">
+    <div class="demo-tab-content">
+      <form [formGroup]="customer_register_form" (ngSubmit)="CustomerRegister()">
+        <br>
+        <mat-form-field>
+          <input matInput formControlName="username" placeholder="Enter your username" required>
+          <mat-error>This field is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="password" placeholder="Enter your password" [type]="hide2 ? 'password' : 'text'" required>
+          <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility' : 'visibility_off'}}</mat-icon>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="confirm" placeholder="Re-Enter your password" [type]="hide2 ? 'password' : 'text'" required>
+          <mat-hint *ngIf="customer_register_form.get('password').value!=customer_register_form.get('confirm').value">
+            Password does not match.
+          </mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="street" placeholder="Enter your address(street)" required>
+        </mat-form-field>
+        <mat-form-field class="one-third">
+          <input matInput formControlName="city" placeholder="City" required>
+        </mat-form-field>
+        <mat-form-field class="one-third">
+          <input matInput formControlName="state" placeholder="State" required>
+        </mat-form-field>
+        <mat-form-field class="one-third">
+          <input matInput formControlName="zipcode" placeholder="Zip code" required>
+        </mat-form-field>
+        <mat-radio-group formControlName="kind" style="text-align:left" required>
+          <mat-radio-button value="home" name="home" class="half">Home</mat-radio-button>
+          <mat-radio-button value="business" name="business" class="half">Business</mat-radio-button>
+        </mat-radio-group>
+        <br>
+        <br>
+        <div *ngIf="customer_register_form.get('kind').value=='home'">
+          <mat-form-field class="half">
+            <mat-select placeholder="Marriage Status" formControlName="marriage" required>
+              <mat-option value="single">Single</mat-option>
+              <mat-option value="married">Married</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="half">
+            <mat-select placeholder="Gender" formControlName="gender" required>
+              <mat-option value="male">Male</mat-option>
+              <mat-option value="female">Female</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="half">
+            <input matInput formControlName="age" placeholder="Age" required>
+          </mat-form-field>
+          <mat-form-field class="half">
+            <span matPrefix>$&nbsp;</span>
+            <input matInput formControlName="income" placeholder="Income" required>
+            <span matSuffix>&nbsp;/&nbsp;year</span>
+          </mat-form-field>
+        </div>
+        <div *ngIf="customer_register_form.get('kind').value=='business'">
+          <mat-form-field>
+            <mat-select placeholder="Choose business category" formControlName="category" required>
+              <mat-option *ngFor="let category of categories" [value]="category.id">
+                {{ category.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <span matPrefix>$&nbsp;</span>
+            <input matInput formControlName="companyincome" placeholder="Company gross annual income" required>
+            <span matSuffix>&nbsp;/&nbsp;year</span>
+          </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary" type="submit" [disabled]="( checkvalid() || !customer_register_form.dirty || customer_register_form.get('password').value!=customer_register_form.get('confirm').value )">Register</button>
+      </form>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Store">
+    <div class="demo-tab-content">
+      <form [formGroup]="store_register_form" (ngSubmit)="StoreRegister()">
+        <br>
+        <mat-form-field>
+          <input matInput formControlName="username" placeholder="Enter your store name" required>
+          <mat-error>This field is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="password" placeholder="Enter your password" [type]="hide2 ? 'password' : 'text'" required>
+          <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility' : 'visibility_off'}}</mat-icon>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="confirm" placeholder="Re-Enter your password" [type]="hide2 ? 'password' : 'text'" required>
+          <mat-hint *ngIf="store_register_form.get('password').value!=store_register_form.get('confirm').value">
+            Password does not match.
+          </mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="street" placeholder="Enter your address(street)" required>
+        </mat-form-field>
+        <mat-form-field class="one-third">
+          <input matInput formControlName="city" placeholder="City" required>
+        </mat-form-field>
+        <mat-form-field class="one-third">
+          <input matInput formControlName="state" placeholder="State" required>
+        </mat-form-field>
+        <mat-form-field class="one-third">
+          <input matInput formControlName="zipcode" placeholder="Zip code" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="manager_name" placeholder="Enter manager name" required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Choose store region" formControlName="region" required>
+            <mat-option *ngFor="let region of regions" [value]="region.id">
+              {{ region.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="( !store_register_form.valid || !store_register_form.dirty || store_register_form.get('password').value!=store_register_form.get('confirm').value )">Register</button>
+      </form>
+    </div>
+  </mat-tab>
+
+</mat-tab-group>

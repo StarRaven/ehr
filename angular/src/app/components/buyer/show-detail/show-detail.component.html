@@ -1,0 +1,46 @@
+<div class="left-column">
+  <img class="detailImg" [src]='sanitizer.bypassSecurityTrustUrl(data.image)'>
+  <div class="detailInfo-wrapper">
+    <div class="detailInfo">
+      Store :
+    </div>
+    <button mat-button color="primary" class="storename" (click)="filter()" matTooltip="Show all books in this store">
+      {{data.store}}
+    </button>
+    <div class="detailInfo">
+      ISBN :
+    </div>
+    <div class="detailInfo">
+      {{data.ISBN}}
+    </div>
+    <div class="detailInfo">
+      Category :
+    </div>
+    <div class="detailInfo">
+      {{data.kind}}
+    </div>
+  </div>
+</div>
+<div class="right-column">
+  <h1>{{data.name}}</h1>
+  <h3>Author(s): {{data.author}}</h3>
+  <div class="buy-area">
+    <label>Quantity: </label>
+    <div class="quantity-input">
+      <input type="number" min='1' max='{{data.amount}}' [(ngModel)]="qty" width="30px">&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;{{data.amount}}
+    </div>
+    <div class="money-cal">
+      ${{(data.price*qty).toFixed(2)}}
+    </div>
+    <div class="buy-button">
+      <button mat-raised-button color="primary" (click)="buy()">Buy</button>
+    </div>
+  </div>
+  <div class="card-frame">
+    <mat-card class="example-card">
+      <p>
+        {{data.description}}
+      </p>
+    </mat-card>
+  </div>
+</div>

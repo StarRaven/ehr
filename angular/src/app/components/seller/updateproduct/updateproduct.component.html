@@ -1,0 +1,48 @@
+<form [formGroup]="product_update_form" (ngSubmit)="UpdateProduct()">
+  <br>
+  <div class="whole-wrapper">
+    <mat-form-field>
+      <input matInput formControlName="name" placeholder="Enter your book name" required>
+      <mat-error>This field is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="author" placeholder="Enter your book's author name" required>
+      <mat-error>This field is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="ISBN" placeholder="Enter your book's ISBN" required>
+      <mat-error>This field is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput formControlName="description" placeholder="Enter your book's description" required></textarea>
+      <mat-error>This field is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="amount" placeholder="Enter your storage amount" required>
+      <mat-error>This field is required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="half">
+      <input matInput formControlName="basic" placeholder="Cost price" required>
+      <span matPrefix>$&nbsp;</span>
+      <mat-error>This field is required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="half">
+      <input matInput formControlName="price" placeholder="Sell price" required>
+      <span matPrefix>$&nbsp;</span>
+      <mat-error>This field is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Choose your book categories" formControlName="kind" required>
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <br>
+  <div class="center">
+    <button mat-raised-button color="primary" type="submit" [disabled]="( !product_update_form.valid || !product_update_form.dirty )">Update</button>
+  </div>
+  <br>
+</form>
+<!--</div>-->

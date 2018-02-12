@@ -1,0 +1,58 @@
+<app-topmenu></app-topmenu>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="over" [(opened)]="opened" class="shopping-sidenav">
+    <section class="example-sidebar">
+      <div class="sidebar-header">Categories</div>
+      <mat-radio-group [(ngModel)]="cat" (change)="CategoryFilter()">
+        <mat-radio-button value="all"> All </mat-radio-button>
+        <mat-radio-button *ngFor="let category of categories" [value]="category.name">
+          {{ category.name }}
+        </mat-radio-button>
+      </mat-radio-group>
+    </section>
+  </mat-sidenav>
+  <div class="example-container mat-elevation-z8 inner-container">
+    <div class="example-header indent center-header">
+      <mat-form-field class="search-field">
+        <input matInput [(ngModel)]="filtervalue" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+      <div class="category-field">
+        <button mat-raised-button color="primary" (click)="sidenav.toggle()">Filter by Category</button>
+      </div>
+    </div>
+    <mat-table class="indent" #table [dataSource]="dataSource">
+      <ng-container matColumnDef="prod">
+        <mat-header-cell *matHeaderCellDef> Pic </mat-header-cell>
+        <mat-cell *matCellDef="let product">
+          <div class="card-frame">
+            <mat-card class="example-card">
+              <div class="mat-card-image-wrapper">
+                <img mat-card-image class="productImg" [src]='sanitizer.bypassSecurityTrustUrl(product.image)'>
+              </div>
+              <mat-card-header>
+                <mat-card-title>{{product.name}}</mat-card-title>
+              </mat-card-header>
+              <div class="detail-wrapper">
+                <div class="money">
+                  <p>${{product.price.toFixed(2)}}</p>
+                </div>
+                <div class="detail" *ngIf="product.amount!=0">
+                  <button mat-mini-fab color="primary" (click)="showDetail(product)"><i class="material-icons">more_horiz</i></button>
+                </div>
+                <div class="detail" *ngIf="product.amount==0" matTooltip="Sold Out!">
+                  <button mat-mini-fab color="primary" disabled><i class="material-icons">more_horiz</i></button>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row class="row-ex" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[1,5, 10, 20]">
+    </mat-paginator>
+  </div>
+</mat-sidenav-container>
+<app-footer></app-footer>

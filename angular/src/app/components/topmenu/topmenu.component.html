@@ -1,0 +1,39 @@
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <mat-toolbar-row>
+    <span class="hand" (click)="router.navigate(['users']);">E - Commerce</span>
+    <div class="fixed-spacer"></div>
+    <button mat-button *ngIf="global.role=='customer'" (click)="router.navigate(['shopping']);">
+      Shopping
+    </button>
+    <button mat-button *ngIf="global.role=='customer'" (click)="router.navigate(['myorders']);">
+      My Orders
+    </button>
+    <button mat-button *ngIf="global.role=='store'" (click)="router.navigate(['store/manage']);">
+      Products Manage
+    </button>
+    <button mat-button *ngIf="global.role=='store'" (click)="router.navigate(['store/salesman']);">
+      Salespersons Manage
+    </button>
+    <button mat-button *ngIf="global.role=='salesperson'" (click)="router.navigate(['transaction/manage']);">
+      Transactions Manage
+    </button>
+    <button mat-button (click)="router.navigate(['aggregation']);">
+      Aggregation
+    </button>
+    <div class="flex-spacer"></div>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>person</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <span>{{global.username}}</span>
+      </button>
+      <button mat-menu-item *ngIf="global.role=='customer'" (click)="router.navigate(['myorders']);">
+        <span>My Orders</span>
+      </button>
+      <button mat-menu-item (click)="Logout()">
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>

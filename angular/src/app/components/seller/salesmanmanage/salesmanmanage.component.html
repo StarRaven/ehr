@@ -1,0 +1,42 @@
+<app-topmenu></app-topmenu>
+<div class="mat-elevation-z8 inner-container">
+  <div class="add-button-wrapper">
+    <button mat-raised-button color="primary" (click)="openAddSalesman()">Add Salesman</button>
+  </div>
+  <mat-table #table [dataSource]="dataSource">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="job">
+      <mat-header-cell *matHeaderCellDef> Job Title </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.job}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="salary">
+      <mat-header-cell *matHeaderCellDef> Salary </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.salary}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="operations">
+      <mat-header-cell *matHeaderCellDef> Operations </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary" (click)="update(element)">
+        Update
+        </button>
+        <button mat-raised-button color="primary" (click)="delete(element.id)">
+        Delete
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+<app-footer></app-footer>

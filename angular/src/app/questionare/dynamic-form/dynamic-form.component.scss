@@ -1,0 +1,29 @@
+.full {
+  width: 100%;
+  display: inline-block;
+}
+
+.half {
+  width: 50%;
+  display: inline-block;
+}
+
+table {
+  border: 1px solid #000;
+}
+
+.container {
+  position: relative;
+}
+
+.catalog {
+  width: 10%;
+  position: fixed;
+  right: 2%;
+  top: 96px;
+}
+
+.main {
+  width: 79%;
+  float: left;
+}

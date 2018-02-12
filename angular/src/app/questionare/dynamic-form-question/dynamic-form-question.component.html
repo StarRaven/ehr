@@ -1,0 +1,80 @@
+
+<div [formGroup]="form">
+    <div [ngSwitch]="question.controlType" class="form-row" [id]="'o'+question.key">
+      <div *ngSwitchCase="'textbox'">
+        <label [attr.for]="question.key">{{question.key}}. {{question.label}}: </label>
+        <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type">
+      </div>
+
+      <div *ngSwitchCase="'checkbox'">
+        <div *ngIf="question.layout=='1row'">
+          <label [attr.for]="question.key">{{question.key}}. {{question.label}}: </label>
+          <mat-checkbox *ngFor="let opt of question.options" [value]="opt.key" class="right-push">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
+        </div>
+        <div *ngIf="question.layout=='2row'">
+          <label [attr.for]="question.key" class="block">{{question.key}}. {{question.label}}: </label>
+          <mat-checkbox *ngFor="let opt of question.options" [value]="opt.key" class="right-push">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
+        </div>
+        <div *ngIf="question.layout=='2column'">
+          <label [attr.for]="question.key" class="block">{{question.key}}. {{question.label}}: </label>
+          <div class="twoColumn">
+            <mat-checkbox *ngFor="let opt of question.options" [value]="opt.key" class="block">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
+          </div>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="'table'">
+        <div *ngIf="question.layout=='1column'">
+          <table>
+            <tr>
+              <td width="44%">
+                <div class="font-bold">{{question.label}}</div>
+                <div class="font-italic">{{question.desc}}</div>
+              </td>
+              <td width="56%">
+                <!--<mat-checkbox *ngFor="let opt of question.options" [value]="opt.key">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>-->
+                <label *ngFor="let opt of question.options" class="inline right-push">
+                  {{getChar(opt.key)}}. {{opt.value}}
+                  <input type="checkbox" class="bottom-line option-input checkbox" [value]="opt.key">
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <label class="font-bold">Comments (optional): </label>
+                <input [formControlName]="question.comments" [id]="question.key" class="table-comments">
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div *ngIf="question.layout=='7column'">
+          <table>
+            <tr>
+              <td width="44% " rowspan="2" class="table-left">
+                <div class="table-key font-bold">{{question.key}}.</div>
+                <div class="table-question">
+                  <div class="font-bold">{{question.label}}</div>
+                  <div class="font-italic">{{question.desc}}</div>
+                </div>
+              </td>
+              <td *ngFor="let opt of question.options" width="8%" class="center">{{opt.value}}</td>
+            </tr>
+            <tr>
+              <td *ngFor="let opt of question.options" width="8%">
+                <!--<mat-checkbox [value]=""></mat-checkbox>-->
+                <input type="checkbox" class="full bottom-align option-input checkbox" [value]="opt.key">
+              </td>
+            </tr>
+            <tr>
+              <td colspan="8">
+                <label class="font-bold">Comments (optional): </label>
+                <input [formControlName]="question.comments" [id]="question.key" class="table-comments">
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  <!--<div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>-->
+</div>
+

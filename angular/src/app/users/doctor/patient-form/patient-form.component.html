@@ -1,0 +1,51 @@
+<div class="mat-elevation-z6">
+  <mat-toolbar color="primary">
+    <span>Third Line</span>
+    <span class="example-spacer"></span>
+    <mat-icon class="example-icon">favorite</mat-icon>
+    <mat-icon class="example-icon">delete</mat-icon>
+  </mat-toolbar>
+</div>
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened="true">
+    <div class="sidebar-top">
+      <div class="rounded w-64 bg-white inline pos-rlt">
+        <img src="/assets/images/a0.jpg" class="img-responsive rounded">
+      </div>
+      <a class="block m-t-sm">
+        <span class="block font-bold">John Smith</span>
+        <span class="pull-right auto">
+          <i class="fa inline fa-caret-down"></i>
+          <i class="fa none fa-caret-up"></i>
+        </span>
+        john.smith@gmail.com
+      </a>
+    </div>
+
+    <div class="sidebar-content">
+      <button mat-button class="sidebar-patient" (click)="drawer.toggle()">
+        <mat-icon matPrefix class="sidebar-icon">people</mat-icon>
+        Patient Lists
+      </button>
+      <button type="button" mat-button class="sidebar-patient" (click)="drawer.toggle()">
+        <mat-icon matPrefix class="sidebar-icon">person</mat-icon>
+        Patient 1
+      </button>
+      <button type="button" mat-button class="sidebar-patient" (click)="drawer.toggle()">
+        <mat-icon matPrefix class="sidebar-icon">person</mat-icon>
+        Patient 2
+      </button>
+      <button type="button" mat-button class="sidebar-patient" (click)="drawer.toggle()">
+        <mat-icon matPrefix class="sidebar-icon">person</mat-icon>
+        Patient 3
+      </button>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="content-wrapper">
+
+      <app-dynamic-form [questions]="questions"></app-dynamic-form>
+
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

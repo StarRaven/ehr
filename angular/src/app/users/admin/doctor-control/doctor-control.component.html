@@ -1,0 +1,30 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened="true">
+    add doctor
+  </mat-drawer>
+  <mat-drawer-content>
+    <button mat-raised-button color="primary" (click)="addDoctor()">
+      Add Doctor
+    </button>
+    <mat-table #table1 [dataSource]="dataSource">
+      <ng-container matColumnDef="uid">
+        <mat-header-cell *matHeaderCellDef> UID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.uid}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="operations">
+        <mat-header-cell *matHeaderCellDef> Operations </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-raised-button color="primary" (click)="deleteDoctor(element.uid)">
+            Delete
+          </button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </mat-drawer-content>
+</mat-drawer-container>
