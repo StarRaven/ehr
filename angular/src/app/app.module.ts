@@ -40,6 +40,8 @@ import { NurseAddComponent } from './users/admin/nurse-add/nurse-add.component';
 import { PatientFormComponent } from './users/doctor/patient-form/patient-form.component';
 import { DynamicFormQuestionComponent } from './questionare/dynamic-form-question/dynamic-form-question.component';
 import { DynamicFormComponent } from './questionare/dynamic-form/dynamic-form.component';
+import { DynamicFormQuestionViewComponent } from './questionare/dynamic-form-question-view/dynamic-form-question-view.component';
+import { PatientFormAddComponent } from './users/doctor/patient-form-add/patient-form-add.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { DynamicFormComponent } from './questionare/dynamic-form/dynamic-form.co
     PatientFormComponent,
     DynamicFormQuestionComponent,
     DynamicFormComponent,
+    DynamicFormQuestionViewComponent,
+    PatientFormAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,7 +90,8 @@ import { DynamicFormComponent } from './questionare/dynamic-form/dynamic-form.co
       { path: 'users', component: IndexComponent },
       { path: 'admin/doctor', component: DoctorControlComponent },
       { path: 'admin/nurse', component: NurseControlComponent },
-      { path: 'doctor', component: PatientFormComponent }
+      { path: 'doctor', component: PatientFormComponent },
+      { path: 'doctor/newform', component: PatientFormAddComponent }
     ])
   ],
   entryComponents: [
