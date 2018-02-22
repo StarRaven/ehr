@@ -35,13 +35,13 @@ export class LoginComponent implements OnInit {
         this.dialogRef.close();
         this.global.username = 'doctor';
         this.global.role = 'doctor';
-        this.router.navigate(['doctor']);
+        this.router.navigate(['doctor/dashboard']);
       }
       if ((this.username === 'nurse') && (this.password === 'nurse')) {
         this.dialogRef.close();
         this.global.username = 'doctor';
         this.global.role = 'doctor';
-        this.router.navigate(['doctor']);
+        this.router.navigate(['doctor/dashboard']);
       }
     }
   }

@@ -14,7 +14,7 @@ export class PatientFormAddComponent implements OnInit {
 
   constructor(service: QuestionService, private router: Router) {
     this.questions = service.getQuestions();
-    for (let q of this.questions) {
+    for (const q of this.questions) {
       q.value = '';
     }
   }

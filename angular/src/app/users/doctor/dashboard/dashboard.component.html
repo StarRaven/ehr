@@ -1,0 +1,94 @@
+<app-topmenu></app-topmenu>
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened="true">
+    <div class="patient-list">
+      <mat-form-field class="search-field">
+        <input matInput [(ngModel)]="filtervalue" (keyup)="applyFilter($event.target.value)" placeholder="Search">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+      <mat-table #table [dataSource]="dataSource">
+        <ng-container matColumnDef="avatar">
+          <div *matCellDef="let element" class="pointer" (click)="loadDashboard()">
+            <div class="avatar">
+              <img src="/assets/avatars/{{element.avatar}}" width="34" height="34" alt="" class="img">
+            </div>
+          </div>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <mat-cell *matCellDef="let element" class="pointer" (click)="loadDashboard()"> {{element.name}} </mat-cell>
+        </ng-container>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="content-wrapper">
+      <div [ngGrid]="gridConfig">
+        <div *ngFor="let box of boxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)">
+          <mat-card class="dashboard-card">
+            <div class="inner">
+              <mat-card-header>
+                <div class="handle">
+                  <mat-card-title>{{box.id}}</mat-card-title>
+                  <div class="box-header-btns pull-right">
+                    <a title="Remove widget" (click)="removeWidget(i);">
+                      <mat-icon>delete</mat-icon>
+                    </a>
+                  </div>
+                </div>
+              </mat-card-header>
+              <mat-card-content>
+                <div [ngSwitch]="box.widgetType">
+                    <div *ngSwitchCase="'information'">
+                        <mat-grid-list cols="3" rowHeight="150px">
+                            <mat-grid-tile colspan="1">
+                                    <img src="/assets/avatars/1.png" width="60" height="60" alt="" class="img">
+                            </mat-grid-tile>
+                            <mat-grid-tile colspan="2">
+                              <table>
+                                <tr><td>Name: </td><td>Toby Moody</td></tr>
+                                <tr><td>Gender: </td><td>Male</td></tr>
+                                <tr><td>Age: </td><td>30</td></tr>
+                                <tr><td>Birth: </td><td>14 Feb 1988</td></tr>
+                              </table>
+                              
+                            </mat-grid-tile>
+                          </mat-grid-list>
+                      </div>
+                  <div *ngSwitchCase="'chart'">
+                    <canvas #line width="350" height="100"></canvas>
+                  </div>
+                  <div *ngSwitchCase="'form'">
+                    <mat-table #table [dataSource]="dataSource_form">
+                      <ng-container matColumnDef="type">
+                        <mat-header-cell *matHeaderCellDef> Form Type </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
+                      </ng-container>
+                      <ng-container matColumnDef="date">
+                        <mat-header-cell *matHeaderCellDef> Last Modified </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+                      </ng-container>
+                      <ng-container matColumnDef="operation">
+                        <mat-header-cell *matHeaderCellDef> Operation </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                          <button mat-raised-button color="primary" (click)="router.navigate(['doctor']);">View</button>
+                        </mat-cell>
+                      </ng-container>
+                      <mat-header-row *matHeaderRowDef="displayedColumns_form"></mat-header-row>
+                      <mat-row *matRowDef="let row; columns: displayedColumns_form;"></mat-row>
+                    </mat-table>
+                    <br />
+                    <div class="center">
+                      <button mat-raised-button color="primary" (click)="router.navigate(['doctor/newform']);">Add New Form</button>
+                    </div>
+                  </div>
+                </div>
+              </mat-card-content>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

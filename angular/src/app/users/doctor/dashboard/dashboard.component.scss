@@ -1,0 +1,66 @@
+.grid-item {
+	border: solid 1px #ccc;
+}
+
+.handle {
+	width: 100%;
+	height: 50px;
+	color: black;
+	font-weight: 500;
+	box-sizing: border-box;
+}
+
+.btn {
+	margin-left: 10px;
+}
+
+.box-header-btns {
+    top: 15px;
+    right: 10px;
+    cursor: pointer;
+    position: absolute;
+}
+
+.navbar-default {
+	background: black;
+	border: 0px;
+}
+
+.navbar-default .navbar-brand {
+	color: white;
+}
+
+body {
+	background-color: #f5f2f2;
+}
+
+.search-field {
+    width: 100%;
+}
+
+.patient-list {
+    margin: 5px 15px;
+}
+
+.avatar {
+    width: 34px; height: 34px;
+    margin-right:10px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.dashboard-card {
+    height: 100%;
+    padding: 0;
+}
+
+.inner {
+    padding: 24px;
+}
+
+.center {
+    width: 100%;
+    text-align: center;
+}

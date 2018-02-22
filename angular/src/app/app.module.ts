@@ -43,6 +43,9 @@ import { DynamicFormComponent } from './questionare/dynamic-form/dynamic-form.co
 import { DynamicFormQuestionViewComponent } from './questionare/dynamic-form-question-view/dynamic-form-question-view.component';
 import { PatientFormAddComponent } from './users/doctor/patient-form-add/patient-form-add.component';
 
+import { NgGridModule } from 'angular2-grid';
+import { DashboardComponent } from './users/doctor/dashboard/dashboard.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +62,7 @@ import { PatientFormAddComponent } from './users/doctor/patient-form-add/patient
     DynamicFormComponent,
     DynamicFormQuestionViewComponent,
     PatientFormAddComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,13 +89,16 @@ import { PatientFormAddComponent } from './users/doctor/patient-form-add/patient
     MatSidenavModule,
     MatTooltipModule,
 
+    NgGridModule,
+
     RouterModule.forRoot([
       { path: '', redirectTo: '/users', pathMatch: 'full' },
       { path: 'users', component: IndexComponent },
       { path: 'admin/doctor', component: DoctorControlComponent },
       { path: 'admin/nurse', component: NurseControlComponent },
       { path: 'doctor', component: PatientFormComponent },
-      { path: 'doctor/newform', component: PatientFormAddComponent }
+      { path: 'doctor/newform', component: PatientFormAddComponent },
+      { path: 'doctor/dashboard', component: DashboardComponent }
     ])
   ],
   entryComponents: [
