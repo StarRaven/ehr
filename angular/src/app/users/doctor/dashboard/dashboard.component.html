@@ -24,7 +24,7 @@
   <mat-drawer-content>
     <div class="content-wrapper">
       <div [ngGrid]="gridConfig">
-        <div *ngFor="let box of boxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)">
+        <div *ngFor="let box of boxes | highlightbox : 'PRIMARY'; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)">
           <mat-card class="dashboard-card">
             <div class="inner">
               <mat-card-header>

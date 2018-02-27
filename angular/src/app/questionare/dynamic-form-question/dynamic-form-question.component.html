@@ -69,9 +69,9 @@
               <td *ngFor="let opt of question.options" width="8%" class="center">{{opt.value}}</td>
             </tr>
             <tr>
-              <td *ngFor="let opt of question.options" width="8%">
+              <td *ngFor="let opt of question.options" width="8%" style="padding:0px;position:relative">
                 <!--<mat-checkbox [value]=""></mat-checkbox>-->
-                <input type="checkbox" class="full bottom-align option-input checkbox" [value]="opt.key">
+                <input type="checkbox" class="full bottom-align option-input checkbox" style="display:inline-block;height:100%;width:100%" [value]="opt.key">
               </td>
             </tr>
             <tr>
@@ -86,4 +86,5 @@
     </div>
   <!--<div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>-->
 </div>
-
+<!--
+<app- [formControl]="formgroup.get('aaa')"></app-></div>-->

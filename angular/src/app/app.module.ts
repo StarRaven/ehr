@@ -46,6 +46,9 @@ import { PatientFormAddComponent } from './users/doctor/patient-form-add/patient
 import { NgGridModule } from 'angular2-grid';
 import { DashboardComponent } from './users/doctor/dashboard/dashboard.component';
 
+import { PipeModule } from './PipeModule';
+import { HighlightBoxPipe} from './highlightbox.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +66,7 @@ import { DashboardComponent } from './users/doctor/dashboard/dashboard.component
     DynamicFormQuestionViewComponent,
     PatientFormAddComponent,
     DashboardComponent,
+    HighlightBoxPipe
   ],
   imports: [
     BrowserModule,
@@ -90,6 +94,8 @@ import { DashboardComponent } from './users/doctor/dashboard/dashboard.component
     MatTooltipModule,
 
     NgGridModule,
+
+    PipeModule.forRoot(),
 
     RouterModule.forRoot([
       { path: '', redirectTo: '/users', pathMatch: 'full' },

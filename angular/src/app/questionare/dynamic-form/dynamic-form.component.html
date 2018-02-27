@@ -15,7 +15,7 @@
         <app-question [question]="question" [form]="form"></app-question>
       </div>
     -->
-        <div *ngFor="let question of questions; let i = index" [ngClass]="question.layout">
+        <div *ngFor="let question of questions | highlight : 'PRIMARY'; let i = index" [ngClass]="question.layout">
           <div *ngIf="checkGroup(i)">
             <br />
             <hr />
