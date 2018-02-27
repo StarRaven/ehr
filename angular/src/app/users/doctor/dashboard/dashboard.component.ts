@@ -10,6 +10,7 @@ interface Box {
   id: number;
   config: any;
   widgetType: string;
+  content: any;
 }
 
 interface Contact {
@@ -20,6 +21,12 @@ interface Contact {
 interface Form {
   type: string;
   date: string;
+  form: number;
+}
+
+interface Info {
+  label: string;
+  value: string;
 }
 
 @Component({
@@ -29,6 +36,9 @@ interface Form {
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
   @ViewChild('line') line: ElementRef;
+  private FORM_DATA: Form[] = [];
+  private data: any;
+  private filter = '';
   private chart: any;
   private boxes: Array < Box > = [];
   private rgb = '#efefef';
@@ -59,9 +69,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   private itemPositions: Array < any > = [];
 
   private dataSource = new MatTableDataSource<Contact>();
-  private dataSource_form = new MatTableDataSource<Form>();
+  // private dataSource_form = new MatTableDataSource<Form>();
   private displayedColumns = ['avatar', 'name'];
-  private displayedColumns_form = ['type', 'date', 'operation'];
+  // private displayedColumns_form = ['type', 'date', 'operation'];
   private setid = 1;
 
   constructor(private router: Router) {
@@ -81,6 +91,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       id: conf.payload,
       config: conf,
       widgetType: '',
+      content: '',
     });
   }
 
@@ -208,8 +219,31 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   private loadFakewidget() {
     if (this.setid === 0) {
       this.boxes[0].widgetType = 'information';
+      this.boxes[0].content = [];
+      let sampleInfo: Info = {
+        label: 'Name: ',
+        value: 'Toby Moody'
+      };
+      this.boxes[0].content.push(sampleInfo);
+      sampleInfo = {
+        label: 'Gender: ',
+        value: 'Male'
+      };
+      this.boxes[0].content.push(sampleInfo);
+      sampleInfo = {
+        label: 'Age: ',
+        value: '30'
+      };
+      this.boxes[0].content.push(sampleInfo);
+      sampleInfo = {
+        label: 'Birth: ',
+        value: '14 Feb 1988'
+      };
+      this.boxes[0].content.push(sampleInfo);
+
       this.boxes[1].widgetType = 'form';
       this.boxes[3].widgetType = 'chart';
+
     }
     if (this.setid === 1) {
       this.boxes[0].widgetType = 'information';
@@ -229,7 +263,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.boxes[i] = {
         id: i + 1,
         config: conf,
-        widgetType: ''
+        widgetType: '',
+        content: '',
       };
     }
     this.curNum = dashconf.length + 1;
@@ -243,7 +278,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   loadFakeChart() {
     const lineCtx = this.line.nativeElement.getContext('2d');
-    const data = {
+    this.data = {
       labels: [this.newDate(8, 8), this.newDate(10, 8), this.newDate(12, 8),
         this.newDate(17, 8), this.newDate(21, 8), this.newDate(23, 8),
         this.newDate(28, 8), this.newDate(1, 9), this.newDate(4, 9)],
@@ -266,6 +301,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           }
       ]
   };
+
+  // to make sure it gets value, wait to fix
+  this.boxes[3].content = this.data;
+
   const options = {
     scales: {
         xAxes: [{
@@ -292,7 +331,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
               lineCtx,
               {
                 'type': 'line',
-                'data': data,
+                'data': this.data,
                 'options': options
               }
             );
@@ -316,17 +355,19 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     ];
     this.dataSource = new MatTableDataSource<Contact>(ELEMENT_DATA);
 
-    const ELEMENT_DATA2: Form[] = [
-      {type: 'Initial Form', date: this.newDate(8, 8).format('DD MMM YYYY')},
-      {type: 'Following Form', date: this.newDate(10, 8).format('DD MMM YYYY')},
-      {type: 'Following Form', date: this.newDate(12, 8).format('DD MMM YYYY')},
-      {type: 'Following Form', date: this.newDate(17, 8).format('DD MMM YYYY')},
-      {type: 'Following Form', date: this.newDate(21, 8).format('DD MMM YYYY')},
-      {type: 'Following Form', date: this.newDate(23, 8).format('DD MMM YYYY')},
-      {type: 'Following Form', date: this.newDate(28, 8).format('DD MMM YYYY')},
-      {type: 'Following Form', date: this.newDate(1, 9).format('DD MMM YYYY')},
-      {type: 'Following Form', date: this.newDate(4, 9).format('DD MMM YYYY')},
+    this.FORM_DATA = [
+      {type: 'Initial Form', date: this.newDate(8, 8).format('DD MMM YYYY'), form: 1},
+      {type: 'Following Form', date: this.newDate(10, 8).format('DD MMM YYYY'), form: 2},
+      {type: 'Following Form', date: this.newDate(12, 8).format('DD MMM YYYY'), form: 2},
+      {type: 'Following Form', date: this.newDate(17, 8).format('DD MMM YYYY'), form: 2},
+      {type: 'Following Form', date: this.newDate(21, 8).format('DD MMM YYYY'), form: 2},
+      {type: 'Following Form', date: this.newDate(23, 8).format('DD MMM YYYY'), form: 2},
+      {type: 'Following Form', date: this.newDate(28, 8).format('DD MMM YYYY'), form: 2},
+      {type: 'Following Form', date: this.newDate(1, 9).format('DD MMM YYYY'), form: 2},
+      {type: 'Following Form', date: this.newDate(4, 9).format('DD MMM YYYY'), form: 2},
     ];
-    this.dataSource_form = new MatTableDataSource<Form>(ELEMENT_DATA2);
+    // to make sure it gets value, wait to fix
+    this.boxes[1].content =  this.FORM_DATA;
+    // this.dataSource_form = new MatTableDataSource<Form>(ELEMENT_DATA2);
   }
 }

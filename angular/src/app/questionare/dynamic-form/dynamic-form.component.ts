@@ -12,6 +12,7 @@ import {QuestionControlService} from '../question-control.service';
 })
 export class DynamicFormComponent implements OnInit, AfterViewInit {
   @Input() questions: QuestionBase<any>[] = [];
+  @Input() filter: string;
   form: FormGroup;
   payLoad = '';
   catlogs: Catlog[] = [];
@@ -30,7 +31,7 @@ export class DynamicFormComponent implements OnInit, AfterViewInit {
     c0.label = 'Group ' + '1';
     c0.href = '#qForm';
     this.catlogs.push(c0);
-    
+
     for (let i = 1; i < this.questions.length; i++) {
       if (this.questions[i - 1].group !== this.questions[i].group) {
         const element = document.getElementById('o' + this.questions[i].key);

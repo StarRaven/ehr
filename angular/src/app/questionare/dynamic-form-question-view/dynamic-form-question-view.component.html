@@ -2,34 +2,36 @@
 <div [formGroup]="form">
   <div [ngSwitch]="question.controlType" class="form-row" [id]="'o'+question.key">
     <div *ngSwitchCase="'textbox'">
-      <label [attr.for]="question.key">{{question.key}}. {{question.label}}: </label>
-      <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type">
+      <label [attr.for]="question.key" [innerHTML]="question.key+'. '+question.label+': '"></label>
+
+      <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type" class="HIDEME" />
+      <div class="fake-input" [innerHTML]="question.value"></div>
     </div>
 
     <div *ngSwitchCase="'checkbox'">
       
       <div *ngIf="question.layout=='1row'">
-        <label [attr.for]="question.key">{{question.key}}. {{question.label}}: </label>
-        <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="right-push">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
+        <label [attr.for]="question.key" [innerHTML]="question.key+'. '+question.label+': '"></label>
+        <!--<mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="right-push" [innerHTML]="getChar(opt.key)+'. '+opt.value+': '"></mat-checkbox>-->
+        <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="right-push"><span [innerHTML]="getChar(opt.key)+'. '+opt.value+': '"></span></mat-checkbox>
       </div>
       <div *ngIf="question.layout=='2row'" >
-        <label [attr.for]="question.key" class="block">{{question.key}}. {{question.label}}: </label>
-        <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="right-push">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
+        <label [attr.for]="question.key" class="block" [innerHTML]="question.key+'. '+question.label+': '"></label>
+        <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="right-push"><span [innerHTML]="getChar(opt.key)+'. '+opt.value+': '"></span></mat-checkbox>
       </div>
       <div *ngIf="question.layout=='2row subq'" class="subq">
-        <label [attr.for]="question.key" class="block">{{question.key}}. {{question.label}}: </label>
-        <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="right-push">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
+        <label [attr.for]="question.key" class="block" [innerHTML]="question.key+'. '+question.label+': '"></label>
+        <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="right-push"><span [innerHTML]="getChar(opt.key)+'. '+opt.value+': '"></span></mat-checkbox>
       </div>
       <div *ngIf="question.layout=='2column'">
-        <!--<label [attr.for]="question.key" class="block" >{{question.key}}. {{question.label}}: </label>-->
         <label [attr.for]="question.key" class="block" [innerHTML]="question.key+'. '+question.label+': '"></label>
         <div class="twoColumn">
-          <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="block">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
+          <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="block"><span [innerHTML]="getChar(opt.key)+'. '+opt.value+': '"></span></mat-checkbox>
         </div>
       </div>
       <div *ngIf="question.layout=='half'" class="half">
-        <label [attr.for]="question.key">{{question.key}}. {{question.label}}: </label>
-        <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="block">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
+        <label [attr.for]="question.key" [innerHTML]="question.key+'. '+question.label+': '"></label>
+        <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="block"><span [innerHTML]="getChar(opt.key)+'. '+opt.value+': '"></span></mat-checkbox>
       </div>
     </div>
 
@@ -38,22 +40,23 @@
         <table>
           <tr>
             <td width="44%">
-              <div class="font-bold">{{question.label}}</div>
-              <div class="font-italic">{{question.desc}}</div>
+              <div class="font-bold" [innerHTML]="question.label"></div>
+              <div class="font-italic" [innerHTML]="question.desc"></div>
               <!--<div class="font-italic" [innerHTML]="question.desc | highlight : filter"></div>-->
             </td>
             <td width="56%">
               <!--<mat-checkbox *ngFor="let opt of question.options" [value]="opt.key">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>-->
               <label *ngFor="let opt of question.options" class="inline right-push">
-                {{getChar(opt.key)}}. {{opt.value}}
+                <span [innerHTML]="getChar(opt.key)+'. '+opt.value+': '"></span>
                 <input type="checkbox" [checked]="opt.key===question.value" class="bottom-line option-input checkbox" [value]="opt.key">
               </label>
             </td>
           </tr>
           <tr>
             <td colspan="2">
-              <label class="font-bold">Comments (optional): </label>
-              <input [value]="question.comments" [id]="question.key" class="table-comments">
+              <label class="font-bold" [innerHTML]="'Comments (optional): '"></label>
+              <input [value]="question.comments" [id]="question.key" class="table-comments" class="HIDEME" />
+              <div class="table-comments" [innerHTML]="question.comments"></div>
             </td>
           </tr>
         </table>
@@ -62,13 +65,13 @@
         <table>
           <tr>
             <td width="44% " rowspan="2" class="table-left">
-              <div class="table-key font-bold">{{question.key}}.</div>
+              <div class="table-key font-bold" [innerHTML]="question.key + '.'"></div>
               <div class="table-question">
-                <div class="font-bold">{{question.label}}</div>
-                <div class="font-italic">{{question.desc}}</div>
+                <div class="font-bold" [innerHTML]="question.label"></div>
+                <div class="font-italic" [innerHTML]="question.desc"></div>
               </div>
             </td>
-            <td *ngFor="let opt of question.options" width="8%" class="center">{{opt.value}}</td>
+            <td *ngFor="let opt of question.options" width="8%" class="center" [innerHTML]="opt.value"></td>
           </tr>
           <tr>
             <td *ngFor="let opt of question.options" width="8%">
@@ -79,7 +82,8 @@
           <tr>
             <td colspan="8">
               <label class="font-bold">Comments (optional): </label>
-              <input [value]="question.comments" [id]="question.key" class="table-comments">
+              <input [value]="question.comments" [id]="question.key" class="table-comments" class="HIDEME" />
+              <div class="table-comments" [innerHTML]="question.comments"></div>
             </td>
           </tr>
         </table>

@@ -49,6 +49,8 @@ import { DashboardComponent } from './users/doctor/dashboard/dashboard.component
 import { PipeModule } from './PipeModule';
 import { HighlightBoxPipe} from './highlightbox.pipe';
 
+import { QuestionService } from './questionare/question.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -102,7 +104,7 @@ import { HighlightBoxPipe} from './highlightbox.pipe';
       { path: 'users', component: IndexComponent },
       { path: 'admin/doctor', component: DoctorControlComponent },
       { path: 'admin/nurse', component: NurseControlComponent },
-      { path: 'doctor', component: PatientFormComponent },
+      { path: 'doctor/form', component: PatientFormComponent },
       { path: 'doctor/newform', component: PatientFormAddComponent },
       { path: 'doctor/dashboard', component: DashboardComponent }
     ])
@@ -114,6 +116,7 @@ import { HighlightBoxPipe} from './highlightbox.pipe';
   ],
   providers: [
     GlobalService,
+    QuestionService,
   ],
   bootstrap: [AppComponent]
 })

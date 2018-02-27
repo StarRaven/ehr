@@ -8,6 +8,7 @@
   </mat-card>
   <mat-card class="main">
     <div>
+        <input matInput [(ngModel)]="filter" placeholder="Search">
       <form id="qForm" (ngSubmit)="onSubmit()" [formGroup]="form">
         <!--
       <div *ngFor="let question of questions; index+1 as i" [ngClass]="question.layout">
@@ -15,7 +16,7 @@
         <app-question [question]="question" [form]="form"></app-question>
       </div>
     -->
-        <div *ngFor="let question of questions | highlight : 'PRIMARY'; let i = index" [ngClass]="question.layout">
+        <div *ngFor="let question of questions | highlight : filter; let i = index" [ngClass]="question.layout">
           <div *ngIf="checkGroup(i)">
             <br />
             <hr />

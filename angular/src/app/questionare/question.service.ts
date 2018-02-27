@@ -10,11 +10,13 @@ import {TextboxQuestion} from './question-textbox';
 export class QuestionService {
   // Todo: get from a remote source of question metadata
   // Todo: make asynchronous
+  questions: QuestionBase<any>[];
+
   getQuestions() {
-    let questions: QuestionBase<any>[] = [
-      
+    //let questions: QuestionBase<any>[] = [
+    this.questions = [
       new TextboxQuestion({
-        key: '1.0',
+        key: '1',
         label: 'VGM Account Number',
         value: '0000001111',
         required: true,
@@ -400,6 +402,7 @@ export class QuestionService {
       }),
     ];
 
-    return questions.sort((a, b) => a.order - b.order);
+    //return questions.sort((a, b) => a.order - b.order);
+    return this.questions.sort((a, b) => a.order - b.order);
   }
 }

@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 
-import {QuestionBase} from '../question-base';
+import { QuestionBase } from '../question-base';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dynamic-form-question-view',
@@ -12,10 +13,8 @@ export class DynamicFormQuestionViewComponent implements OnInit{
 
   @Input() question: QuestionBase<any>;
   @Input() form: FormGroup;
-  filter: string;
 
   ngOnInit() {
-    this.filter = 'Check';
   }
 
   get isValid() {

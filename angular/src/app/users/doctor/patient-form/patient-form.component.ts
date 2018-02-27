@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import {QuestionService} from '../../../questionare/question.service';
 
 @Component({
@@ -10,10 +10,22 @@ import {QuestionService} from '../../../questionare/question.service';
 })
 export class PatientFormComponent implements OnInit {
   questions: any[];
+  filter: string;
 
-  constructor(service: QuestionService, private router: Router) {
+  constructor (
+    service: QuestionService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.questions = service.getQuestions();
+    this.route.params.subscribe(params => {
+      console.log(params);
+      if (params['id']) {
+      }
+      if (params['search']) {
+        this.filter = params['search'];
+      }
+    });
   }
-
   ngOnInit() {}
 }
