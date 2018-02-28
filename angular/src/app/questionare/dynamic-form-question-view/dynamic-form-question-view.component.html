@@ -23,6 +23,10 @@
         <label [attr.for]="question.key" class="block" [innerHTML]="question.key+'. '+question.label+': '"></label>
         <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="right-push"><span [innerHTML]="getChar(opt.key)+'. '+opt.value+': '"></span></mat-checkbox>
       </div>
+      <div *ngIf="question.layout=='1column subq'" class="subq">
+        <label [attr.for]="question.key" class="block" [innerHTML]="question.key+'. '+question.label+': '"></label>
+        <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="right-push block"><span [innerHTML]="getChar(opt.key)+'. '+opt.value+': '"></span></mat-checkbox>
+      </div>
       <div *ngIf="question.layout=='2column'">
         <label [attr.for]="question.key" class="block" [innerHTML]="question.key+'. '+question.label+': '"></label>
         <div class="twoColumn">

@@ -36,6 +36,7 @@ export class HighlightBoxPipe implements PipeTransform {
           }
           case 'chart' : {
             // label
+            console.log(box.content);
             for (const dataset of box.content.datasets) {
               if (this.include(dataset.label, search)) {
                 newboxes.push(box);
@@ -103,7 +104,7 @@ export class HighlightBoxPipe implements PipeTransform {
     if (!search) {
       return true;
     }
-    const form = this.QService.getQuestions();
+    const form = this.QService.getQuestions(id);
     for (const Question of form) {
       if (this.include(Question.label, search)) {
         return true;

@@ -17,6 +17,10 @@ export class PatientListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  condition1: string;
+  condition2: string;
+  condition3: string;
+
   constructor(
     private router: Router,
     private global: GlobalService,
@@ -32,6 +36,16 @@ export class PatientListComponent implements OnInit, AfterViewInit {
     const users: UserData[] = [];
     for (let i = 1; i <= 100; i++) { users.push(createNewUser(i)); }
 
+    if (this.global.username === 'doctor1') {
+      this.condition1 = 'FALL FREQ';
+      this.condition2 = 'SKIN BREAKDOWN';
+      this.condition3 = 'DEVICE BREAKDOWN';
+    }
+    if (this.global.username === 'doctor2') {
+      this.condition1 = 'HEIGHT';
+      this.condition2 = 'WEIGHT';
+      this.condition3 = 'DIAGNOSE';
+    }
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(users);
   }

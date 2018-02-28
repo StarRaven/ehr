@@ -21,7 +21,7 @@
           </ng-container>
 
           <ng-container matColumnDef="condition1">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> FALL FREQ </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> {{condition1}} </mat-header-cell>
             <mat-cell *matCellDef="let row">
               <i *ngIf="row.condition1===0" class="material-icons icon-fix" style="color:#4CAF50">lens</i>
               <i *ngIf="row.condition1===1" class="material-icons icon-fix" style="color:#FFEB3B">lens</i>
@@ -29,7 +29,7 @@
             </mat-cell>
           </ng-container>
           <ng-container matColumnDef="condition2">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> SKIN BREAKDOWN </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> {{condition2}} </mat-header-cell>
             <mat-cell *matCellDef="let row">
               <i *ngIf="row.condition2===0" class="material-icons icon-fix" style="color:#4CAF50">lens</i>
               <i *ngIf="row.condition2===1" class="material-icons icon-fix" style="color:#FFEB3B">lens</i>
@@ -37,7 +37,7 @@
             </mat-cell>
           </ng-container>
           <ng-container matColumnDef="condition3">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> DEVICE BREAKDOWN </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> {{condition3}} </mat-header-cell>
             <mat-cell *matCellDef="let row" [style.color]="row.color">
               <i *ngIf="row.condition3===0" class="material-icons icon-fix" style="color:#4CAF50">lens</i>
               <i *ngIf="row.condition3===1" class="material-icons icon-fix" style="color:#FFEB3B">lens</i>

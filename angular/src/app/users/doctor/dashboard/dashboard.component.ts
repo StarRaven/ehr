@@ -329,7 +329,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       {type: 'Following Form', date: this.newDate(4, 9).format('DD MMM YYYY'), form: 2},
     ];
     // to make sure it gets value, wait to fix
-    this.boxes[1].content =  this.FORM_DATA;
+    this.boxes[2].content =  this.FORM_DATA;
     // this.dataSource_form = new MatTableDataSource<Form>(ELEMENT_DATA2);
   }
 }

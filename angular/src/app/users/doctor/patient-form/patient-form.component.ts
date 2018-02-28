@@ -18,10 +18,10 @@ export class PatientFormComponent implements OnInit {
     private router: Router,
     private global: GlobalService
   ) {
-    this.questions = service.getQuestions();
     this.route.params.subscribe(params => {
       console.log(params);
       if (params['id']) {
+        this.questions = service.getQuestions(Number(params['id']));
       }
       if (params['search']) {
         this.filter = params['search'];
