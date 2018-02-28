@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {QuestionService} from '../../../questionare/question.service';
-
+import { GlobalService} from '../../../global.service';
 @Component({
   selector: 'app-patient-form',
   templateUrl: './patient-form.component.html',
@@ -15,7 +15,8 @@ export class PatientFormComponent implements OnInit {
   constructor (
     service: QuestionService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private global: GlobalService
   ) {
     this.questions = service.getQuestions();
     this.route.params.subscribe(params => {

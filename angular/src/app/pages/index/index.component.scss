@@ -805,25 +805,6 @@
     height: 100%
   }
   
-  .container {
-    width: 1200px;
-    height: 100%;
-    margin: 0 auto;
-    position: relative
-  }
-  
-  @media screen and (max-width:1200px) and (min-width:720px) {
-    .container {
-      width: 100%
-    }
-  }
-  
-  @media screen and (max-width:720px) {
-    .container {
-      width: 720px
-    }
-  }
-  
   body {
     position: relative;
     height: 100%;

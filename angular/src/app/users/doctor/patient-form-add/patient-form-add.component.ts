@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {QuestionService} from '../../../questionare/question.service';
+import { GlobalService} from '../../../global.service';
 
 @Component({
   selector: 'app-patient-form-add',
@@ -12,7 +13,11 @@ export class PatientFormAddComponent implements OnInit {
 
   questions: any[];
 
-  constructor(service: QuestionService, private router: Router) {
+  constructor(
+    service: QuestionService,
+    private router: Router,
+    private global: GlobalService
+  ) {
     this.questions = service.getQuestions();
     for (const q of this.questions) {
       q.value = '';

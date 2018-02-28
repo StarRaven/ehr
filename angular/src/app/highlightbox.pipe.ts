@@ -12,7 +12,9 @@ export class HighlightBoxPipe implements PipeTransform {
   ) { }
 
   transform(boxes: any[], search): any[] {
-    console.log(boxes);
+    if (!search) {
+      return boxes;
+    }
     const newboxes = [];
     for (const box of boxes) {
       if (box.widgetType !== '') {
@@ -33,10 +35,6 @@ export class HighlightBoxPipe implements PipeTransform {
             break;
           }
           case 'chart' : {
-            if (!search) {
-              newboxes.push(box);
-              break;
-            }
             // label
             for (const dataset of box.content.datasets) {
               if (this.include(dataset.label, search)) {
@@ -53,7 +51,7 @@ export class HighlightBoxPipe implements PipeTransform {
             }
             // date
             for (const label of box.content.labels) {
-              if (this.include(moment(label).format('DD MMM'), search)) {
+              if (this.include(label, search)) {
                 newboxes.push(box);
                 break;
               }

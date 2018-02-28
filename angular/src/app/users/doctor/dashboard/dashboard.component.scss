@@ -15,8 +15,8 @@
 }
 
 .box-header-btns {
-    top: 15px;
-    right: 10px;
+    top: 30px;
+    right: 30px;
     cursor: pointer;
     position: absolute;
 }
@@ -35,7 +35,7 @@ body {
 }
 
 .search-field {
-    width: 100%;
+    width: 80%;
 }
 
 .patient-list {
@@ -63,4 +63,23 @@ body {
 .center {
     width: 100%;
     text-align: center;
+}
+
+.formTable {
+    width: 100%;
+    line-height: 50px;
+    -webkit-box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+    box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+}
+
+.mat-card {
+    padding: 0 !important;
+}
+
+.expand-button {
+    width: 100%;
+}
+
+.mat-card-title {
+    font-size: 20px !important;
 }

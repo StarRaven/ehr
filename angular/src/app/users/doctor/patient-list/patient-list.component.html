@@ -1,0 +1,58 @@
+<div class="{{global.theme}}">
+  <app-topmenu></app-topmenu>
+  <mat-grid-list cols="6" rowHeight="860px">
+    <mat-grid-tile [colspan]="1"></mat-grid-tile>
+    <mat-grid-tile [colspan]="4">
+      <mat-card class="patient-list-card">
+        <mat-form-field style="width:100%">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Patient Name">
+          <i class="material-icons" matSuffix>search</i>
+        </mat-form-field>
+        <mat-table [dataSource]="dataSource" matSort>
+
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Patient Name </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              <button mat-button (click)="goDashboard(row)">
+                <img [src]="row.avatar" width="30" height="30" alt="" class="img ">
+                <a>&nbsp;{{row.name}}</a>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="condition1">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> FALL FREQ </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              <i *ngIf="row.condition1===0" class="material-icons icon-fix" style="color:#4CAF50">lens</i>
+              <i *ngIf="row.condition1===1" class="material-icons icon-fix" style="color:#FFEB3B">lens</i>
+              <i *ngIf="row.condition1===2" class="material-icons icon-fix" style="color:#F44336">lens</i>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="condition2">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> SKIN BREAKDOWN </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              <i *ngIf="row.condition2===0" class="material-icons icon-fix" style="color:#4CAF50">lens</i>
+              <i *ngIf="row.condition2===1" class="material-icons icon-fix" style="color:#FFEB3B">lens</i>
+              <i *ngIf="row.condition2===2" class="material-icons icon-fix" style="color:#F44336">lens</i>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="condition3">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> DEVICE BREAKDOWN </mat-header-cell>
+            <mat-cell *matCellDef="let row" [style.color]="row.color">
+              <i *ngIf="row.condition3===0" class="material-icons icon-fix" style="color:#4CAF50">lens</i>
+              <i *ngIf="row.condition3===1" class="material-icons icon-fix" style="color:#FFEB3B">lens</i>
+              <i *ngIf="row.condition3===2" class="material-icons icon-fix" style="color:#F44336">lens</i>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;">
+          </mat-row>
+        </mat-table>
+        <br>
+        <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1"></mat-grid-tile>
+  </mat-grid-list>
+</div>

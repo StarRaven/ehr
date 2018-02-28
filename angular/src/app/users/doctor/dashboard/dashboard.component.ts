@@ -1,12 +1,15 @@
-import {ViewChild, Component, ElementRef, OnInit, AfterViewInit} from '@angular/core';
+import {ViewChild, Component, ElementRef, OnInit, AfterViewInit, ViewEncapsulation} from '@angular/core';
 import {NgGrid, NgGridItem, NgGridConfig, NgGridItemConfig, NgGridItemEvent} from 'angular2-grid';
 import {MatTableDataSource} from '@angular/material';
 import { Router } from '@angular/router';
+
+import { GlobalService} from '../../../global.service';
 
 import * as Chart from 'chart.js';
 import * as moment from 'moment';
 
 interface Box {
+  title: string;
   id: number;
   config: any;
   widgetType: string;
@@ -32,14 +35,15 @@ interface Info {
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
-  @ViewChild('line') line: ElementRef;
+ // @ViewChild('line') line: ElementRef;
   private FORM_DATA: Form[] = [];
   private data: any;
   private filter = '';
-  private chart: any;
+  // private chart: any;
   private boxes: Array < Box > = [];
   private rgb = '#efefef';
   private curNum;
@@ -74,9 +78,29 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   // private displayedColumns_form = ['type', 'date', 'operation'];
   private setid = 1;
 
-  constructor(private router: Router) {
+  public lineChartOptions: any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
 
-  }
+    // Chart Labels
+    public lineChartLabels: string[] = [this.newDate(8, 8).format('DD MMM'), this.newDate(10, 8).format('DD MMM'),
+      this.newDate(12, 8).format('DD MMM'),
+      this.newDate(17, 8).format('DD MMM'), this.newDate(21, 8).format('DD MMM'), this.newDate(23, 8).format('DD MMM'),
+      this.newDate(28, 8).format('DD MMM'), this.newDate(1, 9).format('DD MMM'), this.newDate(4, 9).format('DD MMM')];
+    public lineChartType = 'line';
+    public lineChartLegend = true;
+
+    // Chart data
+    public lineChartData: any[] = [
+      {data: [50, 55, 60, 58, 57, 62, 67, 64, 60], label: 'Weight (kg)'},
+      {data: [140, 150, 152, 154, 160, 162, 162, 164, 170], label: 'Height (cm)'}
+    ];
+
+  constructor(
+    private router: Router,
+    private global: GlobalService) {
+    }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -92,6 +116,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       config: conf,
       widgetType: '',
       content: '',
+      title: '',
     });
   }
 
@@ -136,36 +161,22 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           'dragHandle': '.handle',
           'col': 45,
           'row': 1,
-          'sizex': 80,
-          'sizey': 60
+          'sizex': 60,
+          'sizey': 30
         },
         {
           'dragHandle': '.handle',
           'col': 1,
-          'row': 43,
+          'row': 2,
+          'sizex': 104,
+          'sizey': 55
+        },
+        {
+          'dragHandle': '.handle',
+          'col': 1,
+          'row': 126,
           'sizex': 40,
           'sizey': 35
-        },
-        {
-          'dragHandle': '.handle',
-          'col': 1,
-          'row': 1,
-          'sizex': 124,
-          'sizey': 45
-        },
-        {
-          'dragHandle': '.handle',
-          'col': 51,
-          'row': 26,
-          'sizex': 32,
-          'sizey': 40
-        },
-        {
-          'dragHandle': '.handle',
-          'col': 83,
-          'row': 26,
-          'sizex': 1,
-          'sizey': 1
         }
       ];
     }
@@ -218,11 +229,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   private loadFakewidget() {
     if (this.setid === 0) {
+      this.boxes[0].title = 'Basic Information';
       this.boxes[0].widgetType = 'information';
       this.boxes[0].content = [];
       let sampleInfo: Info = {
         label: 'Name: ',
-        value: 'Toby Moody'
+        value: this.global.patientName
       };
       this.boxes[0].content.push(sampleInfo);
       sampleInfo = {
@@ -241,10 +253,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       };
       this.boxes[0].content.push(sampleInfo);
 
-      this.boxes[1].widgetType = 'form';
-      this.boxes[3].widgetType = 'chart';
-
+      this.boxes[2].widgetType = 'form';
+      this.boxes[2].title = 'Form List';
+      this.boxes[1].widgetType = 'chart';
+      this.boxes[1].title = 'Chart';
+      this.boxes[1].content = {
+        labels: this.lineChartLabels,
+        datasets: this.lineChartData,
+      };
     }
+
     if (this.setid === 1) {
       this.boxes[0].widgetType = 'information';
       this.boxes[1].widgetType = 'chart';
@@ -261,6 +279,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       const conf = dashconf[i];
       conf.payload = 1 + i;
       this.boxes[i] = {
+        title: '',
         id: i + 1,
         config: conf,
         widgetType: '',
@@ -277,69 +296,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   loadFakeChart() {
-    const lineCtx = this.line.nativeElement.getContext('2d');
-    this.data = {
-      labels: [this.newDate(8, 8), this.newDate(10, 8), this.newDate(12, 8),
-        this.newDate(17, 8), this.newDate(21, 8), this.newDate(23, 8),
-        this.newDate(28, 8), this.newDate(1, 9), this.newDate(4, 9)],
-      datasets: [
-          {
-              label: 'Height (cm) ',
-              backgroundColor: '#36A2EB',
-              borderColor: '#36A2EB',
-              fill: false,
-              data: [140, 150, 152, 154, 160, 162, 162, 164, 170],
-              lineTension: 0,
-          },
-          {
-              label: 'Weight (kg) ',
-              backgroundColor: '#FF6384',
-              borderColor: '#FF6384',
-              fill: false,
-              data: [50, 55, 60, 58, 57, 62, 67, 64, 60],
-              lineTension: 0,
-          }
-      ]
-  };
-
-  // to make sure it gets value, wait to fix
-  this.boxes[3].content = this.data;
-
-  const options = {
-    scales: {
-        xAxes: [{
-            ticks: {
-                autoSkip : false,
-                callback: function(value, index, values) {
-                    return moment(value).format('DD MMM');
-                }
-            },
-            gridLines : {
-                display : false,
-            }
-        }],
-        yAxes: [{
-            ticks: {
-                min: 50,
-                max: 190,
-               stepSize: 10
-            }
-        }],
-    },
-};
-            this.chart = new Chart(
-              lineCtx,
-              {
-                'type': 'line',
-                'data': this.data,
-                'options': options
-              }
-            );
   }
 
   ngAfterViewInit() {
     this.loadFakeChart();
   }
+
   ngOnInit() {
     this.loadDashboard();
     const ELEMENT_DATA: Contact[] = [

@@ -50,7 +50,10 @@ import { PipeModule } from './PipeModule';
 import { HighlightBoxPipe} from './highlightbox.pipe';
 
 import { QuestionService } from './questionare/question.service';
+import { PatientListComponent } from './users/doctor/patient-list/patient-list.component';
 
+import { ChartsModule } from 'ng2-charts';
+import {FlexLayoutModule} from "@angular/flex-layout";
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +71,8 @@ import { QuestionService } from './questionare/question.service';
     DynamicFormQuestionViewComponent,
     PatientFormAddComponent,
     DashboardComponent,
-    HighlightBoxPipe
+    HighlightBoxPipe,
+    PatientListComponent
   ],
   imports: [
     BrowserModule,
@@ -96,6 +100,8 @@ import { QuestionService } from './questionare/question.service';
     MatTooltipModule,
 
     NgGridModule,
+    ChartsModule,
+    FlexLayoutModule,
 
     PipeModule.forRoot(),
 
@@ -104,6 +110,7 @@ import { QuestionService } from './questionare/question.service';
       { path: 'users', component: IndexComponent },
       { path: 'admin/doctor', component: DoctorControlComponent },
       { path: 'admin/nurse', component: NurseControlComponent },
+      { path: 'doctor', component: PatientListComponent },
       { path: 'doctor/form', component: PatientFormComponent },
       { path: 'doctor/newform', component: PatientFormAddComponent },
       { path: 'doctor/dashboard', component: DashboardComponent }

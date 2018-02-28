@@ -31,17 +31,19 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['admin/doctor']);
        }
     } else {
-      if ((this.username === 'doctor') && (this.password === 'doctor')) {
+      if ((this.username === 'doctor1') && (this.password === 'doctor1')) {
         this.dialogRef.close();
-        this.global.username = 'doctor';
+        this.global.username = 'doctor1';
         this.global.role = 'doctor';
-        this.router.navigate(['doctor/dashboard']);
+        this.global.theme = 'custom-theme-1';
+        this.router.navigate(['doctor']);
       }
-      if ((this.username === 'nurse') && (this.password === 'nurse')) {
+      if ((this.username === 'doctor2') && (this.password === 'doctor2')) {
         this.dialogRef.close();
-        this.global.username = 'doctor';
+        this.global.username = 'doctor2';
         this.global.role = 'doctor';
-        this.router.navigate(['doctor/dashboard']);
+        this.global.theme = 'custom-theme-2';
+        this.router.navigate(['doctor']);
       }
     }
   }

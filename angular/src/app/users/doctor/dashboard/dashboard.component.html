@@ -1,111 +1,89 @@
-<app-topmenu></app-topmenu>
-<mat-drawer-container class="example-container">
-  <mat-drawer mode="side" opened="true">
-    <div class="patient-list">
-      <mat-form-field class="search-field">
-        <input matInput [(ngModel)]="filtervalue" (keyup)="applyFilter($event.target.value)" placeholder="Search">
-        <mat-icon matSuffix>search</mat-icon>
-      </mat-form-field>
-      <mat-table #table [dataSource]="dataSource">
-        <ng-container matColumnDef="avatar">
-          <div *matCellDef="let element" class="pointer" (click)="loadDashboard()">
-            <div class="avatar">
-              <img src="/assets/avatars/{{element.avatar}}" width="34" height="34" alt="" class="img">
-            </div>
-          </div>
-        </ng-container>
-        <ng-container matColumnDef="name">
-          <mat-cell *matCellDef="let element" class="pointer" (click)="loadDashboard()"> {{element.name}} </mat-cell>
-        </ng-container>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-    </div>
-  </mat-drawer>
-  <mat-drawer-content>
-    <div class="content-wrapper">
-        <input matInput [(ngModel)]="filter" placeholder="Search">
-      <div [ngGrid]="gridConfig">
-        <div *ngFor="let box of boxes | highlightbox : filter; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)"
-          (onResize)="onResize(i, $event)">
-          <mat-card class="dashboard-card">
-            <div class="inner">
-              <mat-card-header>
-                <div class="handle">
-                  <mat-card-title>{{box.id}}</mat-card-title>
-                  <div class="box-header-btns pull-right">
-                    <a title="Remove widget" (click)="removeWidget(i);">
-                      <mat-icon>delete</mat-icon>
-                    </a>
-                  </div>
-                </div>
-              </mat-card-header>
-              <mat-card-content>
-                <div [ngSwitch]="box.widgetType">
-                  <div *ngSwitchCase="'information'">
-                    <mat-grid-list cols="3" rowHeight="150px">
-                      <mat-grid-tile colspan="1">
-                        <img src="/assets/avatars/1.png" width="60" height="60" alt="" class="img">
-                      </mat-grid-tile>
-                      <mat-grid-tile colspan="2">
-                        <table>
-                          <tr *ngFor="let info of box.content">
-                            <td [innerHTML]="info.label"></td>
-                            <td [innerHTML]="info.value"></td>
-                          </tr>
-                        </table>
-                      </mat-grid-tile>
-                    </mat-grid-list>
-                  </div>
-                  <div *ngSwitchCase="'chart'">
-                    <canvas #line width="350" height="100"></canvas>
-                  </div>
-                  <div *ngSwitchCase="'form'">
-                    <!--
-                    <mat-table #table [dataSource]="dataSource_form">
-                      <ng-container matColumnDef="type">
-                        <mat-header-cell *matHeaderCellDef> Form Type </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
-                      </ng-container>
-                      <ng-container matColumnDef="date">
-                        <mat-header-cell *matHeaderCellDef> Last Modified </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
-                      </ng-container>
-                      <ng-container matColumnDef="operation">
-                        <mat-header-cell *matHeaderCellDef> Operation </mat-header-cell>
-                        <mat-cell *matCellDef="let element">
-                          <button mat-raised-button color="primary" (click)="router.navigate(['doctor']);">View</button>
-                        </mat-cell>
-                      </ng-container>
-                      <mat-header-row *matHeaderRowDef="displayedColumns_form"></mat-header-row>
-                      <mat-row *matRowDef="let row; columns: displayedColumns_form;"></mat-row>
-                    </mat-table>
-                  -->
-                    <table style="width:100%">
-                      <tr>
-                        <th>Type</th>
-                        <th>Date</th>
-                        <th>Operation</th>
-                      </tr>
-                      <tr *ngFor="let form of FORM_DATA">
-                        <td>{{form.type}}</td>
-                        <td>{{form.date}}</td>
-                        <td>
-                          <button mat-raised-button color="primary" (click)="router.navigate(['doctor/form/', { id: form.form, search: filter }])">View</button>
-                        </td>
-                      </tr>
-                    </table>
-                    <br />
-                    <div class="center">
-                      <button mat-raised-button color="primary" (click)="router.navigate(['doctor/newform'])">Add New Form</button>
+<div class="{{global.theme}}">
+  <app-topmenu></app-topmenu>
+  <mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened="true">
+      <div class="patient-list">
+        <hr>
+        <button mat-raised-button color="primary" class="expand-button" (click)="addBox()">
+          <mat-icon matPrefix>add_box</mat-icon>&nbsp;&nbsp;Add Box
+        </button>
+        <hr>
+        <button mat-raised-button color="primary" class="expand-button" (click)="router.navigate(['doctor/newform'])">
+          <mat-icon matPrefix>add_circle</mat-icon>&nbsp;&nbsp;Add New Form
+        </button>
+        <hr>
+      </div>
+    </mat-drawer>
+    <mat-drawer-content>
+      <div class="content-wrapper">
+        <mat-form-field class="search-field">
+          <input matInput [(ngModel)]="filter" placeholder="Search">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+        <div [ngGrid]="gridConfig">
+          <div *ngFor="let box of boxes | highlightbox : filter; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)"
+            (onResize)="onResize(i, $event)">
+            <mat-card class="dashboard-card">
+              <div class="inner">
+                <mat-card-header>
+                  <div class="handle">
+                    <mat-card-title>{{box.title}}</mat-card-title>
+                    <div class="box-header-btns pull-right">
+                      <a title="Remove widget" (click)="removeWidget(i);" style="display: block">
+                        <mat-icon color="primary">delete</mat-icon>
+                      </a>
                     </div>
                   </div>
-                </div>
-              </mat-card-content>
-            </div>
-          </mat-card>
+                </mat-card-header>
+                <mat-card-content>
+                  <div [ngSwitch]="box.widgetType">
+                    <div *ngSwitchCase="'information'">
+                      <mat-grid-list cols="3" rowHeight="150px">
+                        <mat-grid-tile colspan="1">
+                          <img [src]="global.patientAvator" width="60" height="60" alt="" class="img">
+                        </mat-grid-tile>
+                        <mat-grid-tile colspan="2">
+                          <table style="width:80%">
+                            <tr *ngFor="let info of box.content">
+                              <td [innerHTML]="info.label"></td>
+                              <td [innerHTML]="info.value"></td>
+                            </tr>
+                          </table>
+                        </mat-grid-tile>
+                      </mat-grid-list>
+                    </div>
+                    <div *ngSwitchCase="'chart'">
+                      <!--<canvas #line height="100"></canvas>-->
+                      <canvas baseChart height="100" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [legend]="lineChartLegend"
+                        [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                    </div>
+                    <div *ngSwitchCase="'form'">
+                      <table class="formTable">
+                        <tr>
+                          <th style="padding-left:20px">Type</th>
+                          <th style="padding-left:20px">Date</th>
+                          <th style="padding-left:20px">Operation</th>
+                        </tr>
+                        <tr *ngFor="let form of FORM_DATA">
+                          <td style="padding-left:20px">{{form.type}}</td>
+                          <td style="padding-left:20px">{{form.date}}</td>
+                          <td style="padding-left:20px">
+                            <button mat-raised-button color="primary" (click)="router.navigate(['doctor/form/', { id: form.form, search: filter }])">View</button>
+                          </td>
+                        </tr>
+                      </table>
+                      <br />
+                      <div>
+                      </div>
+                    </div>
+                  </div>
+                </mat-card-content>
+              </div>
+            </mat-card>
+          </div>
         </div>
-      </div>
 
-    </div>
-  </mat-drawer-content>
-</mat-drawer-container>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

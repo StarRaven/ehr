@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'app';
-  constructor(private router: Router) { }
-  ngOnInit() {
-    
-  }
+  constructor(
+    private router: Router,
+  ) {
+   }
 }

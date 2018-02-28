@@ -4,11 +4,19 @@
 
 /*@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';*/
 
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+//@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+@font-face {
+  font-family: Lato-Regular;
+  src: url('/assets/fonts/Lato/Lato-Regular.ttf'); 
+}
+
+@import './theme.scss';
+
 body {
   margin: 0;
-  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-family: Lato-Regular, "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 16px !important;
   -webkit-font-smoothing: antialiased;
   line-height: 1.8;
   background-color: #EEEEEE;
@@ -24,10 +32,6 @@ body {
 .indent {
   padding: 0 100px;
 }
-
-/*
-font-family: tahoma, arial, 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif !important;
-*/
 
 .mat-drawer {
   -webkit-box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
@@ -117,8 +121,21 @@ font-family: tahoma, arial, 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif !i
 .content-wrapper {
   padding: 32px;
   min-height: 100vh;
+  overflow: hidden;
 }
+
+th {
+  text-align: left;
+  color: rgba(0,0,0,.54);
+    font-weight: 500;
+    
+}
+
 
 .search-highlight {
   background: yellow;
+}
+
+a {
+  color:black;
 }

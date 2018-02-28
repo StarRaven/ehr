@@ -1,41 +1,40 @@
-<div class="container">
-  <mat-card class="catalog">
-    <div *ngFor="let cat of catlogs">
-        <button type="button" mat-button (click)="scroll(cat.href)">
-            {{cat.label}}
-          </button>
-    </div>
-  </mat-card>
-  <mat-card class="main">
-    <div>
-        <input matInput [(ngModel)]="filter" placeholder="Search">
-      <form id="qForm" (ngSubmit)="onSubmit()" [formGroup]="form">
-        <!--
-      <div *ngFor="let question of questions; index+1 as i" [ngClass]="question.layout">
-          {{i}}
-        <app-question [question]="question" [form]="form"></app-question>
-      </div>
-    -->
-        <div *ngFor="let question of questions | highlight : filter; let i = index" [ngClass]="question.layout">
-          <div *ngIf="checkGroup(i)">
-            <br />
-            <hr />
-            <hr />
-            <br />
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="0" fxLayoutGap.xs="0">
+  <div class="sidebar" fxFlex="80">
+    <mat-card class="main">
+      <div style="padding:24px">
+        <mat-form-field class="search-field" style="width:100%">
+          <input matInput [(ngModel)]="filter" placeholder="Search">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+        <br><br>
+        <form id="qForm" (ngSubmit)="onSubmit()" [formGroup]="form">
+          <div *ngFor="let question of questions | highlight : filter; let i = index" [ngClass]="question.layout">
+            <div *ngIf="checkGroup(i)">
+              <br />
+              <hr />
+              <hr />
+              <br />
+            </div>
+            <app-dynamic-form-question-view [question]="question" [form]="form"></app-dynamic-form-question-view>
           </div>
-          <app-dynamic-form-question-view [question]="question" [form]="form"></app-dynamic-form-question-view>
+        </form>
+        <div *ngIf="payLoad" class="form-row">
+          <strong>Saved the following values</strong>
+          <br>{{payLoad}}
         </div>
-        <!--
-    <div class="form-row">
-      <button type="submit" [disabled]="!form.valid">Save</button>
-    </div>
-  -->
-      </form>
-      <div *ngIf="payLoad" class="form-row">
-        <strong>Saved the following values</strong>
-        <br>{{payLoad}}
       </div>
-    </div>
-  </mat-card>
+    </mat-card>
+  </div>
+  <div class="container" fxFlex="20">
+    <mat-card class="catalog">
+      <div *ngFor="let cat of catlogs">
+        <button type="button" mat-button (click)="scroll(cat.href)">
+          {{cat.label}}
+        </button>
+      </div>
+    </mat-card>
+  </div>
+
+
 
 </div>
