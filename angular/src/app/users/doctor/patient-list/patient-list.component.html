@@ -8,49 +8,92 @@
           <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Patient Name">
           <i class="material-icons" matSuffix>search</i>
         </mat-form-field>
-        <mat-table [dataSource]="dataSource" matSort>
+        <div *ngIf="global.username === 'doctor1'">
+          <mat-table [dataSource]="dataSource" matSort>
 
-          <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Patient Name </mat-header-cell>
-            <mat-cell *matCellDef="let row">
-              <button mat-button (click)="goDashboard(row)">
-                <img [src]="row.avatar" width="30" height="30" alt="" class="img ">
-                <a>&nbsp;{{row.name}}</a>
-              </button>
-            </mat-cell>
-          </ng-container>
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Patient Name </mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <button mat-button (click)="goDashboard(row)">
+                  <img [src]="row.avatar" width="30" height="30" alt="" class="img ">
+                  <a>&nbsp;{{row.name}}</a>
+                </button>
+              </mat-cell>
+            </ng-container>
 
-          <ng-container matColumnDef="condition1">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> {{condition1}} </mat-header-cell>
-            <mat-cell *matCellDef="let row">
-              <i *ngIf="row.condition1===0" class="material-icons icon-fix" style="color:#4CAF50">lens</i>
-              <i *ngIf="row.condition1===1" class="material-icons icon-fix" style="color:#FFEB3B">lens</i>
-              <i *ngIf="row.condition1===2" class="material-icons icon-fix" style="color:#F44336">lens</i>
-            </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="condition2">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> {{condition2}} </mat-header-cell>
-            <mat-cell *matCellDef="let row">
-              <i *ngIf="row.condition2===0" class="material-icons icon-fix" style="color:#4CAF50">lens</i>
-              <i *ngIf="row.condition2===1" class="material-icons icon-fix" style="color:#FFEB3B">lens</i>
-              <i *ngIf="row.condition2===2" class="material-icons icon-fix" style="color:#F44336">lens</i>
-            </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="condition3">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> {{condition3}} </mat-header-cell>
-            <mat-cell *matCellDef="let row" [style.color]="row.color">
-              <i *ngIf="row.condition3===0" class="material-icons icon-fix" style="color:#4CAF50">lens</i>
-              <i *ngIf="row.condition3===1" class="material-icons icon-fix" style="color:#FFEB3B">lens</i>
-              <i *ngIf="row.condition3===2" class="material-icons icon-fix" style="color:#F44336">lens</i>
-            </mat-cell>
-          </ng-container>
+            <ng-container matColumnDef="condition1">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> FALL FREQ </mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <i *ngIf="row.condition1===0" class="material-icons icon-fix" style="color:#4CAF50">lens</i>
+                <i *ngIf="row.condition1===1" class="material-icons icon-fix" style="color:#FFEB3B">lens</i>
+                <i *ngIf="row.condition1===2" class="material-icons icon-fix" style="color:#F44336">lens</i>
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="condition2">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> SKIN BREAKDOWN </mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <i *ngIf="row.condition2===0" class="material-icons icon-fix" style="color:#4CAF50">lens</i>
+                <i *ngIf="row.condition2===1" class="material-icons icon-fix" style="color:#FFEB3B">lens</i>
+                <i *ngIf="row.condition2===2" class="material-icons icon-fix" style="color:#F44336">lens</i>
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="condition3">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> DEVICE BREAKDOWN </mat-header-cell>
+              <mat-cell *matCellDef="let row" [style.color]="row.color">
+                <i *ngIf="row.condition3===0" class="material-icons icon-fix" style="color:#4CAF50">lens</i>
+                <i *ngIf="row.condition3===1" class="material-icons icon-fix" style="color:#FFEB3B">lens</i>
+                <i *ngIf="row.condition3===2" class="material-icons icon-fix" style="color:#F44336">lens</i>
+              </mat-cell>
+            </ng-container>
 
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;">
-          </mat-row>
-        </mat-table>
-        <br>
-        <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+          </mat-table>
+          <br>
+          <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+        </div>
+        <div *ngIf="global.username === 'doctor2'">
+          <mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Patient Name </mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <button mat-button (click)="goDashboard(row)">
+                  <img [src]="row.avatar" width="30" height="30" alt="" class="img ">
+                  <a>&nbsp;{{row.name}}</a>
+                </button>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="condition1">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> HEIGHT (CM) </mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                {{row.condition1}}
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="condition2">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> WEIGHT (KG) </mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                {{row.condition2}}
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="condition3">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> DIAGNOSE </mat-header-cell>
+              <mat-cell *matCellDef="let row" [style.color]="row.color">
+                <i *ngIf="row.condition3===0" class="material-icons icon-fix" style="color:#4CAF50">lens</i>
+                <i *ngIf="row.condition3===1" class="material-icons icon-fix" style="color:#FFEB3B">lens</i>
+                <i *ngIf="row.condition3===2" class="material-icons icon-fix" style="color:#F44336">lens</i>
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+          </mat-table>
+          <br>
+          <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+        </div>
       </mat-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1"></mat-grid-tile>

@@ -2,20 +2,23 @@
   <div class="sidebar" fxFlex="80">
     <mat-card class="main">
       <div style="padding:24px">
+        <!--
         <mat-form-field class="search-field" style="width:100%">
           <input matInput [(ngModel)]="filter" placeholder="Search">
           <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
         <br><br>
+      -->
         <form id="qForm" (ngSubmit)="onSubmit()" [formGroup]="form">
-          <div *ngFor="let question of questions | highlight : filter; let i = index" [ngClass]="question.layout">
+          <!--<div *ngFor="let question of questions | highlight : filter; let i = index" [ngClass]="question.layout">-->
+          <div *ngFor="let question of questions; let i = index" [ngClass]="question.layout">
             <div *ngIf="checkGroup(i)">
               <br />
               <hr />
               <hr />
               <br />
             </div>
-            <app-dynamic-form-question-view [question]="question" [form]="form"></app-dynamic-form-question-view>
+            <app-question [question]="question" [form]="form"></app-question>
           </div>
         </form>
         <div *ngIf="payLoad" class="form-row">

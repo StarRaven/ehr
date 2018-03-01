@@ -9,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './dynamic-form-question-view.component.html',
   styleUrls: ['./dynamic-form-question-view.component.scss']
 })
-export class DynamicFormQuestionViewComponent implements OnInit{
+export class DynamicFormQuestionViewComponent implements OnInit {
 
   @Input() question: QuestionBase<any>;
   @Input() form: FormGroup;

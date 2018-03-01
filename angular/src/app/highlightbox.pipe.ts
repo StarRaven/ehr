@@ -12,11 +12,9 @@ export class HighlightBoxPipe implements PipeTransform {
   ) { }
 
   transform(boxes: any[], search): any[] {
-    if (!search) {
-      return boxes;
-    }
     const newboxes = [];
     for (const box of boxes) {
+      console.log(box.content);
       if (box.widgetType !== '') {
         switch (box.widgetType) {
           case 'information' : {
@@ -36,19 +34,25 @@ export class HighlightBoxPipe implements PipeTransform {
           }
           case 'chart' : {
             // label
-            console.log(box.content);
+            let isPushed = false;
+            // console.log(box.content);
             for (const dataset of box.content.datasets) {
               if (this.include(dataset.label, search)) {
                 newboxes.push(box);
+                isPushed = true;
                 break;
               }
               // data
               for (const d of dataset.data) {
                 if (this.include(String(d), search)) {
                   newboxes.push(box);
+                  isPushed = true;
                   break;
                 }
               }
+            }
+            if (isPushed) {
+              break;
             }
             // date
             for (const label of box.content.labels) {
@@ -63,17 +67,26 @@ export class HighlightBoxPipe implements PipeTransform {
             const newforms = [];
             for (const form of box.content) {
               if (this.include(form.type, search)) {
-                newforms.push(form);
+                console.log('Form Type Contain');
+                form.show = true;
+                // newforms.push(form);
               } else if (this.include(form.date, search)) {
-                newforms.push(form);
+                console.log('Form Date Contain');
+                form.show = true;
+                // newforms.push(form);
               } else if (this.FormContain(form.form, search)) {
-                newforms.push(form);
+                console.log('Form Content Contain');
+                form.show = true;
+                // newforms.push(form);
+              } else {
+                form.show = false;
               }
+              newforms.push(form);
             }
-            console.log(newforms);
+            // console.log(newforms);
             if (newforms.length !== 0) {
-              console.log('yes');
               box.content = newforms;
+              console.log(box.content);
               newboxes.push(box);
             }
           }
@@ -81,22 +94,7 @@ export class HighlightBoxPipe implements PipeTransform {
 
       }
     }
-    /*
-    for (let i = 0; i < content.length; i++) {
-      if (search && content[i].label) {
-        let pattern = search.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
-        pattern = pattern.split(' ').filter((t) => {
-          return t.length > 0;
-        }).join('|');
-        const regex = new RegExp(pattern, 'gi');
-        content[i].label = content[i].label.replace(regex, (match) => `<span class="search-highlight">${match}</span>`);
-        //return content[i].label.replace(regex, (match) => `<span class="search-highlight">${match}</span>`);
-      } else {
-        //return content[i].label;
-      }
-    }
-    console.log(content);
-    */
+   // console.log(newboxes);
     return newboxes;
   }
 
@@ -118,6 +116,7 @@ export class HighlightBoxPipe implements PipeTransform {
   }
 
   include(text: string, search): boolean {
+    text = this.removeHL(text);
     if (!search) {
       return true;
     }

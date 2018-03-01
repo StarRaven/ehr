@@ -401,7 +401,7 @@ export class QuestionService {
           group: 30,
           layout: '7column'
         }),
-
+/*
         new TableQuestion({
           key: '4',
           label: 'My current means of mobility allows me to operate it as independently, safely and efficiently as possible:',
@@ -520,6 +520,7 @@ export class QuestionService {
           group: 30,
           layout: '7column'
         }),
+        */
       ];
       return questions.sort((a, b) => a.order - b.order);
     } else {
@@ -958,7 +959,7 @@ export class QuestionService {
           group: 30,
           layout: '7column'
         }),
-
+/*
         new TableQuestion({
           key: '5',
           label: 'My current means of mobility allows me to reach and carry out tasks at different surface heights as independently, safely and efficiently as possible:',
@@ -1060,7 +1061,7 @@ export class QuestionService {
           group: 30,
           layout: '7column'
         }),
-
+*/
       ];
       return questions.sort((a, b) => a.order - b.order);
     }

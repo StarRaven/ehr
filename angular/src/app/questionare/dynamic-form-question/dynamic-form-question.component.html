@@ -20,6 +20,10 @@
           <label [attr.for]="question.key" class="block">{{question.key}}. {{question.label}}: </label>
           <mat-checkbox *ngFor="let opt of question.options" [value]="opt.key" class="right-push">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
         </div>
+        <div *ngIf="question.layout=='1column subq'" class="subq">
+            <label [attr.for]="question.key" class="block">{{question.key}}. {{question.label}}: </label>
+            <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="right-push block">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
+          </div>
         <div *ngIf="question.layout=='2column'">
           <label [attr.for]="question.key" class="block">{{question.key}}. {{question.label}}: </label>
           <div class="twoColumn">

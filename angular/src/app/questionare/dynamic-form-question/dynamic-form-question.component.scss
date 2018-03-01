@@ -138,3 +138,15 @@ td {
   border: none;
   width: 100%;
 }
+
+.HIDEME {
+  visibility: hidden;
+  width: 0px;
+} 
+
+.fake-input {
+  border-bottom: 1px solid black;
+  display: inline-block;
+  width: 171px;
+  height: 22px;
+}

@@ -13,6 +13,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
 
   displayedColumns = ['name', 'condition1', 'condition2', 'condition3'];
   dataSource: MatTableDataSource<UserData>;
+  dataSource2: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -26,15 +27,24 @@ export class PatientListComponent implements OnInit, AfterViewInit {
     private global: GlobalService,
   ) {
     const users: UserData[] = [];
-    for (let i = 1; i <= 100; i++) { users.push(createNewUser(i)); }
+    const users2: UserData[] = [];
+    for (let i = 1; i <= 100; i++) {
+      users.push(this.createNewUser(i));
+      users2.push(this.createNewUser(i));
+    }
 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(users);
+    this.dataSource2 = new MatTableDataSource(users2);
   }
 
   ngOnInit() {
     const users: UserData[] = [];
-    for (let i = 1; i <= 100; i++) { users.push(createNewUser(i)); }
+    const users2: UserData[] = [];
+    for (let i = 1; i <= 100; i++) {
+      users.push(this.createNewUser(i));
+      users2.push(this.createNewUser(i));
+    }
 
     if (this.global.username === 'doctor1') {
       this.condition1 = 'FALL FREQ';
@@ -48,6 +58,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
     }
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(users);
+    this.dataSource2 = new MatTableDataSource(users2);
   }
 
     /**
@@ -57,12 +68,15 @@ export class PatientListComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.dataSource2.paginator = this.paginator;
+    this.dataSource2.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
+    this.dataSource2.filter = filterValue;
   }
 
   goDashboard(patient: UserData) {
@@ -71,33 +85,60 @@ export class PatientListComponent implements OnInit, AfterViewInit {
     this.global.patientName = patient.name;
     this.router.navigate(['doctor/dashboard']);
   }
+
+  /** Builds and returns a new User. */
+ createNewUser(id: number): UserData {
+  if (this.global.username === 'doctor1') {
+    const name =
+        NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
+        NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
+    const condition1: Condition = {
+      label: 'FALL FREQ',
+      value: Math.round(Math.random() * 2)
+    };
+    const condition2: Condition = {
+      label: 'SKIN BREAKDOWN',
+      value: Math.round(Math.random() * 2)
+    };
+    const condition3: Condition = {
+      label: 'DEVICE BREAKDOWN',
+      value: Math.round(Math.random() * 2)
+    };
+    return {
+      avatar: '/assets/avatars/' + Math.round(Math.random() * 8 + 1).toString() + '.png',
+      name: name,
+      condition1: condition1.value,
+      condition2: condition2.value,
+      condition3: condition3.value,
+    };
+  } else if (this.global.username === 'doctor2') {
+    const name =
+        NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
+        NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
+    const condition1: Condition = {
+      label: '',
+      value: Math.round(Math.random() * 40) + 150
+    };
+    const condition2: Condition = {
+      label: '',
+      value: Math.round(Math.random() * 40) + 40
+    };
+    const condition3: Condition = {
+      label: '',
+      value: Math.round(Math.random() * 2)
+    };
+    return {
+      avatar: '/assets/avatars/' + Math.round(Math.random() * 8 + 1).toString() + '.png',
+      name: name,
+      condition1: condition1.value,
+      condition2: condition2.value,
+      condition3: condition3.value,
+    };
+  }
+  }
 }
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-  const condition1: Condition = {
-    label: 'FALL FREQ',
-    value: Math.round(Math.random() * 2)
-  };
-  const condition2: Condition = {
-    label: 'SKIN BREAKDOWN',
-    value: Math.round(Math.random() * 2)
-  };
-  const condition3: Condition = {
-    label: 'DEVICE BREAKDOWN',
-    value: Math.round(Math.random() * 2)
-  };
-  return {
-    avatar: '/assets/avatars/' + Math.round(Math.random() * 8 + 1).toString() + '.png',
-    name: name,
-    condition1: condition1.value,
-    condition2: condition2.value,
-    condition3: condition3.value,
-  };
-}
+
 
 /** Constants used to fill up our data base. */
 const COLORS = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',

@@ -17,7 +17,7 @@
     <mat-drawer-content>
       <div class="content-wrapper">
         <mat-form-field class="search-field">
-          <input matInput [(ngModel)]="filter" placeholder="Search">
+          <input matInput [(ngModel)]="filter" placeholder="Search" (keyup)="hack()">
           <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
         <div [ngGrid]="gridConfig">
@@ -64,13 +64,15 @@
                           <th style="padding-left:20px">Date</th>
                           <th style="padding-left:20px">Operation</th>
                         </tr>
-                        <tr *ngFor="let form of FORM_DATA">
-                          <td style="padding-left:20px">{{form.type}}</td>
-                          <td style="padding-left:20px">{{form.date}}</td>
-                          <td style="padding-left:20px">
+        
+                        <tr *ngFor="let form of box.content">
+                          <td *ngIf="form.show" style="padding-left:20px">{{form.type}}</td>
+                          <td *ngIf="form.show" style="padding-left:20px">{{form.date}}</td>
+                          <td *ngIf="form.show" style="padding-left:20px">
                             <button mat-raised-button color="primary" (click)="router.navigate(['doctor/form/', { id: form.form, search: filter }])">View</button>
                           </td>
                         </tr>
+                        
                       </table>
                       <br />
                       <div>

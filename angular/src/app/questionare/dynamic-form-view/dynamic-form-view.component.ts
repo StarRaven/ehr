@@ -5,23 +5,21 @@ import {QuestionBase} from '../question-base';
 import {QuestionControlService} from '../question-control.service';
 
 @Component({
-  selector: 'app-dynamic-form',
-  templateUrl: './dynamic-form.component.html',
-  styleUrls: ['./dynamic-form.component.scss'],
+  selector: 'app-dynamic-form-view',
+  templateUrl: './dynamic-form-view.component.html',
+  styleUrls: ['./dynamic-form-view.component.scss'],
   providers: [QuestionControlService]
 })
-export class DynamicFormComponent implements OnInit, AfterViewInit {
+export class DynamicFormViewComponent implements OnInit, AfterViewInit {
   @Input() questions: QuestionBase<any>[] = [];
   @Input() filter: string;
   form: FormGroup;
   payLoad = '';
   catlogs: Catlog[] = [];
-  constructor(private qcs: QuestionControlService) {
-  }
+  constructor(private qcs: QuestionControlService) {}
 
   ngOnInit() {
     this.form = this.qcs.toFormGroup(this.questions);
-    console.log(this.form);
   }
 
   onSubmit() {

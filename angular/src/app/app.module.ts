@@ -54,6 +54,7 @@ import { PatientListComponent } from './users/doctor/patient-list/patient-list.c
 
 import { ChartsModule } from 'ng2-charts';
 import {FlexLayoutModule} from "@angular/flex-layout";
+import { DynamicFormViewComponent } from './questionare/dynamic-form-view/dynamic-form-view.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +73,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     PatientFormAddComponent,
     DashboardComponent,
     HighlightBoxPipe,
-    PatientListComponent
+    PatientListComponent,
+    DynamicFormViewComponent
   ],
   imports: [
     BrowserModule,

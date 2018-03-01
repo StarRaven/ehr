@@ -25,6 +25,7 @@ interface Form {
   type: string;
   date: string;
   form: number;
+  show: boolean;
 }
 
 interface Info {
@@ -47,6 +48,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   private boxes: Array < Box > = [];
   private rgb = '#efefef';
   private curNum;
+  private oriboxes: Array < Box > = [];
   private gridConfig: NgGridConfig = < NgGridConfig > {
     'margins': [5],
     'draggable': true,
@@ -99,7 +101,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   constructor(
     private router: Router,
-    private global: GlobalService) {
+    private global: GlobalService
+  ) {
     }
 
   applyFilter(filterValue: string) {
@@ -154,12 +157,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           'dragHandle': '.handle',
           'col': 1,
           'row': 1,
-          'sizex': 40,
+          'sizex': 35,
           'sizey': 1
         },
         {
           'dragHandle': '.handle',
-          'col': 45,
+          'col': 36,
           'row': 1,
           'sizex': 60,
           'sizey': 30
@@ -167,8 +170,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         {
           'dragHandle': '.handle',
           'col': 1,
-          'row': 2,
-          'sizex': 104,
+          'row': 121,
+          'sizex': 95,
           'sizey': 55
         },
         {
@@ -318,18 +321,19 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.dataSource = new MatTableDataSource<Contact>(ELEMENT_DATA);
 
     this.FORM_DATA = [
-      {type: 'Initial Form', date: this.newDate(8, 8).format('DD MMM YYYY'), form: 1},
-      {type: 'Following Form', date: this.newDate(10, 8).format('DD MMM YYYY'), form: 2},
-      {type: 'Following Form', date: this.newDate(12, 8).format('DD MMM YYYY'), form: 2},
-      {type: 'Following Form', date: this.newDate(17, 8).format('DD MMM YYYY'), form: 2},
-      {type: 'Following Form', date: this.newDate(21, 8).format('DD MMM YYYY'), form: 2},
-      {type: 'Following Form', date: this.newDate(23, 8).format('DD MMM YYYY'), form: 2},
-      {type: 'Following Form', date: this.newDate(28, 8).format('DD MMM YYYY'), form: 2},
-      {type: 'Following Form', date: this.newDate(1, 9).format('DD MMM YYYY'), form: 2},
-      {type: 'Following Form', date: this.newDate(4, 9).format('DD MMM YYYY'), form: 2},
+      {type: 'Initial Form', date: this.newDate(8, 8).format('DD MMM YYYY'), form: 1, show: true},
+      {type: 'Following Form', date: this.newDate(10, 8).format('DD MMM YYYY'), form: 2, show: false},
+      {type: 'Following Form', date: this.newDate(12, 8).format('DD MMM YYYY'), form: 2, show: true},
+      {type: 'Following Form', date: this.newDate(17, 8).format('DD MMM YYYY'), form: 2, show: true},
+      {type: 'Following Form', date: this.newDate(21, 8).format('DD MMM YYYY'), form: 2, show: true},
+      {type: 'Following Form', date: this.newDate(23, 8).format('DD MMM YYYY'), form: 2, show: true},
+      {type: 'Following Form', date: this.newDate(28, 8).format('DD MMM YYYY'), form: 2, show: true},
+      {type: 'Following Form', date: this.newDate(1, 9).format('DD MMM YYYY'), form: 2, show: true},
+      {type: 'Following Form', date: this.newDate(4, 9).format('DD MMM YYYY'), form: 2, show: true},
     ];
     // to make sure it gets value, wait to fix
     this.boxes[2].content =  this.FORM_DATA;
     // this.dataSource_form = new MatTableDataSource<Form>(ELEMENT_DATA2);
+    this.oriboxes = this.boxes;
   }
 }
