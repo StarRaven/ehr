@@ -82,3 +82,34 @@ body {
 .mat-card-title {
     font-size: 20px !important;
 }
+
+.full {
+    width: 100%;
+    display: inline-block;
+  }
+  
+  .half {
+    width: 50%;
+    display: inline-block;
+  }
+
+  .third {
+    width: 33%;
+    display: inline-block;
+  }
+
+  .center-avatar {
+      margin: auto;
+      text-align: center;
+  }
+
+  .fix-form-card {
+    margin-bottom: 10px;
+    padding: 30px !important;
+  }
+
+  .t1 {
+    font-size:22px;
+    font-weight: bold;
+    text-align: center;
+  }

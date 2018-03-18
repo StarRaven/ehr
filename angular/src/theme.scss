@@ -38,3 +38,13 @@ $custom-theme-2: mat-light-theme($custom-primary-2, $custom-accent-2, $custom-wa
 .custom-theme-2 {
   @include angular-material-theme($custom-theme-2);
 }
+
+$custom-primary-3: mat-palette($mat-pink, A200);
+$custom-accent-3: mat-palette($mat-pink, A200);
+$custom-warn-3: mat-palette($mat-red);
+
+$custom-theme-3: mat-light-theme($custom-primary-3, $custom-accent-3, $custom-warn-3);
+
+.custom-theme-3 {
+  @include angular-material-theme($custom-theme-3);
+}

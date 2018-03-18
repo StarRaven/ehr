@@ -5,6 +5,9 @@ import {CheckboxQuestion} from './question-checkbox';
 import {DropdownQuestion} from './question-dropdown';
 import {TableQuestion} from './question-table';
 import {TextboxQuestion} from './question-textbox';
+import {Title} from './question-title';
+import {SimpleTableQuestion} from './question-simpletable';
+import {ListQuestion} from './question-list';
 
 @Injectable()
 export class QuestionService {
@@ -523,7 +526,7 @@ export class QuestionService {
         
       ];
       return questions.sort((a, b) => a.order - b.order);
-    } else {
+    } else if (id === 2) {
       const questions: QuestionBase<any>[] = [
         new TextboxQuestion({
           key: '1',
@@ -1062,6 +1065,344 @@ export class QuestionService {
           layout: '7column'
         }),
 
+      ];
+      return questions.sort((a, b) => a.order - b.order);
+    } else if (id === 100) {
+      const questions: QuestionBase<any>[] = [
+        new Title({
+          key: '',
+          label: 'IDENTITAS',
+          value: '',
+          required: true,
+          order: 0,
+          group: 1,
+          layout: 't1'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'No. Registar:',
+          value: '0000001111',
+          required: true,
+          order: 1,
+          group: 1,
+          layout: 'full'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Nama:',
+          value: '',
+          required: true,
+          order: 2,
+          group: 1,
+          layout: 'half'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Nama suami:',
+          value: '',
+          required: true,
+          order: 3,
+          group: 1,
+          layout: 'half'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Pekerjaan ibu:',
+          value: '',
+          required: true,
+          order: 4,
+          group: 1,
+          layout: 'half'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Pekerjaan suami:',
+          value: '',
+          required: true,
+          order: 5,
+          group: 1,
+          layout: 'half'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Umur:',
+          value: '',
+          required: true,
+          order: 6,
+          group: 1,
+          layout: 'full'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Tinggi badan:',
+          value: '',
+          required: true,
+          order: 7,
+          group: 1,
+          layout: 'full'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Lila:',
+          value: '',
+          required: true,
+          order: 8,
+          group: 1,
+          layout: 'full'
+        }),
+        
+        new TextboxQuestion({
+          key: '',
+          label: 'Alamat:',
+          value: '',
+          required: true,
+          order: 9,
+          group: 1,
+          layout: 'full'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'RT:',
+          value: '',
+          required: true,
+          order: 9,
+          group: 1,
+          layout: 'third'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'RW:',
+          value: '',
+          required: true,
+          order: 10,
+          group: 1,
+          layout: 'third'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Desa:',
+          value: '',
+          required: true,
+          order: 11,
+          group: 1,
+          layout: 'third'
+        }),
+        
+        new TextboxQuestion({
+          key: '',
+          label: 'Dasa Wisma:',
+          value: '',
+          required: true,
+          order: 12,
+          group: 1,
+          layout: 'half'
+        }),
+        
+        new TextboxQuestion({
+          key: '',
+          label: 'Posyandu:',
+          value: '',
+          required: true,
+          order: 13,
+          group: 1,
+          layout: 'half'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Puskesmas:',
+          value: '',
+          required: true,
+          order: 14,
+          group: 1,
+          layout: 'full'
+        }),
+
+        new Title({
+          key: '',
+          label: 'ANAK',
+          value: '',
+          required: true,
+          order: 15,
+          group: 2,
+          layout: 't1'
+        }),
+
+        new SimpleTableQuestion({
+          key: '',
+          label: '',
+          value: '',
+          contents: [
+            [['Nama', 'Umur', 'Kondisi']],
+            [
+            ['<a href="/">1</a>',2,3],
+            [2,3,4]
+            ]
+          ],
+          required: true,
+          order: 15,
+          group: 2,
+          layout: 'full'
+        }),
+
+        new Title({
+          key: '',
+          label: 'FORMULIR KESEHATAN',
+          value: '',
+          required: true,
+          order: 16,
+          group: 3,
+          layout: 't1'
+        }),
+
+        new ListQuestion({
+          key: '',
+          label: '',
+          value: '',
+          contents: [
+            ['Kehamilan tanggal 2/3/2014'],
+            ['Kehamilan tanggal 4/1/2017'],
+          ],
+          required: true,
+          order: 17,
+          group: 3,
+          layout: ''
+        }),
+      ];
+      return questions.sort((a, b) => a.order - b.order);
+    }  else if (id === 101) {
+      const questions: QuestionBase<any>[] = [
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Kehamilan tanggal:',
+          value: '',
+          required: true,
+          order: 1,
+          group: 1,
+          layout: 'full'
+        }),
+
+        new Title({
+          key: '',
+          label: 'A. PENGAMATAN KEHAMILAN ANAMNESIS',
+          value: '',
+          required: true,
+          order: 2,
+          group: 2,
+          layout: 't1'
+        }),
+
+        new Title({
+          key: '',
+          label: 'FUNGSI REPRODUKSI',
+          value: '',
+          required: true,
+          order: 3,
+          group: 2,
+          layout: 't2'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Hari pertama haid terakhir (HPHT):',
+          value: '',
+          required: true,
+          order: 4,
+          group: 2,
+          layout: 'full'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Hari taksiran persalinan (HTP):',
+          value: '',
+          required: true,
+          order: 5,
+          group: 2,
+          layout: 'full'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Kehamilan sekarang:',
+          value: '',
+          required: true,
+          order: 6,
+          group: 2,
+          layout: 'full'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Keluhan utama:',
+          value: '',
+          required: true,
+          order: 7,
+          group: 2,
+          layout: 'full'
+        }),
+
+        new Title({
+          key: '',
+          label: 'RIWAYAT OBSTETRI:',
+          value: '',
+          required: true,
+          order: 8,
+          group: 2,
+          layout: 't2'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'G:',
+          value: '',
+          required: true,
+          order: 9,
+          group: 2,
+          layout: 'third'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'P:',
+          value: '',
+          required: true,
+          order: 10,
+          group: 2,
+          layout: 'third'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'A:',
+          value: '',
+          required: true,
+          order: 11,
+          group: 2,
+          layout: 'third'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Jumlah anak hidup:',
+          value: '',
+          required: true,
+          order: 12,
+          group: 2,
+          layout: 'full'
+        }),
       ];
       return questions.sort((a, b) => a.order - b.order);
     }

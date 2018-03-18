@@ -63,7 +63,7 @@ export class HighlightBoxPipe implements PipeTransform {
             }
             break;
           }
-          case 'form' : {
+          case 'form-list' : {
             const newforms = [];
             for (const form of box.content) {
               if (this.include(form.type, search)) {
@@ -89,6 +89,15 @@ export class HighlightBoxPipe implements PipeTransform {
               console.log(box.content);
               newboxes.push(box);
             }
+            break;
+          }
+          case 'info-form' : {
+            newboxes.push(box);
+            break;
+          }
+          case 'pregnancy-form' : {
+            newboxes.push(box);
+            break;
           }
         }
 

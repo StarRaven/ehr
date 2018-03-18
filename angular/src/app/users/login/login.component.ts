@@ -45,6 +45,13 @@ export class LoginComponent implements OnInit {
         this.global.theme = 'custom-theme-2';
         this.router.navigate(['doctor']);
       }
+      if ((this.username === 'doctor') && (this.password === 'doctor')) {
+        this.dialogRef.close();
+        this.global.username = 'doctor';
+        this.global.role = 'doctor';
+        this.global.theme = 'custom-theme-3';
+        this.router.navigate(['doctor']);
+      }
     }
   }
 

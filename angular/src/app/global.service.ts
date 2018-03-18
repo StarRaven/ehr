@@ -9,12 +9,12 @@ export class GlobalService {
   patientName: string;
   patientAvator: string;
   constructor() {
-    this.username = '';
+    this.username = 'doctor';
     this.login = false;
-    this.role = '';
-    this.theme = 'custom-theme-1';
-    this.patientAvator = '';
-    this.patientName = '';
+    this.role = 'doctor';
+    this.theme = 'custom-theme-3';
+    this.patientAvator = '/assets/avatars/100.png';
+    this.patientName = 'Wulandari Sulistyo';
   }
 
 }

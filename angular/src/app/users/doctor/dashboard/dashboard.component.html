@@ -37,6 +37,31 @@
                 </mat-card-header>
                 <mat-card-content>
                   <div [ngSwitch]="box.widgetType">
+                    <div *ngSwitchCase="'info-form'">
+                      <mat-card *ngFor="let group of questions[box.content]; let g = index" class="fix-form-card">
+                        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="0" fxLayoutGap.xs="0">
+                          <div *ngIf='g === 0' fxFlex="30" class="center-avatar">
+                            <img [src]="global.patientAvator" width="200" height="auto" alt="" class="img">
+                          </div>
+
+                          <form id="qForm" fxFlex="grow" (ngSubmit)="onSubmit()" [formGroup]="form">
+                            <div *ngFor="let question of group; let i = index" [ngClass]="question.layout">
+                              <app-dynamic-form-question-view [question]="question" [form]="form"></app-dynamic-form-question-view>
+                            </div>
+                          </form>
+                        </div>
+                      </mat-card>
+                    </div>
+                    <div *ngSwitchCase="'pregnancy-form'">
+                      <div class="t1">KARTU KEHAMILAN</div>
+                      <mat-card *ngFor="let group of questions[box.content]; let g = index" class="fix-form-card">
+                        <form id="qForm" fxFlex="grow" (ngSubmit)="onSubmit()" [formGroup]="form">
+                          <div *ngFor="let question of group; let i = index" [ngClass]="question.layout">
+                            <app-dynamic-form-question-view [question]="question" [form]="form"></app-dynamic-form-question-view>
+                          </div>
+                        </form>
+                      </mat-card>
+                    </div>
                     <div *ngSwitchCase="'information'">
                       <mat-grid-list cols="3" rowHeight="150px">
                         <mat-grid-tile colspan="1">
@@ -57,14 +82,14 @@
                       <canvas baseChart height="100" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [legend]="lineChartLegend"
                         [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
                     </div>
-                    <div *ngSwitchCase="'form'">
+                    <div *ngSwitchCase="'form-list'">
                       <table class="formTable">
                         <tr>
                           <th style="padding-left:20px">Type</th>
                           <th style="padding-left:20px">Date</th>
                           <th style="padding-left:20px">Operation</th>
                         </tr>
-        
+
                         <tr *ngFor="let form of box.content">
                           <td *ngIf="form.show" style="padding-left:20px">{{form.type}}</td>
                           <td *ngIf="form.show" style="padding-left:20px">{{form.date}}</td>
@@ -72,12 +97,10 @@
                             <button mat-raised-button color="primary" (click)="router.navigate(['doctor/form/', { id: form.form, search: filter }])">View</button>
                           </td>
                         </tr>
-                        
                       </table>
                       <br />
-                      <div>
-                      </div>
                     </div>
+
                   </div>
                 </mat-card-content>
               </div>

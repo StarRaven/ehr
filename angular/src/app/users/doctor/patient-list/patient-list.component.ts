@@ -14,6 +14,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
   displayedColumns = ['name', 'condition1', 'condition2', 'condition3'];
   dataSource: MatTableDataSource<UserData>;
   dataSource2: MatTableDataSource<UserData>;
+  dataSource3: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -28,6 +29,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
   ) {
     const users: UserData[] = [];
     const users2: UserData[] = [];
+
     for (let i = 1; i <= 100; i++) {
       users.push(this.createNewUser(i));
       users2.push(this.createNewUser(i));
@@ -45,6 +47,8 @@ export class PatientListComponent implements OnInit, AfterViewInit {
       users.push(this.createNewUser(i));
       users2.push(this.createNewUser(i));
     }
+
+    this.createMotherChild();
 
     if (this.global.username === 'doctor1') {
       this.condition1 = 'FALL FREQ';
@@ -70,6 +74,8 @@ export class PatientListComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
     this.dataSource2.paginator = this.paginator;
     this.dataSource2.sort = this.sort;
+    this.dataSource3.paginator = this.paginator;
+    this.dataSource3.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {
@@ -77,6 +83,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
     this.dataSource2.filter = filterValue;
+    this.dataSource3.filter = filterValue;
   }
 
   goDashboard(patient: UserData) {
@@ -86,6 +93,31 @@ export class PatientListComponent implements OnInit, AfterViewInit {
     this.router.navigate(['doctor/dashboard']);
   }
 
+  createMotherChild() {
+    const users3: UserData[] = [];
+    users3.push({
+      avatar: '/assets/avatars/100.png',
+      name: 'Wulandari Sulistyo',
+      condition1: 1,
+      condition2: 2,
+      condition3: 3
+    });
+    users3.push({
+      avatar: '/assets/avatars/101.png',
+      name: 'Suparman Herianto',
+      condition1: 1,
+      condition2: 2,
+      condition3: 3
+    });
+    users3.push({
+      avatar: '/assets/avatars/102.png',
+      name: 'Hasan Herianto',
+      condition1: 1,
+      condition2: 2,
+      condition3: 3
+    });
+    this.dataSource3 = new MatTableDataSource(users3);
+  }
   /** Builds and returns a new User. */
  createNewUser(id: number): UserData {
   if (this.global.username === 'doctor1') {
