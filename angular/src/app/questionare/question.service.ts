@@ -7,6 +7,7 @@ import {TableQuestion} from './question-table';
 import {TextboxQuestion} from './question-textbox';
 import {Title} from './question-title';
 import {SimpleTableQuestion} from './question-simpletable';
+import {ComplexTableQuestion} from './question-complextable';
 import {ListQuestion} from './question-list';
 
 @Injectable()
@@ -1281,12 +1282,12 @@ export class QuestionService {
         }),
       ];
       return questions.sort((a, b) => a.order - b.order);
-    }  else if (id === 101) {
+    }  else if ((id === 101) || (id === 102)) {
       const questions: QuestionBase<any>[] = [
 
         new TextboxQuestion({
           key: '',
-          label: 'Kehamilan tanggal:',
+          label: 'Kehamilan tanggal',
           value: '',
           required: true,
           order: 1,
@@ -1316,7 +1317,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'Hari pertama haid terakhir (HPHT):',
+          label: 'Hari pertama haid terakhir (HPHT)',
           value: '',
           required: true,
           order: 4,
@@ -1326,7 +1327,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'Hari taksiran persalinan (HTP):',
+          label: 'Hari taksiran persalinan (HTP)',
           value: '',
           required: true,
           order: 5,
@@ -1336,7 +1337,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'Kehamilan sekarang:',
+          label: 'Kehamilan sekarang',
           value: '',
           required: true,
           order: 6,
@@ -1346,7 +1347,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'Keluhan utama:',
+          label: 'Keluhan utama',
           value: '',
           required: true,
           order: 7,
@@ -1356,7 +1357,7 @@ export class QuestionService {
 
         new Title({
           key: '',
-          label: 'RIWAYAT OBSTETRI:',
+          label: 'RIWAYAT OBSTETRI',
           value: '',
           required: true,
           order: 8,
@@ -1366,7 +1367,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'G:',
+          label: 'G',
           value: '',
           required: true,
           order: 9,
@@ -1376,7 +1377,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'P:',
+          label: 'P',
           value: '',
           required: true,
           order: 10,
@@ -1386,7 +1387,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'A:',
+          label: 'A',
           value: '',
           required: true,
           order: 11,
@@ -1396,12 +1397,686 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'Jumlah anak hidup:',
+          label: 'Jumlah anak hidup',
           value: '',
           required: true,
           order: 12,
           group: 2,
           layout: 'full'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Jumlah lahir mati',
+          value: '',
+          required: true,
+          order: 13,
+          group: 2,
+          layout: 'full'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Jarak persalinan terakhir',
+          value: '',
+          required: true,
+          order: 14,
+          group: 2,
+          layout: 'full'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Penolong persalinan terakhir (sebutkan)',
+          value: '',
+          required: true,
+          order: 15,
+          group: 2,
+          layout: 'full'
+        }),
+
+        new CheckboxQuestion({
+          key: '',
+          label: 'Cara persalinan yang lalu',
+          value: '0',
+          options: [{key: '0', value: 'Spontan'}, {key: '1', value: 'Buatan'}],
+          order: 16,
+          group: 2,
+          layout: '1row'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Jika buatan, sebutkan',
+          value: '',
+          required: true,
+          order: 17,
+          group: 2,
+          layout: 'full subq'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Penggunaan kontrasepsi sebelum kehamilan ini (sebutkan)',
+          value: '',
+          required: true,
+          order: 18,
+          group: 2,
+          layout: 'full'
+        }),
+
+        new Title({
+          key: '',
+          label: 'RESIKO TINGGI',
+          value: '',
+          required: true,
+          order: 19,
+          group: 2,
+          layout: 't2'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Ditemukan tanggal',
+          value: '',
+          required: true,
+          order: 20,
+          group: 2,
+          layout: 'full'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Jenis resiko',
+          value: '',
+          required: true,
+          order: 21,
+          group: 2,
+          layout: 'full'
+        }),
+
+        new Title({
+          key: '',
+          label: 'RUJUK',
+          value: '',
+          required: true,
+          order: 22,
+          group: 2,
+          layout: 't2'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Dirujuk tanggal',
+          value: '',
+          required: true,
+          order: 23,
+          group: 2,
+          layout: 'half'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Jam',
+          value: '',
+          required: true,
+          order: 24,
+          group: 2,
+          layout: 'half'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Dirujuk ke',
+          value: '',
+          required: true,
+          order: 25,
+          group: 2,
+          layout: 'full'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Tindakan sementara',
+          value: '',
+          required: true,
+          order: 26,
+          group: 2,
+          layout: 'full'
+        }),
+
+        new Title({
+          key: '',
+          label: 'PEMERIKSAAN ANTENATAL',
+          value: '',
+          required: true,
+          order: 27,
+          group: 2,
+          layout: 't2'
+        }),
+
+        new SimpleTableQuestion({
+          key: '',
+          label: '',
+          value: '',
+          contents: [
+            [['Tanggal', 'Keluhan Sekarang', 'Tekanan Darah (MMHG)', 'Berat Badan (KG)', 'Umur Kehamilan (Minggu)', 'Tinggi Findus (cm)', 'Letak Janin KOP/S U/LI', 'Denyut Jantung Janin', 'Lab', 'Pemeriksaan Khusus', 'Tindakan dan Terapi TT/TO/Lain-lain', 'Paraf']],
+            [
+            ['','','','','','','','','','','',''],
+            ['','','','','','','','','','','',''],
+            ['','','','','','','','','','','',''],
+            ['','','','','','','','','','','',''],
+            ['','','','','','','','','','','',''],
+            ]
+          ],
+          required: true,
+          order: 28,
+          group: 2,
+          layout: 'full'
+        }),
+
+        new Title({
+          key: '',
+          label: 'B. PENGAMATAN PERSALINAN',
+          value: '',
+          required: true,
+          order: 28,
+          group: 3,
+          layout: 't1'
+        }),
+
+        new Title({
+          key: '',
+          label: 'PEMERIKSAAN DALAM',
+          value: '',
+          required: true,
+          order: 29,
+          group: 3,
+          layout: 't2'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Porsio',
+          value: '',
+          required: true,
+          order: 30,
+          group: 3,
+          layout: 'half'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Presentasi',
+          value: '',
+          required: true,
+          order: 31,
+          group: 3,
+          layout: 'half'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Pembukuan',
+          value: '',
+          required: true,
+          order: 32,
+          group: 3,
+          layout: 'half'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Posisi',
+          value: '',
+          required: true,
+          order: 33,
+          group: 3,
+          layout: 'half'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Ketuban',
+          value: '',
+          required: true,
+          order: 34,
+          group: 3,
+          layout: 'half'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Penurunan bagian terendah',
+          value: '',
+          required: true,
+          order: 35,
+          group: 3,
+          layout: 'half'
+        }),
+
+        new Title({
+          key: '',
+          label: 'PEMANTAUAN',
+          value: '',
+          required: true,
+          order: 36,
+          group: 3,
+          layout: 't2'
+        }),
+
+        new ComplexTableQuestion({
+          key: '',
+          label: '',
+          value: '',
+          contents: [
+            [
+              [['Tanggal dan Jam',1], ['Tekanan Darah (mm/Hg)',1], ['Nadi (/min)',1], ['Nafas',1], ['Suhu (C)',1], ['HIS',4], ['OJJ',2], ['Hasil Pemeriksaan Dalam',1], ['Paraf',1]],
+              [['',1],['',1],['',1],['',1],['',1],['',1],['FRLK',1],['Lama',1],['Kuat',1],['FRLK',1],['Teratus',1],['',1],['',1]]
+            ],
+            [
+              ['','','','','','','','','','','','',''],
+              ['','','','','','','','','','','','',''],
+              ['','','','','','','','','','','','',''],
+              ['','','','','','','','','','','','',''],
+              ['','','','','','','','','','','','',''],
+            ]
+          ],
+          required: true,
+          order: 37,
+          group: 3,
+          layout: ''
+        }),
+
+        new Title({
+          key: '',
+          label: 'PEMERIKSAAN KALA III DAN IV',
+          value: '',
+          required: true,
+          order: 38,
+          group: 3,
+          layout: 't2'
+        }),
+
+        new CheckboxQuestion({
+          key: '',
+          label: 'Plasenta',
+          value: '1',
+          options: [{key: '0', value: 'Lengkap'}, {key: '1', value: 'Tidak Lengkap'}],
+          order: 39,
+          group: 3,
+          layout: '1row'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Tindakan',
+          value: '',
+          required: true,
+          order: 40,
+          group: 3,
+          layout: 'full'
+        }),
+
+        new CheckboxQuestion({
+          key: '',
+          label: 'Kontraksi Rahim',
+          value: '0',
+          options: [{key: '0', value: 'Baik'}, {key: '1', value: 'Buruk'}],
+          order: 41,
+          group: 3,
+          layout: '1row'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Tindakan',
+          value: '',
+          required: true,
+          order: 42,
+          group: 3,
+          layout: 'full'
+        }),
+
+        new CheckboxQuestion({
+          key: '',
+          label: 'Perdarahan',
+          value: '1',
+          options: [{key: '0', value: 'Sedikit'}, {key: '1', value: 'Banyak'}],
+          order: 43,
+          group: 3,
+          layout: '1row'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Tindakan',
+          value: '',
+          required: true,
+          order: 44,
+          group: 3,
+          layout: 'full'
+        }),
+
+        new Title({
+          key: '',
+          label: 'KESIMPULAN AKHIR PERSALINAN',
+          value: '',
+          required: true,
+          order: 45,
+          group: 3,
+          layout: 't2'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Persalinan tanggal',
+          value: '',
+          required: true,
+          order: 46,
+          group: 3,
+          layout: 'half'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Jam',
+          value: '',
+          required: true,
+          order: 47,
+          group: 3,
+          layout: 'half'
+        }),
+
+        new CheckboxQuestion({
+          key: '',
+          label: 'Cara persalinan',
+          value: '1',
+          options: [{key: '0', value: 'Spontan'}, {key: '1', value: 'Buatan'}],
+          order: 48,
+          group: 3,
+          layout: '1row'
+        }),
+
+        new CheckboxQuestion({
+          key: '',
+          label: 'Keadaan bayi',
+          value: '2',
+          options: [{key: '0', value: 'Sehat'}, {key: '1', value: 'Sakit'}, {key: '2', value: 'Lahir mati'}],
+          order: 49,
+          group: 3,
+          layout: '1row'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Berat badan bayi',
+          value: '',
+          suffix: 'gram',
+          required: true,
+          order: 50,
+          group: 3,
+          layout: 'full'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Warna',
+          value: '',
+          suffix: 'gram',
+          required: true,
+          order: 51,
+          group: 3,
+          layout: 'full'
+        }),
+
+        new CheckboxQuestion({
+          key: '',
+          label: 'Jenis kelamin',
+          value: '0',
+          options: [{key: '0', value: 'Laki-laki'}, {key: '1', value: 'Perempuan'}],
+          order: 52,
+          group: 3,
+          layout: '1row'
+        }),
+
+        new CheckboxQuestion({
+          key: '',
+          label: 'Keadan ibu',
+          value: '2',
+          options: [{key: '0', value: 'Sehat'}, {key: '1', value: 'Sakit'}, {key: '2', value: 'Meninggal'}],
+          order: 53,
+          group: 3,
+          layout: '1row'
+        }),
+
+        new Title({
+          key: '',
+          label: 'C. PENGAMATAN NIFAS',
+          value: '',
+          required: true,
+          order: 54,
+          group: 4,
+          layout: 't1'
+        }),
+
+        new Title({
+          key: '',
+          label: 'PENGAMATAN',
+          value: '',
+          required: true,
+          order: 55,
+          group: 4,
+          layout: 't2'
+        }),
+
+        new SimpleTableQuestion({
+          key: '',
+          label: '',
+          value: '',
+          contents: [
+            [['Tanggal dan Jam', 'Anamnesis', 'Tekanan Darah (MMHG)', 'Nadi (/mml)', 'Nafas (/mml)', 'Suhu (C)', 'Kontraksi Rahim', 'Perdarahan', 'Lochia', 'BAB', 'BAK', 'Menyusui Dini', 'Terapi dan Tindakan', 'Paraf']],
+            [
+              ['','','','','','','','','','','','','',''],
+              ['','','','','','','','','','','','','',''],
+              ['','','','','','','','','','','','','',''],
+              ['','','','','','','','','','','','','',''],
+              ['','','','','','','','','','','','','',''],
+            ]
+          ],
+          required: true,
+          order: 56,
+          group: 4,
+          layout: ''
+        }),
+
+        new Title({
+          key: '',
+          label: 'KESIMPULAN AKHIR NIFAS',
+          value: '',
+          required: true,
+          order: 57,
+          group: 4,
+          layout: 't2'
+        }),
+
+        new CheckboxQuestion({
+          key: '',
+          label: 'Keadaan bayi',
+          value: '1',
+          options: [{key: '0', value: 'Sehat'}, {key: '1', value: 'Sakit'}, {key: '2', value: 'Meninggal'}],
+          order: 58,
+          group: 4,
+          layout: '1row'
+        }),
+
+        new CheckboxQuestion({
+          key: '',
+          label: 'Keadaan ibu',
+          value: '1',
+          options: [{key: '0', value: 'Sehat'}, {key: '1', value: 'Sakit'}, {key: '2', value: 'Meninggal'}],
+          order: 59,
+          group: 4,
+          layout: '1row'
+        }),
+
+        new Title({
+          key: '',
+          label: 'RUJUK',
+          value: '',
+          required: true,
+          order: 60,
+          group: 4,
+          layout: 't2'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Dirujuk tanggal',
+          value: '',
+          required: true,
+          order: 61,
+          group: 4,
+          layout: 'half'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Jam',
+          value: '',
+          required: true,
+          order: 62,
+          group: 4,
+          layout: 'half'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Dirujuk ke',
+          value: '',
+          required: true,
+          order: 63,
+          group: 4,
+          layout: 'full'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Tindakan sementara',
+          value: '',
+          required: true,
+          order: 64,
+          group: 4,
+          layout: 'full'
+        }),
+      ];
+      return questions.sort((a, b) => a.order - b.order);
+    } else if (id === 103) {
+      const questions: QuestionBase<any>[] = [
+        
+        new Title({
+          key: '',
+          label: 'IDENTITAS',
+          value: '',
+          required: true,
+          order: 1,
+          group: 1,
+          layout: 't1'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'No. Registar',
+          value: '',
+          required: true,
+          order: 2,
+          group: 1,
+          layout: 'full'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Nama anak',
+          value: '',
+          required: true,
+          order: 3, 
+          group: 1,
+          layout: 'full'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Umur',
+          value: '',
+          suffix: 'tahun',
+          required: true,
+          order: 4, 
+          group: 1,
+          layout: 'full'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Alamat',
+          value: '',
+          required: true,
+          order: 5, 
+          group: 1,
+          layout: 'full'
+        }),
+        
+        new TextboxQuestion({
+          key: '',
+          label: 'RT',
+          value: '',
+          required: true,
+          order: 6, 
+          group: 1,
+          layout: 'third'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'RW',
+          value: '',
+          required: true,
+          order: 7, 
+          group: 1,
+          layout: 'third'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Desa',
+          value: '',
+          required: true,
+          order: 8, 
+          group: 1,
+          layout: 'third'
+        }),
+
+        new Title({
+          key: '',
+          label: 'FORMULIR KESEHATAN',
+          value: '',
+          required: true,
+          order: 9,
+          group: 2,
+          layout: 't1'
+        }),
+
+        new ListQuestion({
+          key: '',
+          label: '',
+          value: '',
+          contents: [
+            ['Keterangan Waktu Kelahiran tanggal 2/3/2014'],
+            ['Keterangan Imunisasi'],
+          ],
+          required: true,
+          order: 10,
+          group: 2,
+          layout: ''
         }),
       ];
       return questions.sort((a, b) => a.order - b.order);

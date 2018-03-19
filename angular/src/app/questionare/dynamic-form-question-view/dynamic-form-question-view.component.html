@@ -6,51 +6,52 @@
 
     <div *ngSwitchCase="'textbox'">
       <label [attr.for]="question.key" [innerHTML]="question.key+question.label+': '"></label>
-
-      <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type" class="HIDEME"
-      />
+      
+      <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type" class="HIDEME" />
       <div class="fake-input" [innerHTML]="question.value"></div>
+      {{question.suffix}}
+      <!--<div *ngIf="question.suffix !== ''" [innerHTML]="question.suffix"></div>-->
     </div>
 
     <div *ngSwitchCase="'checkbox'">
 
       <div *ngIf="question.layout=='1row'">
-        <label [attr.for]="question.key" [innerHTML]="question.key+question.label+': '"></label>
+        <label [attr.for]="question.key" [innerHTML]="question.key+question.label+':&nbsp;&nbsp;'"></label>
         <!--<mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="right-push" [innerHTML]="getChar(opt.key)+opt.value+': '"></mat-checkbox>-->
         <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="right-push">
-          <span [innerHTML]="getChar(opt.key)+opt.value+': '"></span>
+          <span [innerHTML]="getChar(opt.key)+'. '+opt.value"></span>
         </mat-checkbox>
       </div>
       <div *ngIf="question.layout=='2row'">
-        <label [attr.for]="question.key" class="block" [innerHTML]="question.key+question.label+': '"></label>
+        <label [attr.for]="question.key" class="block" [innerHTML]="question.key+question.label+':&nbsp;&nbsp;'"></label>
         <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="right-push">
-          <span [innerHTML]="getChar(opt.key)+opt.value+': '"></span>
+          <span [innerHTML]="getChar(opt.key)+'. '+opt.value"></span>
         </mat-checkbox>
       </div>
       <div *ngIf="question.layout=='2row subq'" class="subq">
-        <label [attr.for]="question.key" class="block" [innerHTML]="question.key+question.label+': '"></label>
+        <label [attr.for]="question.key" class="block" [innerHTML]="question.key+question.label+':&nbsp;&nbsp;'"></label>
         <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="right-push">
-          <span [innerHTML]="getChar(opt.key)+opt.value+': '"></span>
+          <span [innerHTML]="getChar(opt.key)+'. '+opt.value"></span>
         </mat-checkbox>
       </div>
       <div *ngIf="question.layout=='1column subq'" class="subq">
-        <label [attr.for]="question.key" class="block" [innerHTML]="question.key+question.label+': '"></label>
+        <label [attr.for]="question.key" class="block" [innerHTML]="question.key+question.label+':&nbsp;&nbsp;'"></label>
         <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="right-push block">
-          <span [innerHTML]="getChar(opt.key)+opt.value+': '"></span>
+          <span [innerHTML]="getChar(opt.key)+'. '+opt.value"></span>
         </mat-checkbox>
       </div>
       <div *ngIf="question.layout=='2column'">
-        <label [attr.for]="question.key" class="block" [innerHTML]="question.key+question.label+': '"></label>
+        <label [attr.for]="question.key" class="block" [innerHTML]="question.key+question.label+':&nbsp;&nbsp;'"></label>
         <div class="twoColumn">
           <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="block">
-            <span [innerHTML]="getChar(opt.key)+opt.value+': '"></span>
+            <span [innerHTML]="getChar(opt.key)+'. '+opt.value"></span>
           </mat-checkbox>
         </div>
       </div>
       <div *ngIf="question.layout=='half'" class="half">
-        <label [attr.for]="question.key" [innerHTML]="question.key+question.label+': '"></label>
+        <label [attr.for]="question.key" [innerHTML]="question.key+question.label+':&nbsp;&nbsp;'"></label>
         <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="block">
-          <span [innerHTML]="getChar(opt.key)+opt.value+': '"></span>
+          <span [innerHTML]="getChar(opt.key)+'. '+opt.value"></span>
         </mat-checkbox>
       </div>
     </div>
@@ -114,6 +115,17 @@
       <table >
         <tr *ngFor="let headers of question.contents[0];">
           <th *ngFor="let thead of headers;" [innerHTML]="thead"></th>
+        </tr>
+        <tr *ngFor="let contents of question.contents[1];">
+          <td *ngFor="let content of contents;" [innerHTML]="content"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div *ngSwitchCase="'complextable'">
+      <table >
+        <tr *ngFor="let headers of question.contents[0];">
+          <th *ngFor="let thead of headers;" [innerHTML]="thead[0]" [attr.colspan]="thead[1]"></th>
         </tr>
         <tr *ngFor="let contents of question.contents[1];">
           <td *ngFor="let content of contents;" [innerHTML]="content"></td>

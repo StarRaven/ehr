@@ -51,6 +51,9 @@
                           </form>
                         </div>
                       </mat-card>
+                      <div class="center">
+                        <button mat-raised-button color="primary" (click)="router.navigate(['doctor/form/', { id: box.content, search: filter }])">Edit Form</button>
+                      </div>
                     </div>
                     <div *ngSwitchCase="'pregnancy-form'">
                       <div class="t1">KARTU KEHAMILAN</div>
@@ -61,6 +64,9 @@
                           </div>
                         </form>
                       </mat-card>
+                      <div class="center">
+                        <button mat-raised-button color="primary" (click)="router.navigate(['doctor/form/', { id: box.content, search: filter }])">Edit Form</button>
+                      </div>
                     </div>
                     <div *ngSwitchCase="'information'">
                       <mat-grid-list cols="3" rowHeight="150px">
@@ -79,7 +85,7 @@
                     </div>
                     <div *ngSwitchCase="'chart'">
                       <!--<canvas #line height="100"></canvas>-->
-                      <canvas baseChart height="100" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [legend]="lineChartLegend"
+                      <canvas baseChart height="100" [datasets]="box.content.datasets" [labels]="box.content.labels" [colors]="box.content.colors" [options]="lineChartOptions" [legend]="box.content.legends"
                         [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
                     </div>
                     <div *ngSwitchCase="'form-list'">

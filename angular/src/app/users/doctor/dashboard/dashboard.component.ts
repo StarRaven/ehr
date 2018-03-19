@@ -108,6 +108,58 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     { data: [140, 150, 152, 154, 160, 162, 162, 164, 170], label: 'Height (cm)' }
   ];
 
+  public lineChartOptions1: any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+
+  // Chart Labels
+  public lineChartLabels1: number[] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
+  public lineChartType1 = 'line';
+  public lineChartLegend1 = false;
+  public lineChartColors1:Array<any> = [
+    {
+      backgroundColor: 'rgba(205,220,57,0.8)',
+      borderColor: 'rgba(0,0,0,0.1)',
+      pointBackgroundColor: 'rgba(0,0,0,0)',
+      pointBorderColor: 'rgba(0,0,0,0)',
+    },
+    {
+      backgroundColor: 'rgba(139,195,74,0.8)',
+      borderColor: 'rgba(0,0,0,0.1)',
+      pointBackgroundColor: 'rgba(0,0,0,0)',
+      pointBorderColor: 'rgba(0,0,0,0)',
+    },
+    {
+      backgroundColor: 'rgba(139,195,74,0.8)',
+      borderColor: 'rgba(0,0,0,0.1)',
+      pointBackgroundColor: 'rgba(0,0,0,0)',
+      pointBorderColor: 'rgba(0,0,0,0)',
+    },
+    {
+      backgroundColor: 'rgba(205,220,57,0.8)',
+      borderColor: 'rgba(0,0,0,0.1)',
+      pointBackgroundColor: 'rgba(0,0,0,0)',
+      pointBorderColor: 'rgba(0,0,0,0)',
+    },
+    {
+      backgroundColor: '#fff',
+      borderColor: 'rgba(0,0,0,0.1)',
+      pointBackgroundColor: 'rgba(0,0,0,0)',
+      pointBorderColor: 'rgba(0,0,0,0)',
+    }
+  ];
+  // Chart data
+  public lineChartData1: any[] = [
+    
+    { data: [4.3,5.7,  7,7.9,8.6, 9.2, 9.75,10.2,10.6,10.9,11.2,11.5,11.8,12.1,12.4,12.7,  13,13.25,13.5,13.8,  14.05,14.3,14.55,14.8,15.1], label: '97th', fill: 1 },
+    { data: [3.8,5.1,6.3,7.2,7.8, 8.4, 8.9, 9.3, 9.6,  10,10.3,10.5,10.8,11.1,11.3,11.6,11.8,  12,12.3,12.55,12.8,  12.95,13.15,13.4,13.7], label: '85th', fill: 2 },
+    { data: [3.3,4.5,5.6,6.4,  7, 7.5,   8, 8.3, 8.6, 8.9, 9.2, 9.4, 9.6, 9.9,10.1,10.3,10.5,10.7,  11,11.2,11.4,11.6,11.8,  12,12.2], label: '50th', fill: 3 },
+    { data: [2.8,3.8,4.9,5.65,6.2,6.7, 7.1, 7.4, 7.7,7.95, 8.2, 8.4, 8.6, 8.8,   9, 9.2, 9.4, 9.6, 9.8, 9.95,10.1,10.3,10.4,10.6,10.8], label: '15th', fill: 4 },
+    { data: [2.4,3.4,4.4,5.1,5.65,6.05,6.45,6.75,  7, 7.2, 7.4, 7.6, 7.8,   8, 8.2, 8.4, 8.6, 8.75, 8.9,   9.05, 9.2, 9.35, 9.5, 9.65, 9.8], label: '3rd', fill: false }
+
+  ];
+
   constructor(
     private router: Router,
     private global: GlobalService,
@@ -117,24 +169,31 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.setid = 0;
     if (this.global.patientName=='Wulandari Sulistyo') {
       this.setid = 100; // mother
-    } else if ((this.global.patientName=='Suparman Herianto')||(this.global.patientName=='Hasan Herianto')) {
+    } else if (this.global.patientName=='Suparman Herianto') {
       this.setid = 101; // child
+    } else if (this.global.patientName=='Hasan Herianto') {
+      this.setid = 102; // child
     }
 
-    var question = this.qs.getQuestions(100);
+    
+      var question = this.qs.getQuestions(100);
+      var result = _(question)
+              .groupBy(x => x.group)
+              .map((value, key) => (value))
+              .value();
+      this.questions.push(result);
+      this.form = this.qcs.toFormGroup(question);
+    
+    
+    for (let i=101; i<105; i++) {
+    var question = this.qs.getQuestions(i);
     var result = _(question)
             .groupBy(x => x.group)
             .map((value, key) => (value))
             .value();
     this.questions.push(result);
-    this.form = this.qcs.toFormGroup(question);
-
-    var question = this.qs.getQuestions(101);
-    var result = _(question)
-            .groupBy(x => x.group)
-            .map((value, key) => (value))
-            .value();
-    this.questions.push(result);
+    }
+    
   }
 
   applyFilter(filterValue: string) {
@@ -264,15 +323,52 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         'col': 1,
         'row': 121,
         'sizex': 95,
-        'sizey': 88
+        'sizey': 90
       },
       {
         'dragHandle': '.handle',
-        'col': 89,
+        'col': 91,
         'row': 121,
         'sizex': 95,
-        'sizey': 88
-      }
+        'sizey': 279 
+      },
+      {
+        'dragHandle': '.handle',
+        'col': 280,
+        'row': 121,
+        'sizex': 95,
+        'sizey': 279 
+      },
+      ];
+    }  else if (this.setid === 101) {
+      return [{
+        'dragHandle': '.handle',
+        'col': 1,
+        'row': 121,
+        'sizex': 95,
+        'sizey': 90
+      },
+      {
+        'dragHandle': '.handle',
+        'col': 91,
+        'row': 121,
+        'sizex': 95,
+        'sizey': 279 
+      },
+      {
+        'dragHandle': '.handle',
+        'col': 280,
+        'row': 121,
+        'sizex': 95,
+        'sizey': 279 
+      },
+      {
+        'dragHandle': '.handle',
+        'col': 280,
+        'row': 121,
+        'sizex': 95,
+        'sizey': 279 
+      },
       ];
     } 
   }
@@ -320,7 +416,30 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.boxes[0].content = 0;
       this.boxes[1].widgetType = 'pregnancy-form';
       this.boxes[1].content = 1;
-
+      this.boxes[2].widgetType = 'pregnancy-form';
+      this.boxes[2].content = 2;
+    } else if (this.setid === 101) {
+      this.boxes[0].widgetType = 'info-form';
+      this.boxes[0].content = 3;
+      this.boxes[1].widgetType = 'chart';
+      this.boxes[1].title = 'Chart';
+      this.boxes[1].content = {
+        labels: this.lineChartLabels1,
+        datasets: this.lineChartData1,
+        colors: this.lineChartColors1,
+        legends: this.lineChartLegend1
+      };
+      this.boxes[2].widgetType = 'pregnancy-form';
+      this.boxes[2].content = 4;
+      this.boxes[3].widgetType = 'pregnancy-form';
+      this.boxes[3].content = 5;
+    }  else if (this.setid === 102) {
+      this.boxes[0].widgetType = 'info-form';
+      this.boxes[0].content = 6;
+      this.boxes[2].widgetType = 'pregnancy-form';
+      this.boxes[2].content = 7;
+      this.boxes[3].widgetType = 'pregnancy-form';
+      this.boxes[4].content = 8;
     } 
     console.log(this.boxes);
   }
