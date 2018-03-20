@@ -1675,11 +1675,11 @@ export class QuestionService {
               [['',1],['',1],['',1],['',1],['',1],['',1],['FRLK',1],['Lama',1],['Kuat',1],['FRLK',1],['Teratus',1],['',1],['',1]]
             ],
             [
-              ['','','','','','','','','','','','',''],
-              ['','','','','','','','','','','','',''],
-              ['','','','','','','','','','','','',''],
-              ['','','','','','','','','','','','',''],
-              ['','','','','','','','','','','','',''],
+              [['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1]],
+              [['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1]],
+              [['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1]],
+              [['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1]],
+              [['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1]],
             ]
           ],
           required: true,
@@ -2078,9 +2078,248 @@ export class QuestionService {
           group: 2,
           layout: ''
         }),
+
+        new ComplexTableQuestion({
+          key: '',
+          label: '',
+          value: '',
+          contents: [
+            [
+              [['Umur (bln)',1], [0,1], [1,1], [2,1], [3,1], [4,1], [5,1], [6,1], [7,1], [8,1], [9,1], [10,1], [11,1], [12,1], [13,1], [14,1], [15,1], [16,1], [17,1], [18,1], [19,1], [20,1], [21,1], [22,1], [23,1], [24,1]]
+            ],
+            [
+              [['Bulan nbangan',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1]],
+              [['BB (kg)',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1]],
+              [['KBM (gr)',1],[200,25]],
+              [['N/T',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1]]
+            ]
+          ],
+          required: true,
+          order: 37,
+          group: 3,
+          layout: ''
+        }),
       ];
       return questions.sort((a, b) => a.order - b.order);
-    }
+    } else if (id === 104) {
+      const questions: QuestionBase<any>[] = [
+        
+        new Title({
+          key: '',
+          label: 'KETERANGAN WAKTU KELAHIRAN',
+          value: '',
+          required: true,
+          order: 1,
+          group: 1,
+          layout: 't1'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Tanggal lahir',
+          value: '',
+          required: true,
+          order: 2,
+          group: 1,
+          layout: 'full'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Tempat kelahiran',
+          value: '',
+          required: true,
+          order: 3, 
+          group: 1,
+          layout: 'full'
+        }),
+
+        new CheckboxQuestion({
+          key: '',
+          label: 'Cara kelahiran',
+          value: '1',
+          options: [{key: '0', value: 'Spontan'}, {key: '1', value: 'SC/Vakum'}],
+          order: 4,
+          group: 1,
+          layout: '1row'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Jika SC/Vakum, sebutkan',
+          value: '',
+          required: true,
+          order: 5, 
+          group: 1,
+          layout: 'full subq'
+        }),
+
+        new Title({
+          key: '',
+          label: 'Berat badan waktu lahir',
+          value: '',
+          required: true,
+          order: 6,
+          group: 1,
+          layout: 't2'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'BBL',
+          value: '',
+          required: true,
+          order: 7, 
+          group: 1,
+          layout: 'half'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: '/ PB',
+          value: '',
+          required: true,
+          order: 8, 
+          group: 1,
+          layout: 'half'
+        }),
+
+        new CheckboxQuestion({
+          key: '',
+          label: 'Jenis kelamin',
+          value: '1',
+          options: [{key: '0', value: 'Laki-laki'}, {key: '1', value: 'Perempuan'}],
+          order: 9,
+          group: 1,
+          layout: '1row'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Nama ayah',
+          value: '',
+          required: true,
+          order: 10, 
+          group: 1,
+          layout: 'full'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Pekerjaan ayah',
+          value: '',
+          required: true,
+          order: 11, 
+          group: 1,
+          layout: 'half'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Suku',
+          value: '',
+          required: true,
+          order: 12, 
+          group: 1,
+          layout: 'half'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Nama ibu',
+          value: '',
+          required: true,
+          order: 13, 
+          group: 1,
+          layout: 'full'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Pekerjaan ibu',
+          value: '',
+          required: true,
+          order: 14, 
+          group: 1,
+          layout: 'half'
+        }),
+
+        new TextboxQuestion({
+          key: '',
+          label: 'Suku',
+          value: '',
+          required: true,
+          order: 15, 
+          group: 1,
+          layout: 'half'
+        })
+      ];
+      return questions.sort((a, b) => a.order - b.order);
+    } else if (id === 105) {
+      const questions: QuestionBase<any>[] = [
+
+        new Title({
+          key: '',
+          label: 'KETERANGAN IMUNISASI',
+          value: '',
+          required: true,
+          order: 1,
+          group: 1,
+          layout: 't1'
+        }),
+
+        new SimpleTableQuestion({
+          key: '',
+          label: '',
+          value: '',
+          contents: [
+            [['Imunisasi', 'Tanggal', 'Tanggal', 'Tanggal', 'Tanggal', 'Tanggal', 'Keterangan'  ]],
+            [
+              ['BCG','','','','','',''],
+              ['Campak','','','','','',''],
+              ['DPT','','','','','',''],
+              ['POLIO','','','','','',''],
+              ['Hepatitis','','','','','',''],
+            ]
+          ],
+          required: true,
+          order: 2,
+          group: 1,
+          layout: ''
+        }),
+
+        new Title({
+          key: '',
+          label: 'BOOSTER. HIB. CAMPAK',
+          value: '',
+          required: true,
+          order: 3,
+          group: 1,
+          layout: 't2'
+        }),
+
+        new SimpleTableQuestion({
+          key: '',
+          label: '',
+          value: '',
+          contents: [
+            [['Tanggal', 'Umur', 'Berat Badan', 'Makanan Anak', 'Gejala', 'Keterangan']],
+            [
+              ['','','','','',''],
+              ['','','','','',''],
+              ['','','','','',''],
+              ['','','','','',''],
+              ['','','','','',''],
+            ]
+          ],
+          required: true,
+          order: 4,
+          group: 1,
+          layout: ''
+        }),
+      ];
+      return questions.sort((a, b) => a.order - b.order);
+    } 
 
   }
 }

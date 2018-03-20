@@ -17,11 +17,14 @@
     <mat-drawer-content>
       <div class="content-wrapper">
         <mat-form-field class="search-field">
-          <input matInput [(ngModel)]="filter" placeholder="Search" (keyup)="hack()">
+          <input matInput [(ngModel)]="filter" placeholder="Search" (keyup)="filterSort()">
           <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
         <div [ngGrid]="gridConfig">
+          <!--
           <div *ngFor="let box of boxes | highlightbox : filter; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)"
+            (onResize)="onResize(i, $event)">-->
+            <div *ngFor="let box of newboxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)"
             (onResize)="onResize(i, $event)">
             <mat-card class="dashboard-card">
               <div class="inner">
@@ -45,27 +48,27 @@
                           </div>
 
                           <form id="qForm" fxFlex="grow" (ngSubmit)="onSubmit()" [formGroup]="form">
-                            <div *ngFor="let question of group; let i = index" [ngClass]="question.layout">
+                            <div *ngFor="let question of group | highlight : filter; let i = index" [ngClass]="question.layout">
                               <app-dynamic-form-question-view [question]="question" [form]="form"></app-dynamic-form-question-view>
                             </div>
                           </form>
                         </div>
                       </mat-card>
                       <div class="center">
-                        <button mat-raised-button color="primary" (click)="router.navigate(['doctor/form/', { id: box.content, search: filter }])">Edit Form</button>
+                        <button mat-raised-button color="primary" (click)="router.navigate(['doctor/form/', { id: box.content+100, search: filter }])">Edit Form</button>
                       </div>
                     </div>
                     <div *ngSwitchCase="'pregnancy-form'">
                       <div class="t1">KARTU KEHAMILAN</div>
                       <mat-card *ngFor="let group of questions[box.content]; let g = index" class="fix-form-card">
                         <form id="qForm" fxFlex="grow" (ngSubmit)="onSubmit()" [formGroup]="form">
-                          <div *ngFor="let question of group; let i = index" [ngClass]="question.layout">
+                          <div *ngFor="let question of group| highlight : filter; let i = index" [ngClass]="question.layout">
                             <app-dynamic-form-question-view [question]="question" [form]="form"></app-dynamic-form-question-view>
                           </div>
                         </form>
                       </mat-card>
                       <div class="center">
-                        <button mat-raised-button color="primary" (click)="router.navigate(['doctor/form/', { id: box.content, search: filter }])">Edit Form</button>
+                        <button mat-raised-button color="primary" (click)="router.navigate(['doctor/form/', { id: box.content+100, search: filter }])">Edit Form</button>
                       </div>
                     </div>
                     <div *ngSwitchCase="'information'">
@@ -85,7 +88,7 @@
                     </div>
                     <div *ngSwitchCase="'chart'">
                       <!--<canvas #line height="100"></canvas>-->
-                      <canvas baseChart height="100" [datasets]="box.content.datasets" [labels]="box.content.labels" [colors]="box.content.colors" [options]="lineChartOptions" [legend]="box.content.legends"
+                      <canvas baseChart height="100" [datasets]="box.content.datasets" [labels]="box.content.labels" [colors]="box.content.colors" [options]="box.content.options" [legend]="box.content.legends"
                         [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
                     </div>
                     <div *ngSwitchCase="'form-list'">

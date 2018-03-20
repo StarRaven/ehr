@@ -56,7 +56,7 @@ export class HighlightBoxPipe implements PipeTransform {
             }
             // date
             for (const label of box.content.labels) {
-              if (this.include(label, search)) {
+              if (this.include(String(label), search)) {
                 newboxes.push(box);
                 break;
               }
@@ -91,14 +91,16 @@ export class HighlightBoxPipe implements PipeTransform {
             }
             break;
           }
-          case 'info-form' : {
-            newboxes.push(box);
-            break;
-          }
+          case 'info-form' : 
           case 'pregnancy-form' : {
-            newboxes.push(box);
+            if (this.FormContain(box.content+100, search)) {
+              //console.log('Form Content Contain');
+              newboxes.push(box);
+              // newforms.push(form);
+            }
             break;
           }
+          
         }
 
       }
@@ -112,6 +114,7 @@ export class HighlightBoxPipe implements PipeTransform {
       return true;
     }
     const form = this.QService.getQuestions(id);
+    console.log(form);
     for (const Question of form) {
       if (this.include(Question.label, search)) {
         return true;

@@ -10,6 +10,8 @@ import { QuestionBase } from '../../../questionare/question-base';
 import { QuestionControlService } from '../../../questionare/question-control.service';
 import { QuestionService } from '../../../questionare/question.service';
 
+import { HighlightBoxPipe } from '../../../highlightbox.pipe';
+
 import * as Chart from 'chart.js';
 import * as moment from 'moment';
 import * as _ from 'lodash';
@@ -43,7 +45,7 @@ interface Info {
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  providers: [QuestionControlService],
+  providers: [QuestionControlService, HighlightBoxPipe],
   encapsulation: ViewEncapsulation.None,
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
@@ -55,6 +57,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   private filter = '';
   // private chart: any;
   private boxes: Array<Box> = [];
+  private newboxes: Array<Box> = [];
+  private oridashconf: NgGridItemConfig[] = [];
+
   private rgb = '#efefef';
   private curNum;
   private oriboxes: Array<Box> = [];
@@ -110,7 +115,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   public lineChartOptions1: any = {
     scaleShowVerticalLines: false,
-    responsive: true
+    responsive: true,
+    scales: {
+      xAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: 'Umur (bln)'
+        }
+      }],
+      yAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: 'Berat Bacalan (kg)'
+        }
+      }]
+    }    
   };
 
   // Chart Labels
@@ -164,7 +183,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     private router: Router,
     private global: GlobalService,
     private qcs: QuestionControlService,
-    private qs: QuestionService
+    private qs: QuestionService,
+    private hlbox: HighlightBoxPipe
   ) {
     this.setid = 0;
     if (this.global.patientName=='Wulandari Sulistyo') {
@@ -185,7 +205,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.form = this.qcs.toFormGroup(question);
     
     
-    for (let i=101; i<105; i++) {
+    for (let i=101; i<106; i++) {
     var question = this.qs.getQuestions(i);
     var result = _(question)
             .groupBy(x => x.group)
@@ -194,6 +214,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.questions.push(result);
     }
     
+  }
+
+  filterSort() {
+    this.newboxes = [];
+    this.boxes =_.cloneDeep(this.oriboxes);
+    this.newboxes = this.hlbox.transform(this.boxes, this.filter);
+    console.log(this.newboxes);
   }
 
   applyFilter(filterValue: string) {
@@ -344,30 +371,30 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       return [{
         'dragHandle': '.handle',
         'col': 1,
-        'row': 121,
+        'row': 1,
         'sizex': 95,
-        'sizey': 90
+        'sizey': 80
       },
       {
         'dragHandle': '.handle',
-        'col': 91,
-        'row': 121,
+        'col': 1,
+        'row': 81,
         'sizex': 95,
-        'sizey': 279 
+        'sizey': 40 
       },
       {
         'dragHandle': '.handle',
-        'col': 280,
+        'col': 1,
         'row': 121,
         'sizex': 95,
-        'sizey': 279 
+        'sizey': 64 
       },
       {
         'dragHandle': '.handle',
-        'col': 280,
-        'row': 121,
+        'col': 1,
+        'row': 185,
         'sizex': 95,
-        'sizey': 279 
+        'sizey': 64 
       },
       ];
     } 
@@ -412,25 +439,33 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.boxes[1].widgetType = 'chart';
       this.boxes[2].widgetType = 'form-list';
     } else if (this.setid === 100) {
+      this.boxes[0].id = 0;
       this.boxes[0].widgetType = 'info-form';
       this.boxes[0].content = 0;
+      this.boxes[1].id = 1;
       this.boxes[1].widgetType = 'pregnancy-form';
       this.boxes[1].content = 1;
+      this.boxes[2].id = 2;
       this.boxes[2].widgetType = 'pregnancy-form';
       this.boxes[2].content = 2;
     } else if (this.setid === 101) {
+      this.boxes[0].id = 0;
       this.boxes[0].widgetType = 'info-form';
       this.boxes[0].content = 3;
+      this.boxes[1].id = 1;
       this.boxes[1].widgetType = 'chart';
       this.boxes[1].title = 'Chart';
       this.boxes[1].content = {
         labels: this.lineChartLabels1,
         datasets: this.lineChartData1,
         colors: this.lineChartColors1,
-        legends: this.lineChartLegend1
+        legends: this.lineChartLegend1,
+        options: this.lineChartOptions1
       };
+      this.boxes[2].id = 2;
       this.boxes[2].widgetType = 'pregnancy-form';
       this.boxes[2].content = 4;
+      this.boxes[3].id = 3;
       this.boxes[3].widgetType = 'pregnancy-form';
       this.boxes[3].content = 5;
     }  else if (this.setid === 102) {
@@ -441,12 +476,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.boxes[3].widgetType = 'pregnancy-form';
       this.boxes[4].content = 8;
     } 
-    console.log(this.boxes);
+    //console.log(this.boxes);
+    this.newboxes = this.boxes;
+    this.oriboxes = _.cloneDeep(this.boxes);
+    console.log(this.oriboxes);
   }
 
   private loadDashboard() {
     this.boxes = [];
     const dashconf = this._generateDefaultDashConfig(this.setid);
+    this.oridashconf = this._generateDefaultDashConfig(this.setid);
     for (let i = 0; i < dashconf.length; i++) {
       const conf = dashconf[i];
       conf.payload = 1 + i;
@@ -504,7 +543,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     // to make sure it gets value, wait to fix
     this.boxes[2].content = this.FORM_DATA;
     // this.dataSource_form = new MatTableDataSource<Form>(ELEMENT_DATA2);
-    this.oriboxes = this.boxes;
+    
     }
   }
 }
