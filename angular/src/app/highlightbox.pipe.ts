@@ -50,6 +50,10 @@ export class HighlightBoxPipe implements PipeTransform {
                   break;
                 }
               }
+
+              if (isPushed) {
+                break;
+              }
             }
             if (isPushed) {
               break;
@@ -121,6 +125,8 @@ export class HighlightBoxPipe implements PipeTransform {
       } else if (this.include(Question.desc, search)) {
         return true;
       } else if (this.include(Question.comments, search)) {
+        return true;
+      } else if (this.include(JSON.stringify(Question.contents), search)) {
         return true;
       }
     }

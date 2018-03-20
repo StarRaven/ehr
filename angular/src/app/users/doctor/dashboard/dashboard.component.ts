@@ -189,9 +189,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.setid = 0;
     if (this.global.patientName=='Wulandari Sulistyo') {
       this.setid = 100; // mother
-    } else if (this.global.patientName=='Suparman Herianto') {
+    } else if (this.global.patientName=='Anak Pertama') {
       this.setid = 101; // child
-    } else if (this.global.patientName=='Hasan Herianto') {
+    } else if (this.global.patientName=='Anak Kedua') {
       this.setid = 102; // child
     }
 

@@ -19,4 +19,7 @@ export class DynamicFormQuestionComponent {
     num = 97 + num;
     return String.fromCharCode(num);
   }
+  abs(num: number): number {
+    return Math.abs(num);
+  }
 }

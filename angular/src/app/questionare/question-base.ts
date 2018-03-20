@@ -4,6 +4,7 @@ export class QuestionBase<T> {
   label: string;
   desc: string;
   comments: string;
+  contents: any;
   required: boolean;
   order: number;
   group: number;
@@ -16,6 +17,7 @@ export class QuestionBase<T> {
     label?: string,
     desc?: string;
     comments?: string;
+    contents?: any;
     required?: boolean,
     order?: number,
     group?: number,
@@ -27,6 +29,7 @@ export class QuestionBase<T> {
     this.label = options.label || '';
     this.desc = options.desc || '';
     this.comments = options.comments || '';
+    this.contents = options.contents || null;
     this.required = !!options.required;
     this.order = options.order === undefined ? 1 : options.order;
     this.group = options.group === undefined ? 0 : options.group;

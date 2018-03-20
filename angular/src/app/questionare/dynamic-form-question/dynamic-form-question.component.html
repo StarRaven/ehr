@@ -1,4 +1,4 @@
-
+<!--
 <div [formGroup]="form">
     <div [ngSwitch]="question.controlType" class="form-row" [id]="'o'+question.key">
       <div *ngSwitchCase="'textbox'">
@@ -42,10 +42,8 @@
               <td width="44%">
                 <div class="font-bold" [innerHTML]="question.label"></div>
                 <div class="font-italic" [innerHTML]="question.desc"></div>
-                <!--<div class="font-italic" [innerHTML]="question.desc | highlight : filter"></div>-->
               </td>
               <td width="56%">
-                <!--<mat-checkbox *ngFor="let opt of question.options" [value]="opt.key">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>-->
                 <label *ngFor="let opt of question.options" class="inline right-push">
                   <span [innerHTML]="getChar(opt.key)+opt.value+': '"></span>
                   <input type="checkbox" [checked]="opt.key===question.value" class="bottom-line option-input checkbox" [value]="opt.key">
@@ -75,7 +73,6 @@
             </tr>
             <tr>
               <td *ngFor="let opt of question.options" width="8%">
-                <!--<mat-checkbox [value]=""></mat-checkbox>-->
                 <input type="checkbox" [checked]="opt.key===question.value" class="full bottom-align option-input checkbox" [value]="opt.key">
               </td>
             </tr>
@@ -90,58 +87,133 @@
         </div>
       </div>
     </div>
-<!--
-      <div *ngSwitchCase="'table'">
-        <div *ngIf="question.layout=='1column'">
-          <table>
-            <tr>
-              <td width="44%">
-                <div class="font-bold">{{question.label}}</div>
-                <div class="font-italic">{{question.desc}}</div>
-              </td>
-              <td width="56%">
-                <label *ngFor="let opt of question.options" class="inline right-push">
-                  {{getChar(opt.key)}}. {{opt.value}}
-                  <input type="checkbox" class="bottom-line option-input checkbox" [value]="opt.key">
-                </label>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2">
-                <label class="font-bold">Comments (optional): </label>
-                <input [formControlName]="question.comments" [id]="question.key" class="table-comments">
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div *ngIf="question.layout=='7column'">
-          <table>
-            <tr>
-              <td width="44% " rowspan="2" class="table-left">
-                <div class="table-key font-bold">{{question.key}}.</div>
-                <div class="table-question">
-                  <div class="font-bold">{{question.label}}</div>
-                  <div class="font-italic">{{question.desc}}</div>
-                </div>
-              </td>
-              <td *ngFor="let opt of question.options" width="8%" class="center">{{opt.value}}</td>
-            </tr>
-            <tr>
-              <td *ngFor="let opt of question.options" width="8%" style="padding:0px;position:relative">
-                <input type="checkbox" class="full bottom-align option-input checkbox" style="display:inline-block;height:100%;width:100%" [value]="opt.key">
-              </td>
-            </tr>
-            <tr>
-              <td colspan="8">
-                <label class="font-bold">Comments (optional): </label>
-                <input [formControlName]="question.comments" [id]="question.key" class="table-comments">
-              </td>
-            </tr>
-          </table>
+</div>
+-->
+<div [formGroup]="form">
+  <div [ngSwitch]="question.controlType" class="form-row" [id]="'o'+question.key">
+    <div *ngSwitchCase="'title'" [ngClass]="question.layout" [innerHTML]="question.label"></div>
+
+    <div *ngSwitchCase="'textbox'">
+      <label [attr.for]="question.key" [innerHTML]="question.key+question.label+': '"></label>
+
+      <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type" [value]="question.value">
+      <div class="inline" [innerHTML]="question.suffix"></div>
+    </div>
+
+    <div *ngSwitchCase="'checkbox'">
+
+      <div *ngIf="question.layout=='1row'">
+        <label [attr.for]="question.key">{{question.key}} {{question.label}}: </label>
+        <mat-checkbox *ngFor="let opt of question.options" [value]="opt.key" class="right-push">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
+      </div>
+      <div *ngIf="question.layout=='2row'">
+        <label [attr.for]="question.key" class="block">{{question.key}} {{question.label}}: </label>
+        <mat-checkbox *ngFor="let opt of question.options" [value]="opt.key" class="right-push">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
+      </div>
+      <div *ngIf="question.layout=='2row subq'" class="subq">
+        <label [attr.for]="question.key" class="block">{{question.key}} {{question.label}}: </label>
+        <mat-checkbox *ngFor="let opt of question.options" [value]="opt.key" class="right-push">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
+      </div>
+      <div *ngIf="question.layout=='1column subq'" class="subq">
+        <label [attr.for]="question.key" class="block">{{question.key}} {{question.label}}: </label>
+        <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="right-push block">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
+      </div>
+      <div *ngIf="question.layout=='2column'">
+        <label [attr.for]="question.key" class="block">{{question.key}} {{question.label}}: </label>
+        <div class="twoColumn">
+          <mat-checkbox *ngFor="let opt of question.options" [value]="opt.key" class="block">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
         </div>
       </div>
+      <div *ngIf="question.layout=='half'" class="half">
+        <label [attr.for]="question.key">{{question.key}} {{question.label}}: </label>
+        <mat-checkbox *ngFor="let opt of question.options" [value]="opt.key" class="block">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
+      </div>
     </div>
-  -->
+    <div *ngSwitchCase="'table'">
+      <div *ngIf="question.layout=='1column'">
+        <table>
+          <tr>
+            <td width="44%">
+              <div class="font-bold" [innerHTML]="question.label"></div>
+              <div class="font-italic" [innerHTML]="question.desc"></div>
+            </td>
+            <td width="56%">
+              <label *ngFor="let opt of question.options" class="inline right-push">
+                <span [innerHTML]="getChar(opt.key)+opt.value+': '"></span>
+                <input type="checkbox" [checked]="opt.key===question.value" class="bottom-line option-input checkbox" [value]="opt.key">
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <label class="font-bold" [innerHTML]="'Comments (optional): '"></label>
+              <input [value]="question.comments" [id]="question.key" class="table-comments" class="HIDEME" />
+              <div class="table-comments" [innerHTML]="question.comments"></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div *ngIf="question.layout=='7column'">
+        <table>
+          <tr>
+            <td width="44% " rowspan="2" class="table-left">
+              <div class="table-key font-bold" [innerHTML]="question.key + '.'"></div>
+              <div class="table-question">
+                <div class="font-bold" [innerHTML]="question.label"></div>
+                <div class="font-italic" [innerHTML]="question.desc"></div>
+              </div>
+            </td>
+            <td *ngFor="let opt of question.options" width="8%" class="center" [innerHTML]="opt.value"></td>
+          </tr>
+          <tr>
+            <td *ngFor="let opt of question.options" width="8%">
+              <input type="checkbox" [checked]="opt.key===question.value" class="full bottom-align option-input checkbox" [value]="opt.key">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="8">
+              <label class="font-bold">Comments (optional): </label>
+              <input [value]="question.comments" [id]="question.key" class="table-comments" class="HIDEME" />
+              <div class="table-comments" [innerHTML]="question.comments"></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div *ngSwitchCase="'simpletable'">
+      <table>
+        <tr *ngFor="let headers of question.contents[0];">
+          <th *ngFor="let thead of headers;" [innerHTML]="thead"></th>
+        </tr>
+        <tr *ngFor="let contents of question.contents[1];">
+          <td *ngFor="let content of contents;" class="no-padding">
+            <input class="table-input" [value]="content">
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div *ngSwitchCase="'complextable'">
+      <table>
+        <tr *ngFor="let headers of question.contents[0];">
+          <th *ngFor="let thead of headers;" [innerHTML]="thead[0]" [attr.colspan]="thead[1]"></th>
+        </tr>
+        <tr *ngFor="let contents of question.contents[1];">
+          <td *ngFor="let content of contents;" [attr.colspan]="abs(content[1])" class="no-padding">
+            <input *ngIf="content[1]>0" class="table-input" [value]="content[0]">
+            <div *ngIf="content[1]<0" class="center" [innerHTML]="content[0]"></div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div *ngSwitchCase="'list'">
+      <div *ngFor="let content of question.contents;">
+        <a class="list" [innerHTML]="content"></a>
+      </div>
+    </div>
+
+  </div>
+  <!--<div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>-->
 </div>
-<!--
-<app- [formControl]="formgroup.get('aaa')"></app-></div>-->

@@ -104,14 +104,14 @@ export class PatientListComponent implements OnInit, AfterViewInit {
     });
     users3.push({
       avatar: '/assets/avatars/101.png',
-      name: 'Suparman Herianto',
+      name: 'Anak Pertama',
       condition1: 1,
       condition2: 2,
       condition3: 3
     });
     users3.push({
       avatar: '/assets/avatars/102.png',
-      name: 'Hasan Herianto',
+      name: 'Anak Kedua',
       condition1: 1,
       condition2: 2,
       condition3: 3

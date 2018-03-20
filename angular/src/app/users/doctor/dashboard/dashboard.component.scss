@@ -1,119 +1,120 @@
 .grid-item {
-	border: solid 1px #ccc;
+  border: solid 1px #ccc;
 }
 
 .handle {
-	width: 100%;
-	height: 50px;
-	color: black;
-	font-weight: 500;
-	box-sizing: border-box;
+  width: 100%;
+  height: 50px;
+  color: black;
+  font-weight: 500;
+  box-sizing: border-box;
 }
 
 .btn {
-	margin-left: 10px;
+  margin-left: 10px;
 }
 
 .box-header-btns {
-    top: 30px;
-    right: 30px;
-    cursor: pointer;
-    position: absolute;
+  top: 30px;
+  right: 30px;
+  cursor: pointer;
+  position: absolute;
 }
 
 .navbar-default {
-	background: black;
-	border: 0px;
+  background: black;
+  border: 0px;
 }
 
 .navbar-default .navbar-brand {
-	color: white;
+  color: white;
 }
 
 body {
-	background-color: #f5f2f2;
+  background-color: #f5f2f2;
 }
 
 .search-field {
-    width: 80%;
+  width: 80%;
 }
 
 .patient-list {
-    margin: 5px 15px;
+  margin: 5px 15px;
 }
 
 .avatar {
-    width: 34px; height: 34px;
-    margin-right:10px;
+  width: 34px;
+  height: 34px;
+  margin-right: 10px;
 }
 
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .dashboard-card {
-    height: 100%;
-    padding: 0;
+  height: 100%;
+  padding: 0;
 }
 
 .inner {
-    padding: 24px;
+  padding: 24px;
 }
 
 .center {
-    text-align: center;
+  text-align: center;
 }
 
 .formTable {
-    width: 100%;
-    line-height: 50px;
-    -webkit-box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
-    box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+  width: 100%;
+  line-height: 50px;
+  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, .2), 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12);
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, .2), 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12);
 }
 
 .mat-card {
-    padding: 0 !important;
+  padding: 0 !important;
 }
 
 .expand-button {
-    width: 100%;
+  width: 100%;
 }
 
 .mat-card-title {
-    font-size: 20px !important;
+  font-size: 20px !important;
 }
 
 .full {
-    width: 100%;
-    display: inline-block;
-  }
-  
-  .half {
-    width: 50%;
-    display: inline-block;
-  }
+  width: 100%;
+  display: inline-block;
+}
 
-  .third {
-    width: 33%;
-    display: inline-block;
-  }
+.half {
+  width: 50%;
+  display: inline-block;
+}
 
-  .center-avatar {
-      margin: auto;
-      text-align: center;
-  }
+.third {
+  width: 33%;
+  display: inline-block;
+}
 
-  .fix-form-card {
-    margin-bottom: 10px;
-    padding: 30px !important;
-  }
+.center-avatar {
+  margin: auto;
+  text-align: center;
+}
 
-  .t1 {
-    font-size:22px;
-    font-weight: bold;
-    text-align: center;
-  }
+.fix-form-card {
+  margin-bottom: 10px;
+  padding: 30px !important;
+}
 
-  .subq {
-    padding-left: 20px;
-  }
+.t1 {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.subq {
+  padding-left: 20px;
+}

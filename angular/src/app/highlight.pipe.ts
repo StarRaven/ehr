@@ -1,5 +1,9 @@
 import { PipeTransform, Pipe } from '@angular/core';
 import { TextboxQuestion } from './questionare/question-textbox';
+import { flatten } from 'lodash';
+import { SimpleTableQuestion } from './questionare/question-simpletable';
+import { ComplexTableQuestion } from './questionare/question-complextable';
+import { ListQuestion } from './questionare/question-list';
 
 @Pipe({ name: 'highlight' })
 export class HighlightPipe implements PipeTransform {
@@ -14,6 +18,33 @@ export class HighlightPipe implements PipeTransform {
       if (content[i].options) {
         for (let j = 0; j < content[i].options.length; j++) {
           content[i].options[j].value = this.highlight(content[i].options[j].value, search);
+        }
+      }
+      if (content[i].contents) {
+        if (content[i] instanceof ListQuestion) {
+          for (let j = 0; j < content[i].contents.length; j++) {
+            content[i].contents[j] = this.highlight(content[i].contents[j], search);
+          }
+        } else if (content[i] instanceof SimpleTableQuestion) {
+          for (let j = 0; j < content[i].contents[0][0].length; j++) {
+            content[i].contents[0][0][j] = this.highlight(String(content[i].contents[0][0][j]), search);
+          }
+          for (let j = 0; j < content[i].contents[1].length; j++) {
+            for (let k = 0; k < content[i].contents[1][j].length; k++) {
+              content[i].contents[1][j][k] = this.highlight(String(content[i].contents[1][j][k]), search);
+            }
+          }
+        } else if (content[i] instanceof ComplexTableQuestion) {
+          for (let j = 0; j < content[i].contents[0].length; j++) {
+            for (let k = 0; k < content[i].contents[0][j].length; k++) {
+              content[i].contents[0][j][k][0] = this.highlight(String(content[i].contents[0][j][k][0]), search);
+            }
+          }
+          for (let j = 0; j < content[i].contents[1].length; j++) {
+            for (let k = 0; k < content[i].contents[1][j].length; k++) {
+              content[i].contents[1][j][k][0] = this.highlight(String(content[i].contents[1][j][k][0]), search);
+            }
+          }
         }
       }
       if (content[i].desc) {

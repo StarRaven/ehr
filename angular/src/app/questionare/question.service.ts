@@ -6,6 +6,7 @@ import {DropdownQuestion} from './question-dropdown';
 import {TableQuestion} from './question-table';
 import {TextboxQuestion} from './question-textbox';
 import {Title} from './question-title';
+import {LinkTableQuestion} from './question-linktable';
 import {SimpleTableQuestion} from './question-simpletable';
 import {ComplexTableQuestion} from './question-complextable';
 import {ListQuestion} from './question-list';
@@ -1082,7 +1083,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'No. Registar:',
+          label: 'No. Registar',
           value: '0000001111',
           required: true,
           order: 1,
@@ -1092,7 +1093,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'Nama:',
+          label: 'Nama',
           value: '',
           required: true,
           order: 2,
@@ -1102,7 +1103,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'Nama suami:',
+          label: 'Nama suami',
           value: '',
           required: true,
           order: 3,
@@ -1112,7 +1113,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'Pekerjaan ibu:',
+          label: 'Pekerjaan ibu',
           value: '',
           required: true,
           order: 4,
@@ -1122,7 +1123,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'Pekerjaan suami:',
+          label: 'Pekerjaan suami',
           value: '',
           required: true,
           order: 5,
@@ -1132,7 +1133,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'Umur:',
+          label: 'Umur',
           value: '',
           required: true,
           order: 6,
@@ -1142,7 +1143,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'Tinggi badan:',
+          label: 'Tinggi badan',
           value: '',
           required: true,
           order: 7,
@@ -1152,7 +1153,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'Lila:',
+          label: 'Lila',
           value: '',
           required: true,
           order: 8,
@@ -1162,7 +1163,7 @@ export class QuestionService {
         
         new TextboxQuestion({
           key: '',
-          label: 'Alamat:',
+          label: 'Alamat',
           value: '',
           required: true,
           order: 9,
@@ -1172,7 +1173,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'RT:',
+          label: 'RT',
           value: '',
           required: true,
           order: 9,
@@ -1182,7 +1183,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'RW:',
+          label: 'RW',
           value: '',
           required: true,
           order: 10,
@@ -1192,7 +1193,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'Desa:',
+          label: 'Desa',
           value: '',
           required: true,
           order: 11,
@@ -1202,7 +1203,7 @@ export class QuestionService {
         
         new TextboxQuestion({
           key: '',
-          label: 'Dasa Wisma:',
+          label: 'Dasa Wisma',
           value: '',
           required: true,
           order: 12,
@@ -1212,7 +1213,7 @@ export class QuestionService {
         
         new TextboxQuestion({
           key: '',
-          label: 'Posyandu:',
+          label: 'Posyandu',
           value: '',
           required: true,
           order: 13,
@@ -1222,7 +1223,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'Puskesmas:',
+          label: 'Puskesmas',
           value: '',
           required: true,
           order: 14,
@@ -1240,19 +1241,21 @@ export class QuestionService {
           layout: 't1'
         }),
 
-        new SimpleTableQuestion({
+        new LinkTableQuestion({
           key: '',
           label: '',
           value: '',
           contents: [
-            [['Nama', 'Umur', 'Kondisi']],
             [
-            ['<a href="/">1</a>',2,3],
-            [2,3,4]
+              ['Nama', 'Umur', 'Kondisi']
+            ],
+            [
+              [['Anak Pertama',0],[2,''],[3,'']],
+              [['Anak Kedua',1],[3,''],[4,'']]
             ]
           ],
           required: true,
-          order: 15,
+          order: 15.5,
           group: 2,
           layout: 'full'
         }),
@@ -1272,8 +1275,8 @@ export class QuestionService {
           label: '',
           value: '',
           contents: [
-            ['Kehamilan tanggal 2/3/2014'],
-            ['Kehamilan tanggal 4/1/2017'],
+            'Kehamilan tanggal 2/3/2014',
+            'Kehamilan tanggal 4/1/2017',
           ],
           required: true,
           order: 17,
@@ -1560,13 +1563,15 @@ export class QuestionService {
           label: '',
           value: '',
           contents: [
-            [['Tanggal', 'Keluhan Sekarang', 'Tekanan Darah (MMHG)', 'Berat Badan (KG)', 'Umur Kehamilan (Minggu)', 'Tinggi Findus (cm)', 'Letak Janin KOP/S U/LI', 'Denyut Jantung Janin', 'Lab', 'Pemeriksaan Khusus', 'Tindakan dan Terapi TT/TO/Lain-lain', 'Paraf']],
             [
-            ['','','','','','','','','','','',''],
-            ['','','','','','','','','','','',''],
-            ['','','','','','','','','','','',''],
-            ['','','','','','','','','','','',''],
-            ['','','','','','','','','','','',''],
+              ['Tanggal', 'Keluhan Sekarang', 'Tekanan Darah (MMHG)', 'Berat Badan (KG)', 'Umur Kehamilan (Minggu)', 'Tinggi Findus (cm)', 'Letak Janin KOP/S U/LI', 'Denyut Jantung Janin', 'Lab', 'Pemeriksaan Khusus', 'Tindakan dan Terapi TT/TO/Lain-lain', 'Paraf']
+            ],
+            [
+              ['','','','','','','','','','','',''],
+              ['','','','','','','','','','','',''],
+              ['','','','','','','','','','','',''],
+              ['','','','','','','','','','','',''],
+              ['','','','','','','','','','','',''],
             ]
           ],
           required: true,
@@ -1987,7 +1992,7 @@ export class QuestionService {
         new TextboxQuestion({
           key: '',
           label: 'No. Registar',
-          value: '',
+          value: '1',
           required: true,
           order: 2,
           group: 1,
@@ -2070,8 +2075,8 @@ export class QuestionService {
           label: '',
           value: '',
           contents: [
-            ['Keterangan Waktu Kelahiran tanggal 2/3/2014'],
-            ['Keterangan Imunisasi'],
+            'Keterangan Waktu Kelahiran tanggal 2/3/2014',
+            'Keterangan Imunisasi',
           ],
           required: true,
           order: 10,
@@ -2088,10 +2093,10 @@ export class QuestionService {
               [['Umur (bln)',1], [0,1], [1,1], [2,1], [3,1], [4,1], [5,1], [6,1], [7,1], [8,1], [9,1], [10,1], [11,1], [12,1], [13,1], [14,1], [15,1], [16,1], [17,1], [18,1], [19,1], [20,1], [21,1], [22,1], [23,1], [24,1]]
             ],
             [
-              [['Bulan nbangan',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1]],
-              [['BB (kg)',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1]],
-              [['KBM (gr)',1],[200,25]],
-              [['N/T',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1]]
+              [['Bulan nbangan',-1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1]],
+              [['BB (kg)',-1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1]],
+              [['KBM (gr)',-1],[200,-25]],
+              [['N/T',-1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1],['',1]]
             ]
           ],
           required: true,
@@ -2117,7 +2122,7 @@ export class QuestionService {
         new TextboxQuestion({
           key: '',
           label: 'Tanggal lahir',
-          value: '',
+          value: '1',
           required: true,
           order: 2,
           group: 1,
@@ -2273,9 +2278,9 @@ export class QuestionService {
           label: '',
           value: '',
           contents: [
-            [['Imunisasi', 'Tanggal', 'Tanggal', 'Tanggal', 'Tanggal', 'Tanggal', 'Keterangan'  ]],
+            [['Imunisasi', 'Tanggal', 'Tanggal', 'Tanggal', 'Tanggal', 'Tanggal', 'Keterangan']],
             [
-              ['BCG','','','','','',''],
+              ['BCG','1','','','','',''],
               ['Campak','','','','','',''],
               ['DPT','','','','','',''],
               ['POLIO','','','','','',''],
@@ -2305,7 +2310,7 @@ export class QuestionService {
           contents: [
             [['Tanggal', 'Umur', 'Berat Badan', 'Makanan Anak', 'Gejala', 'Keterangan']],
             [
-              ['','','','','',''],
+              ['1','','','','',''],
               ['','','','','',''],
               ['','','','','',''],
               ['','','','','',''],

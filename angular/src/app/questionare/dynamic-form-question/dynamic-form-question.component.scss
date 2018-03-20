@@ -100,6 +100,11 @@ table {
   width: 100%;
 }
 
+.third {
+  width: 33%;
+  display: inline-block;
+}
+
 .bottom-align {
   vertical-align: bottom;
 }
@@ -142,11 +147,49 @@ td {
 .HIDEME {
   visibility: hidden;
   width: 0px;
-} 
+}
 
 .fake-input {
   border-bottom: 1px solid black;
   display: inline-block;
   width: 171px;
   height: 22px;
+}
+
+.t1 {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.t2 {
+  font-size: 18px;
+  margin-top: 28px;
+}
+
+.simple-table {
+  width: 100%;
+  color: black;
+}
+
+.list {
+  text-decoration: underline;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.table-input {
+  width: 100%;
+  text-align: center;
+  border-bottom: none;
+}
+
+th {
+  text-align: center;
+}
+
+.no-padding {
+  padding: 0;
 }

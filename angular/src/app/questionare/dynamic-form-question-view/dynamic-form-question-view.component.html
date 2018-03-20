@@ -4,8 +4,9 @@
 
     <div *ngSwitchCase="'textbox'">
       <label [attr.for]="question.key" [innerHTML]="question.key+question.label+': '"></label>
-      
-      <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type" class="HIDEME" />
+
+      <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type" class="HIDEME"
+      />
       <div class="fake-input" [innerHTML]="question.value"></div>
       <div class="inline" [innerHTML]="question.suffix"></div>
       <!--<div *ngIf="question.suffix !== ''" [innerHTML]="question.suffix"></div>-->
@@ -110,7 +111,7 @@
     </div>
 
     <div *ngSwitchCase="'simpletable'">
-      <table >
+      <table>
         <tr *ngFor="let headers of question.contents[0];">
           <th *ngFor="let thead of headers;" [innerHTML]="thead"></th>
         </tr>
@@ -121,21 +122,35 @@
     </div>
 
     <div *ngSwitchCase="'complextable'">
-      <table >
+      <table>
         <tr *ngFor="let headers of question.contents[0];">
-          <th *ngFor="let thead of headers;" [innerHTML]="thead[0]" [attr.colspan]="thead[1]"></th>
+          <th *ngFor="let thead of headers;" [innerHTML]="thead[0]" [attr.colspan]="thead[1]" class="center"></th>
         </tr>
         <tr *ngFor="let contents of question.contents[1];">
-          <td *ngFor="let content of contents;" [innerHTML]="content[0]" [attr.colspan]="content[1]"></td>
+          <td *ngFor="let content of contents;" [innerHTML]="content[0]" [attr.colspan]="abs(content[1])" class="center"></td>
         </tr>
       </table>
     </div>
 
-    <div *ngSwitchCase="'list'">
-          <div *ngFor="let content of question.contents;">
-            <a class="list" [innerHTML]="content"></a>
-         </div>
+    <div *ngSwitchCase="'linktable'">
+        <table>
+          <tr *ngFor="let headers of question.contents[0];">
+            <th *ngFor="let thead of headers;" [innerHTML]="thead"></th>
+          </tr>
+          <tr *ngFor="let contents of question.contents[1];">
+            <td *ngFor="let content of contents;">
+                <a *ngIf="content[1] !== ''" class="hyperlink" [innerHTML]="content[0]" (click)="goChild(content[1])"></a>
+                <a *ngIf="content[1] === ''" [innerHTML]="content[0]"></a>
+            </td>
+          </tr>
+        </table>
       </div>
+
+    <div *ngSwitchCase="'list'">
+      <div *ngFor="let content of question.contents;">
+        <a class="list" [innerHTML]="content"></a>
+      </div>
+    </div>
 
   </div>
   <!--<div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>-->
