@@ -218,9 +218,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   filterSort() {
     this.newboxes = [];
+    // console.log(this.boxes);
     this.boxes =_.cloneDeep(this.oriboxes);
+    // console.log(this.oriboxes);
     this.newboxes = this.hlbox.transform(this.boxes, this.filter);
-    console.log(this.newboxes);
+    // console.log(this.newboxes);
   }
 
   applyFilter(filterValue: string) {
@@ -348,23 +350,23 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       return [{
         'dragHandle': '.handle',
         'col': 1,
-        'row': 121,
+        'row': 1,
         'sizex': 95,
         'sizey': 90
       },
       {
         'dragHandle': '.handle',
-        'col': 91,
-        'row': 121,
+        'col': 1,
+        'row': 91,
         'sizex': 95,
-        'sizey': 279 
+        'sizey': 287 
       },
       {
         'dragHandle': '.handle',
-        'col': 280,
-        'row': 121,
+        'col': 1,
+        'row': 378,
         'sizex': 95,
-        'sizey': 279 
+        'sizey': 287 
       },
       ];
     }  else if (this.setid === 101) {
@@ -387,14 +389,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         'col': 1,
         'row': 121,
         'sizex': 95,
-        'sizey': 64 
+        'sizey': 60 
       },
       {
         'dragHandle': '.handle',
         'col': 1,
-        'row': 185,
+        'row': 181,
         'sizex': 95,
-        'sizey': 64 
+        'sizey': 62 
       },
       ];
     } 
@@ -479,7 +481,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     //console.log(this.boxes);
     this.newboxes = this.boxes;
     this.oriboxes = _.cloneDeep(this.boxes);
-    console.log(this.oriboxes);
+    
   }
 
   private loadDashboard() {
@@ -543,7 +545,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     // to make sure it gets value, wait to fix
     this.boxes[2].content = this.FORM_DATA;
     // this.dataSource_form = new MatTableDataSource<Form>(ELEMENT_DATA2);
-    
+    this.oriboxes = _.cloneDeep(this.boxes);
+    // console.log(this.oriboxes);
     }
   }
 }

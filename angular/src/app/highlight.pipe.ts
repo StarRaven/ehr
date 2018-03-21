@@ -24,7 +24,7 @@ export class HighlightPipe implements PipeTransform {
       if (content[i].contents) {
         if (content[i] instanceof ListQuestion) {
           for (let j = 0; j < content[i].contents.length; j++) {
-            content[i].contents[j] = this.highlight(content[i].contents[j], search);
+            content[i].contents[j][0] = this.highlight(String(content[i].contents[j][0]), search);
           }
         } else if (content[i] instanceof SimpleTableQuestion) {
           for (let j = 0; j < content[i].contents[0][0].length; j++) {

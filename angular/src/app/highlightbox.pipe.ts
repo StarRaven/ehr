@@ -14,7 +14,7 @@ export class HighlightBoxPipe implements PipeTransform {
   transform(boxes: any[], search): any[] {
     const newboxes = [];
     for (const box of boxes) {
-      // console.log(box.content);
+       console.log(box.content);
       if (box.widgetType !== '') {
         switch (box.widgetType) {
           case 'information' : {
@@ -69,26 +69,29 @@ export class HighlightBoxPipe implements PipeTransform {
           }
           case 'form-list' : {
             const newforms = [];
+            let formShowNum = 0;
             for (const form of box.content) {
               if (this.include(form.type, search)) {
                 // console.log('Form Type Contain');
                 form.show = true;
+                formShowNum++;
                 // newforms.push(form);
               } else if (this.include(form.date, search)) {
                 // console.log('Form Date Contain');
                 form.show = true;
+                formShowNum++;
                 // newforms.push(form);
               } else if (this.FormContain(form.form, search)) {
                 // console.log('Form Content Contain');
                 form.show = true;
+                formShowNum++;
                 // newforms.push(form);
               } else {
                 form.show = false;
               }
               newforms.push(form);
             }
-            // console.log(newforms);
-            if (newforms.length !== 0) {
+            if (formShowNum !== 0) {
               box.content = newforms;
               // console.log(box.content);
               newboxes.push(box);
@@ -118,7 +121,7 @@ export class HighlightBoxPipe implements PipeTransform {
       return true;
     }
     const form = this.QService.getQuestions(id);
-    // console.log(form);
+     console.log(form);
     for (const Question of form) {
       if (this.include(Question.label, search)) {
         return true;
@@ -150,6 +153,8 @@ export class HighlightBoxPipe implements PipeTransform {
   }
 
   removeHL(text: string): string {
+    if (!text)
+      return text;
     while (text.indexOf('<span class="search-highlight">') !== -1) {
       const a = text.substring(0, text.indexOf('<span class="search-highlight">'));
       const b = text.substring(text.indexOf('<span class="search-highlight">') + 31, text.indexOf('</span>'));

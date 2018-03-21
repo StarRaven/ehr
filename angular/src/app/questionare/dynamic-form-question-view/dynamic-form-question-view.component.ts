@@ -51,7 +51,7 @@ export class DynamicFormQuestionViewComponent implements OnInit {
       });
     }
 
-  goChild(id: number) {
+  goForm(id: number) {
     if (id === 0) {
       this.global.patientAvator = '/assets/avatars/101.png';
       this.global.patientName = 'Anak Pertama';
@@ -63,5 +63,12 @@ export class DynamicFormQuestionViewComponent implements OnInit {
     }
   }
 
+  scroll(href: string) {
+    const element = document.querySelector('#b'+href);
+    console.log(element);
+    if (element) {
+      element.scrollIntoView(true);
+    }
+  }
   
 }

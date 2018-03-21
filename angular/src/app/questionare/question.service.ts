@@ -20,7 +20,7 @@ export class QuestionService {
     if (id === 1) {
       const questions: QuestionBase<any>[] = [
         new TextboxQuestion({
-          key: '1',
+          key: '1.',
           label: 'VGM Account Number',
           value: '0000001111',
           required: true,
@@ -30,7 +30,7 @@ export class QuestionService {
         }),
 
         new TextboxQuestion({
-          key: '2',
+          key: '2.',
           label: 'ATP RESNA Number',
           value: '0000000001',
           required: true,
@@ -40,7 +40,7 @@ export class QuestionService {
         }),
 
         new TextboxQuestion({
-          key: '3',
+          key: '3.',
           label: 'Completed By',
           value: 'John',
           required: true,
@@ -50,7 +50,7 @@ export class QuestionService {
         }),
 
         new TextboxQuestion({
-          key: '15',
+          key: '15.',
           label: 'Date of Initial Evaluation',
           value: '01/11/2018',
           required: true,
@@ -60,7 +60,7 @@ export class QuestionService {
         }),
 
         new TextboxQuestion({
-          key: '16',
+          key: '16.',
           label: 'Date FMA Completed',
           value: '02/12/2018',
           required: true,
@@ -70,7 +70,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '17a',
+          key: '17a.',
           label: 'Is this a Homelink Order?',
           value: '0',
           options: [{key: '0', value: 'Yes'}, {key: '1', value: 'No'}],
@@ -80,7 +80,7 @@ export class QuestionService {
         }),
 
         new TextboxQuestion({
-          key: '17b',
+          key: '17b.',
           label: 'If yes, what is the Homelink Order #?',
           value: '123',
           required: true,
@@ -90,7 +90,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '18',
+          key: '18.',
           label: 'PRIMARY DIAGNOSIS',
           value: '10',
           options: [
@@ -128,7 +128,7 @@ export class QuestionService {
         }),
 
         new TextboxQuestion({
-          key: '19',
+          key: '19.',
           label: 'YEAR OF ONSET',
           value: '2017',
           required: true,
@@ -138,7 +138,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '20',
+          key: '20.',
           label: 'DOES THE PERSON CURRENTLY HAVE SEATING-RELATED SKIN BREAKDOWN?',
           value: '2',
           options: [
@@ -151,7 +151,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '21',
+          key: '21.',
           label: 'DOES THE PERSON HAVE HEALED SEATING-RELATED SKIN BREAKDOWN?',
           value: '1',
           options: [
@@ -164,7 +164,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '22a',
+          key: '22a.',
           label: 'HAS THE PERSON BEEN ADMITTED TO A HEALTHCARE FACILITY IN THE LAST 3 MONTHS? (I.E. IN-PATIENT, NURSING, OR REHABILITATION FACILITY)',
           value: '0',
           options: [
@@ -177,7 +177,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '22b',
+          key: '22b.',
           label: 'IF YES, WAS THE ENCOUNTER A RESULT OF A SEATING AND MOBILITY INCIDENT, SUCH AS A FALL OR SKIN BREAKDOWN?',
           value: '1',
           options: [
@@ -190,7 +190,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '23',
+          key: '23.',
           label: 'HOW MANY TIMES HAS THE PERSON FALLEN IN THE LAST 3 MONTHS?',
           value: '2',
           options: [
@@ -204,7 +204,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '24',
+          key: '24.',
           label: 'HOW MANY HOURS A DAY DOES THE PERSON REPORT THEY USE THE DEVICE IN THE LAST 3 MONTHS?',
           value: '1',
           options: [
@@ -218,7 +218,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '25',
+          key: '25.',
           label: 'HOW MANY TIMES A WEEK DOES THE PERSON REPORT THEY LEAVE THEIR HOME (NOT INCLUDING OUTINGS FOR MEDICAL APPOINTMENTS)?',
           value: '3',
           options: [
@@ -232,7 +232,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '26',
+          key: '26.',
           label: 'EMPLOYMENT:',
           value: '0',
           options: [
@@ -245,7 +245,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '27',
+          key: '27.',
           label: 'LIVING SITUATION:',
           value: '1',
           options: [
@@ -258,7 +258,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '28',
+          key: '28.',
           label: 'CURRENT MEANS OF TRANSPORTATION:',
           value: '3',
           options: [
@@ -271,7 +271,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '29',
+          key: '29.',
           label: 'CURRENT FUNDING:',
           value: '7',
           options: [
@@ -293,7 +293,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '30',
+          key: '30.',
           label: 'HAS THE PERSON’S DEVICE REQUIRED REPAIR SERVICE (I.E. IT STOPPED WORKING NEEDING SERVICE FROM THE SUPPLIER) BUT NOT INCLUDING ROUTINE MAINTENANCE (IE: BATTERY, TIRES, ARMPADS) IN THE LAST 3 MONTHS?',
           value: '2',
           options: [
@@ -306,7 +306,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '31',
+          key: '31.',
           label: 'HAS THE PERSON’S DEVICE BEEN SERVICED FOR MAINTENANCE IN THE LAST 3 MONTHS (I.E. BATTERY, TIRES, ARMPADS)',
           value: '0',
           options: [
@@ -319,7 +319,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '32',
+          key: '32.',
           label: 'PRIMARY DIAGNOSIS',
           value: '12',
           options: [
@@ -531,7 +531,7 @@ export class QuestionService {
     } else if (id === 2) {
       const questions: QuestionBase<any>[] = [
         new TextboxQuestion({
-          key: '1',
+          key: '1.',
           label: 'VGM Account Number',
           value: '0000001111',
           required: true,
@@ -541,7 +541,7 @@ export class QuestionService {
         }),
 
         new TextboxQuestion({
-          key: '2',
+          key: '2.',
           label: 'ATP RESNA Number',
           value: '0000000001',
           required: true,
@@ -551,7 +551,7 @@ export class QuestionService {
         }),
 
         new TextboxQuestion({
-          key: '3',
+          key: '3.',
           label: 'Completed By',
           value: 'John',
           required: true,
@@ -561,7 +561,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '38a',
+          key: '38a.',
           label: 'Current status of client?',
           value: '0',
           options: [{key: '0', value: 'Active'}, {key: '1', value: 'Not-Active'}],
@@ -571,7 +571,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '38b',
+          key: '38b.',
           label: 'If not-active, what is the reason they are no longer being followed?',
           value: '0',
           options: [
@@ -586,7 +586,7 @@ export class QuestionService {
         }),
 
         new TextboxQuestion({
-          key: '39',
+          key: '39.',
           label: 'Date of Delivery',
           value: '01/12/2018',
           required: true,
@@ -596,7 +596,7 @@ export class QuestionService {
         }),
 
         new TextboxQuestion({
-          key: '40',
+          key: '40.',
           label: 'Date Follow-Up FMA Completed',
           value: '02/22/2018',
           required: true,
@@ -606,7 +606,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '41',
+          key: '41.',
           label: 'If not-active, what is the reason they are no longer being followed?',
           value: '3',
           options: [
@@ -621,7 +621,7 @@ export class QuestionService {
         }),
 
         new TextboxQuestion({
-          key: '42',
+          key: '42.',
           label: 'Follow-Up Loaded into Database',
           value: '03/22/2018',
           required: true,
@@ -631,7 +631,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '20',
+          key: '20.',
           label: 'DOES THE PERSON CURRENTLY HAVE SEATING-RELATED SKIN BREAKDOWN?',
           value: '2',
           options: [
@@ -644,7 +644,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '21',
+          key: '21.',
           label: 'DOES THE PERSON HAVE HEALED SEATING-RELATED SKIN BREAKDOWN?',
           value: '2',
           options: [
@@ -657,7 +657,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '22a',
+          key: '22a.',
           label: 'HAS THE PERSON BEEN ADMITTED TO A HEALTHCARE FACILITY SINCE THE LAST FOLLOW-UP? (I.E. IN-PATIENT, NURSING, OR REHABILITATION FACILITY)',
           value: '1',
           options: [
@@ -670,7 +670,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '22b',
+          key: '22b.',
           label: 'IF YES, WAS THE ENCOUNTER A RESULT OF A SEATING AND MOBILITY INCIDENT, SUCH AS A FALL OR PRESSURE SORE?',
           value: '2',
           options: [
@@ -683,7 +683,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '23',
+          key: '23.',
           label: 'HOW MANY TIMES HAS THE PERSON FALLEN SINCE THE LAST FOLLOW-UP?',
           value: '3',
           options: [
@@ -697,7 +697,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '24',
+          key: '24.',
           label: 'HOW MANY HOURS PER DAY DOES THE PERSON REPORT THEY USE THE DEVICE?',
           value: '4',
           options: [
@@ -711,7 +711,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '25',
+          key: '25.',
           label: 'HOW MANY TIMES A WEEK DOES THE PERSON REPORT THEY LEAVE THEIR HOME (NOT INCLUDING OUTINGS FOR MEDICAL APPOINTMENTS)?',
           value: '2',
           options: [
@@ -725,7 +725,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '26',
+          key: '26.',
           label: 'EMPLOYMENT:',
           value: '0',
           options: [
@@ -738,7 +738,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '27',
+          key: '27.',
           label: 'LIVING SITUATION:',
           value: '0',
           options: [
@@ -751,7 +751,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '28',
+          key: '28.',
           label: 'CURRENT MEANS OF TRANSPORTATION:',
           value: '0',
           options: [
@@ -765,7 +765,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '30',
+          key: '30.',
           label: 'HAS THE PERSON’S DEVICE REQUIRED REPAIR SERVICE (I.E. IT STOPPED WORKING NEEDING SERVICE FROM THE SUPPLIER) BUT NOT INCLUDING ROUTINE MAINTENANCE (IE: BATTERY, TIRES, ARMPADS) SINCE THE LAST FOLLOW-UP',
           value: '2',
           options: [
@@ -778,7 +778,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '31',
+          key: '31.',
           label: 'HAS THE PERSON’S DEVICE BEEN SERVICED FOR MAINTENANCE SINCE THE LAST FOLLOW-UP (I.E. BATTERY, TIRES, ARMPADS)',
           value: '1',
           options: [
@@ -791,7 +791,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '32',
+          key: '32.',
           label: 'POST DELIVERY DEVICE:',
           value: '10',
           options: [
@@ -817,7 +817,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '35',
+          key: '35.',
           label: 'POST DELIVERY EQUIPMENT MANUFACTURER:',
           value: '11',
           options: [
@@ -843,7 +843,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '36',
+          key: '36.',
           label: 'POST DELIVERY ACCESSORIES:		(Check all that apply)	',
           value: '2',
           options: [
@@ -861,7 +861,7 @@ export class QuestionService {
         }),
 
         new CheckboxQuestion({
-          key: '37',
+          key: '37.',
           label: 'POST DELIVERY CUSHION:',
           value: '2',
           options: [
@@ -1275,8 +1275,8 @@ export class QuestionService {
           label: '',
           value: '',
           contents: [
-            'Kehamilan tanggal 2/3/2014',
-            'Kehamilan tanggal 4/1/2017',
+            ['Kehamilan tanggal 2/3/2014',1,1],
+            ['Kehamilan tanggal 4/1/2017',2,2]
           ],
           required: true,
           order: 17,
@@ -1287,6 +1287,15 @@ export class QuestionService {
       return questions.sort((a, b) => a.order - b.order);
     }  else if ((id === 101) || (id === 102)) {
       const questions: QuestionBase<any>[] = [
+        new Title({
+          key: '',
+          label: 'KARTU KEHAMILAN',
+          value: '',
+          required: true,
+          order: 0,
+          group: 0,
+          layout: 't1'
+        }),
 
         new TextboxQuestion({
           key: '',
@@ -2075,8 +2084,8 @@ export class QuestionService {
           label: '',
           value: '',
           contents: [
-            'Keterangan Waktu Kelahiran tanggal 2/3/2014',
-            'Keterangan Imunisasi',
+            ['Keterangan Waktu Kelahiran tanggal 2/3/2014', 2, 4],
+            ['Keterangan Imunisasi', '2', 3, 5]
           ],
           required: true,
           order: 10,

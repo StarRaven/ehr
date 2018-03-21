@@ -32,7 +32,7 @@ export class DynamicFormQuestionComponent {
   abs(num: number): number {
     return Math.abs(num);
   }
-  goChild(id: number) {
+  goForm(id: number) {
     this.router.navigate(['doctor/form/', { id: id+100, search: '' }])
   }
 }

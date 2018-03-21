@@ -13,10 +13,10 @@ export class GlobalService {
     this.login = false;
     this.role = 'doctor';
     this.theme = 'custom-theme-3';
-    this.patientAvator = '/assets/avatars/100.png';
-    this.patientName = 'Wulandari Sulistyo';
+    //this.patientAvator = '/assets/avatars/100.png';
+    //this.patientName = 'Wulandari Sulistyo';
     //this.patientAvator = '/assets/avatars/101.png';
-    //this.patientName = 'Suparman Herianto';
+    //this.patientName = 'Anak Pertama';
   }
 
 }

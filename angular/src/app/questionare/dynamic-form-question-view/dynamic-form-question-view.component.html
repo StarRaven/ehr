@@ -139,7 +139,7 @@
           </tr>
           <tr *ngFor="let contents of question.contents[1];">
             <td *ngFor="let content of contents;">
-                <a *ngIf="content[1] !== ''" class="hyperlink" [innerHTML]="content[0]" (click)="goChild(content[1])"></a>
+                <a *ngIf="content[1] !== ''" class="hyperlink" [innerHTML]="content[0]" (click)="goForm(content[1])"></a>
                 <a *ngIf="content[1] === ''" [innerHTML]="content[0]"></a>
             </td>
           </tr>
@@ -148,7 +148,7 @@
 
     <div *ngSwitchCase="'list'">
       <div *ngFor="let content of question.contents;">
-        <a class="list" [innerHTML]="content"></a>
+        <a class="hyperlink" (click)="scroll(content[1])" [innerHTML]="content[0]"></a>
       </div>
     </div>
 

@@ -25,7 +25,7 @@
           <div *ngFor="let box of boxes | highlightbox : filter; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)"
             (onResize)="onResize(i, $event)">-->
             <div *ngFor="let box of newboxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)"
-            (onResize)="onResize(i, $event)">
+            (onResize)="onResize(i, $event)" id="{{'b'+box.id}}">
             <mat-card class="dashboard-card">
               <div class="inner">
                 <mat-card-header>
@@ -59,7 +59,6 @@
                       </div>
                     </div>
                     <div *ngSwitchCase="'pregnancy-form'">
-                      <div class="t1">KARTU KEHAMILAN</div>
                       <mat-card *ngFor="let group of questions[box.content]; let g = index" class="fix-form-card">
                         <form id="qForm" fxFlex="grow" (ngSubmit)="onSubmit()" [formGroup]="form">
                           <div *ngFor="let question of group| highlight : filter; let i = index" [ngClass]="question.layout">
