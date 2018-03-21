@@ -4,6 +4,7 @@ import { flatten } from 'lodash';
 import { SimpleTableQuestion } from './questionare/question-simpletable';
 import { ComplexTableQuestion } from './questionare/question-complextable';
 import { ListQuestion } from './questionare/question-list';
+import { LinkTableQuestion } from './questionare/question-linktable';
 
 @Pipe({ name: 'highlight' })
 export class HighlightPipe implements PipeTransform {
@@ -39,6 +40,15 @@ export class HighlightPipe implements PipeTransform {
             for (let k = 0; k < content[i].contents[0][j].length; k++) {
               content[i].contents[0][j][k][0] = this.highlight(String(content[i].contents[0][j][k][0]), search);
             }
+          }
+          for (let j = 0; j < content[i].contents[1].length; j++) {
+            for (let k = 0; k < content[i].contents[1][j].length; k++) {
+              content[i].contents[1][j][k][0] = this.highlight(String(content[i].contents[1][j][k][0]), search);
+            }
+          }
+        } else if (content[i] instanceof LinkTableQuestion) {
+          for (let j = 0; j < content[i].contents[0][0].length; j++) {
+            content[i].contents[0][0][j] = this.highlight(String(content[i].contents[0][0][j]), search);
           }
           for (let j = 0; j < content[i].contents[1].length; j++) {
             for (let k = 0; k < content[i].contents[1][j].length; k++) {

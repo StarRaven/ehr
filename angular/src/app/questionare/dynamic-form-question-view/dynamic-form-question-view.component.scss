@@ -185,6 +185,11 @@
   }
 
   .hyperlink {
-    text-decoration: underline;
+    text-decoration: underline !important;
     cursor: pointer;
+    color: black;
+  }
+
+  a {
+    color: black;
   }

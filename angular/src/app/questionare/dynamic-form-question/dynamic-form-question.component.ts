@@ -2,6 +2,9 @@ import {Component, Input} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 
 import {QuestionBase} from '../question-base';
+import { Router, ActivatedRoute } from '@angular/router';
+
+import { GlobalService} from '../../global.service';
 
 @Component({
   selector: 'app-question',
@@ -11,6 +14,13 @@ import {QuestionBase} from '../question-base';
 export class DynamicFormQuestionComponent {
   @Input() question: QuestionBase<any>;
   @Input() form: FormGroup;
+  
+  constructor(
+    private router: Router,
+    private global: GlobalService,
+  ) {
+  }
+
   get isValid() {
     return this.form.controls[this.question.key].valid;
   }
@@ -21,5 +31,8 @@ export class DynamicFormQuestionComponent {
   }
   abs(num: number): number {
     return Math.abs(num);
+  }
+  goChild(id: number) {
+    this.router.navigate(['doctor/form/', { id: id+100, search: '' }])
   }
 }
