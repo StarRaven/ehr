@@ -5,6 +5,8 @@ import { SimpleTableQuestion } from './questionare/question-simpletable';
 import { ComplexTableQuestion } from './questionare/question-complextable';
 import { ListQuestion } from './questionare/question-list';
 import { LinkTableQuestion } from './questionare/question-linktable';
+import { FreeText } from './questionare/question-freetext';
+import { Title } from './questionare/question-title';
 
 @Pipe({ name: 'highlight' })
 export class HighlightPipe implements PipeTransform {
@@ -55,6 +57,13 @@ export class HighlightPipe implements PipeTransform {
               content[i].contents[1][j][k][0] = this.highlight(String(content[i].contents[1][j][k][0]), search);
             }
           }
+        } else if (content[i] instanceof FreeText) {
+          content[i].contents = this.highlight(content[i].contents, search);
+        }
+      }
+      if (content[i].label) {
+        if (content[i] instanceof Title) {
+          content[i].label = this.highlight(content[i].label, search);
         }
       }
       if (content[i].desc) {
@@ -77,7 +86,16 @@ export class HighlightPipe implements PipeTransform {
     return text;
   }
 
+  removeBR(text: string) {
+    if (!text)
+      return text;
+    while (text.search(' <br /> ') > 0)
+    text = text.replace(' <br /> ',' ');
+    return text;
+  }
+
   highlight(text: string, search): string {
+    text = this.removeBR(text);
     text = this.removeHL(text);
     if (!search || !text) {
       return text;

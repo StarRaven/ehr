@@ -41,6 +41,7 @@ import { PatientFormComponent } from './users/doctor/patient-form/patient-form.c
 import { DynamicFormQuestionComponent } from './questionare/dynamic-form-question/dynamic-form-question.component';
 import { DynamicFormComponent } from './questionare/dynamic-form/dynamic-form.component';
 import { DynamicFormQuestionViewComponent } from './questionare/dynamic-form-question-view/dynamic-form-question-view.component';
+import { DynamicFormViewComponent } from './questionare/dynamic-form-view/dynamic-form-view.component';
 import { PatientFormAddComponent } from './users/doctor/patient-form-add/patient-form-add.component';
 
 import { NgGridModule } from 'angular2-grid';
@@ -53,8 +54,11 @@ import { QuestionService } from './questionare/question.service';
 import { PatientListComponent } from './users/doctor/patient-list/patient-list.component';
 
 import { ChartsModule } from 'ng2-charts';
-import {FlexLayoutModule} from "@angular/flex-layout";
-import { DynamicFormViewComponent } from './questionare/dynamic-form-view/dynamic-form-view.component';
+import { FlexLayoutModule } from "@angular/flex-layout";
+
+import { GalleryModule } from  '@ngx-gallery/core';
+import { LightboxModule } from  '@ngx-gallery/lightbox';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -105,6 +109,9 @@ import { DynamicFormViewComponent } from './questionare/dynamic-form-view/dynami
     ChartsModule,
     FlexLayoutModule,
 
+    GalleryModule.forRoot(),
+    LightboxModule.forRoot(),
+    
     PipeModule.forRoot(),
 
     RouterModule.forRoot([

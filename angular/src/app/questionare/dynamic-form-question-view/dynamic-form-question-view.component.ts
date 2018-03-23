@@ -54,11 +54,11 @@ export class DynamicFormQuestionViewComponent implements OnInit {
   goForm(id: number) {
     if (id === 0) {
       this.global.patientAvator = '/assets/avatars/101.png';
-      this.global.patientName = 'Anak Pertama';
+      this.global.patientName = 'Simon Magai';
       this.onRefresh();
     } else if (id === 1) {
       this.global.patientAvator = '/assets/avatars/102.png';
-      this.global.patientName = 'Anak Kedua';
+      this.global.patientName = 'Maria Magai';
       this.onRefresh();
     }
   }

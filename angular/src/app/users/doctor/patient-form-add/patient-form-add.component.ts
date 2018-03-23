@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import {QuestionService} from '../../../questionare/question.service';
+import { QuestionService } from '../../../questionare/question.service';
 import { GlobalService} from '../../../global.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class PatientFormAddComponent implements OnInit {
   questions: any[];
 
   constructor(
+    private _location: Location,
     service: QuestionService,
     private router: Router,
     private global: GlobalService
@@ -22,6 +24,10 @@ export class PatientFormAddComponent implements OnInit {
     for (const q of this.questions) {
       q.value = '';
     }
+  }
+
+  goBack() {
+    this._location.back();
   }
 
   ngOnInit() {}

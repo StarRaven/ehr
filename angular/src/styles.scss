@@ -5,14 +5,14 @@
 /*@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';*/
 
 //@import '~@angular/material/prebuilt-themes/indigo-pink.css';
-
 @font-face {
   font-family: Lato-Regular;
-  src: url('/assets/fonts/Lato/Lato-Regular.ttf'); 
+  src: url('/assets/fonts/Lato/Lato-Regular.ttf');
 }
 
 @import './theme.scss';
-
+@import '~@ngx-gallery/core/styles/gallery';
+@import '~@ngx-gallery/core/styles/lightbox';
 body {
   margin: 0;
   font-family: Lato-Regular, "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
@@ -126,16 +126,18 @@ body {
 
 th {
   text-align: left;
-  color: rgba(0,0,0,.54);
-    font-weight: 500;
-    
+  color: rgba(0, 0, 0, .54);
+  font-weight: 500;
 }
-
 
 .search-highlight {
   background: yellow;
 }
 
 a {
-  color:black;
+  color: black;
+}
+
+table {
+  word-break: break-word;
 }

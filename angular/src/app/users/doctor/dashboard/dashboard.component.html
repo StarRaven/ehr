@@ -16,6 +16,8 @@
     </mat-drawer>
     <mat-drawer-content>
       <div class="content-wrapper">
+        <button mat-raised-button color="primary" (click)="router.navigate(['doctor/']);">Back</button>
+        <br />
         <mat-form-field class="search-field">
           <input matInput [(ngModel)]="filter" placeholder="Search" (keyup)="filterSort()">
           <mat-icon matSuffix>search</mat-icon>
@@ -24,8 +26,8 @@
           <!--
           <div *ngFor="let box of boxes | highlightbox : filter; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)"
             (onResize)="onResize(i, $event)">-->
-            <div *ngFor="let box of newboxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)"
-            (onResize)="onResize(i, $event)" id="{{'b'+box.id}}">
+          <div *ngFor="let box of newboxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)"
+            id="{{'b'+box.id}}">
             <mat-card class="dashboard-card">
               <div class="inner">
                 <mat-card-header>
@@ -54,7 +56,7 @@
                           </form>
                         </div>
                       </mat-card>
-                      <div class="center">
+                      <div *ngIf="box.editable" class="center">
                         <button mat-raised-button color="primary" (click)="router.navigate(['doctor/form/', { id: box.content+100, search: filter }])">Edit Form</button>
                       </div>
                     </div>
@@ -66,7 +68,7 @@
                           </div>
                         </form>
                       </mat-card>
-                      <div class="center">
+                      <div *ngIf="box.editable" class="center">
                         <button mat-raised-button color="primary" (click)="router.navigate(['doctor/form/', { id: box.content+100, search: filter }])">Edit Form</button>
                       </div>
                     </div>
@@ -87,8 +89,9 @@
                     </div>
                     <div *ngSwitchCase="'chart'">
                       <!--<canvas #line height="100"></canvas>-->
-                      <canvas baseChart height="100" [datasets]="box.content.datasets" [labels]="box.content.labels" [colors]="box.content.colors" [options]="box.content.options" [legend]="box.content.legends"
-                        [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                      <canvas baseChart height="100" [datasets]="box.content.datasets" [labels]="box.content.labels" [colors]="box.content.colors"
+                        [options]="box.content.options" [legend]="box.content.legends" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
                     </div>
                     <div *ngSwitchCase="'form-list'">
                       <table class="formTable">
@@ -108,7 +111,22 @@
                       </table>
                       <br />
                     </div>
-
+                    <div *ngSwitchCase="'media'">
+                      <div class="gallery">
+                        <div class="gallery-item" *ngFor="let item of box.content.gallery; let i = index" (click)="lightbox.open(i)">
+                          <img [src]="item.data.thumbSrc">
+                        </div>
+                      </div>
+                      <div class="audio">
+                        <div *ngFor="let source of box.content.audio;">
+                          <audio controls>
+                            <source [src]="source" type="audio/mpeg">
+                            <!--<embed [src]="source" />-->
+                            Your browser does not support the audio element.
+                          </audio>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </mat-card-content>
               </div>

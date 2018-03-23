@@ -97,21 +97,21 @@ export class PatientListComponent implements OnInit, AfterViewInit {
     const users3: UserData[] = [];
     users3.push({
       avatar: '/assets/avatars/100.png',
-      name: 'Wulandari Sulistyo',
+      name: 'Yemima Tabuni',
       condition1: 1,
       condition2: 2,
       condition3: 3
     });
     users3.push({
       avatar: '/assets/avatars/101.png',
-      name: 'Anak Pertama',
+      name: 'Simon Magai',
       condition1: 1,
       condition2: 2,
       condition3: 3
     });
     users3.push({
       avatar: '/assets/avatars/102.png',
-      name: 'Anak Kedua',
+      name: 'Maria Magai',
       condition1: 1,
       condition2: 2,
       condition3: 3

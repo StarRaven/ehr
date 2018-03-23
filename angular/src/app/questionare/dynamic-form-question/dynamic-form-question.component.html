@@ -104,15 +104,15 @@
 
       <div *ngIf="question.layout=='1row'">
         <label [attr.for]="question.key">{{question.key}} {{question.label}}: </label>
-        <mat-checkbox *ngFor="let opt of question.options" [value]="opt.key" class="right-push">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
+        <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="right-push">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
       </div>
       <div *ngIf="question.layout=='2row'">
         <label [attr.for]="question.key" class="block">{{question.key}} {{question.label}}: </label>
-        <mat-checkbox *ngFor="let opt of question.options" [value]="opt.key" class="right-push">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
+        <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="right-push">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
       </div>
       <div *ngIf="question.layout=='2row subq'" class="subq">
         <label [attr.for]="question.key" class="block">{{question.key}} {{question.label}}: </label>
-        <mat-checkbox *ngFor="let opt of question.options" [value]="opt.key" class="right-push">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
+        <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="right-push">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
       </div>
       <div *ngIf="question.layout=='1column subq'" class="subq">
         <label [attr.for]="question.key" class="block">{{question.key}} {{question.label}}: </label>
@@ -121,12 +121,12 @@
       <div *ngIf="question.layout=='2column'">
         <label [attr.for]="question.key" class="block">{{question.key}} {{question.label}}: </label>
         <div class="twoColumn">
-          <mat-checkbox *ngFor="let opt of question.options" [value]="opt.key" class="block">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
+          <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="block">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
         </div>
       </div>
       <div *ngIf="question.layout=='half'" class="half">
         <label [attr.for]="question.key">{{question.key}} {{question.label}}: </label>
-        <mat-checkbox *ngFor="let opt of question.options" [value]="opt.key" class="block">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
+        <mat-checkbox *ngFor="let opt of question.options" [checked]="opt.key===question.value" [value]="opt.key" class="block">{{getChar(opt.key)}}. {{opt.value}}</mat-checkbox>
       </div>
     </div>
     <div *ngSwitchCase="'table'">
@@ -188,7 +188,7 @@
         </tr>
         <tr *ngFor="let contents of question.contents[1];">
           <td *ngFor="let content of contents;" class="no-padding">
-            <input class="table-input" [value]="content">
+            <input class="table-input" [value]="removeBR(content)">
           </td>
         </tr>
       </table>
@@ -201,7 +201,7 @@
         </tr>
         <tr *ngFor="let contents of question.contents[1];">
           <td *ngFor="let content of contents;" [attr.colspan]="abs(content[1])" class="no-padding">
-            <input *ngIf="content[1]>0" class="table-input" [value]="content[0]">
+            <input *ngIf="content[1]>0" class="table-input" [value]="removeBR(content[0])">
             <div *ngIf="content[1]<0" class="center" [innerHTML]="content[0]"></div>
           </td>
         </tr>
@@ -228,6 +228,13 @@
       </div>
     </div>
 
+    <div *ngSwitchCase="'freetext'">
+        <div>              
+          <textarea style="width:100%; height:200px">{{relpaceBR(question.contents)}}</textarea>
+        </div>
+      </div>
+
   </div>
   <!--<div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>-->
 </div>
+

@@ -137,6 +137,7 @@ export class HighlightBoxPipe implements PipeTransform {
   }
 
   include(text: string, search): boolean {
+    text = this.removeBR(text);
     text = this.removeHL(text);
     if (!search) {
       return true;
@@ -162,9 +163,19 @@ export class HighlightBoxPipe implements PipeTransform {
       text = a + b + c;
     }
     return text;
+  
+  }
+  
+  removeBR(text: string) {
+    if (!text)
+      return text;
+    while (text.search(' <br /> ') > 0)
+    text = text.replace(' <br /> ',' ');
+    return text;
   }
 
   highlight(text: string, search): string {
+    text = this.removeBR(text);
     text = this.removeHL(text);
     if (!search || !text) {
       return text;

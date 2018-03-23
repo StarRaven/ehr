@@ -152,8 +152,9 @@ td {
 .fake-input {
   border-bottom: 1px solid black;
   display: inline-block;
-  width: 171px;
-  height: 22px;
+  min-width: 171px;
+  padding: 0 10px;
+  min-height: 22px;
 }
 
 .t1 {

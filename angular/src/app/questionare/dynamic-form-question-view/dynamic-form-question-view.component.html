@@ -113,10 +113,10 @@
     <div *ngSwitchCase="'simpletable'">
       <table>
         <tr *ngFor="let headers of question.contents[0];">
-          <th *ngFor="let thead of headers;" [innerHTML]="thead"></th>
+          <th *ngFor="let thead of headers;" [innerHTML]="thead" class="center"></th>
         </tr>
         <tr *ngFor="let contents of question.contents[1];">
-          <td *ngFor="let content of contents;" [innerHTML]="content"></td>
+          <td *ngFor="let content of contents;" [innerHTML]="content" class="center"></td>
         </tr>
       </table>
     </div>
@@ -133,22 +133,28 @@
     </div>
 
     <div *ngSwitchCase="'linktable'">
-        <table>
-          <tr *ngFor="let headers of question.contents[0];">
-            <th *ngFor="let thead of headers;" [innerHTML]="thead"></th>
-          </tr>
-          <tr *ngFor="let contents of question.contents[1];">
-            <td *ngFor="let content of contents;">
-                <a *ngIf="content[1] !== ''" class="hyperlink" [innerHTML]="content[0]" (click)="goForm(content[1])"></a>
-                <a *ngIf="content[1] === ''" [innerHTML]="content[0]"></a>
-            </td>
-          </tr>
-        </table>
-      </div>
+      <table>
+        <tr *ngFor="let headers of question.contents[0];">
+          <th *ngFor="let thead of headers;" [innerHTML]="thead"></th>
+        </tr>
+        <tr *ngFor="let contents of question.contents[1];">
+          <td *ngFor="let content of contents;">
+            <a *ngIf="content[1] !== ''" class="hyperlink" [innerHTML]="content[0]" (click)="goForm(content[1])"></a>
+            <a *ngIf="content[1] === ''" [innerHTML]="content[0]"></a>
+          </td>
+        </tr>
+      </table>
+    </div>
 
     <div *ngSwitchCase="'list'">
       <div *ngFor="let content of question.contents;">
         <a class="hyperlink" (click)="scroll(content[1])" [innerHTML]="content[0]"></a>
+      </div>
+    </div>
+
+    <div *ngSwitchCase="'freetext'">
+      <div>
+        <p [innerHTML]="question.contents"></p>
       </div>
     </div>
 

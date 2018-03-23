@@ -35,4 +35,14 @@ export class DynamicFormQuestionComponent {
   goForm(id: number) {
     this.router.navigate(['doctor/form/', { id: id+100, search: '' }])
   }
+  removeBR(s: string) {
+    while (s.search(' <br /> ') > 0)
+      s = s.replace(' <br /> ',' ');
+    return s;
+  }
+  relpaceBR(s: string) {
+    while (s.search(' <br /> ') > 0)
+      s = s.replace(' <br /> ','\n');
+    return s;
+  }
 }

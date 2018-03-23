@@ -1,7 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
-import {QuestionService} from '../../../questionare/question.service';
-import { GlobalService} from '../../../global.service';
+import { QuestionService } from '../../../questionare/question.service';
+import { GlobalService } from '../../../global.service';
+
 @Component({
   selector: 'app-patient-form',
   templateUrl: './patient-form.component.html',
@@ -13,6 +15,7 @@ export class PatientFormComponent implements OnInit {
   filter: string;
 
   constructor (
+    private _location: Location,
     service: QuestionService,
     private route: ActivatedRoute,
     private router: Router,
@@ -28,5 +31,10 @@ export class PatientFormComponent implements OnInit {
       }
     });
   }
+
+  goBack() {
+    this._location.back();
+  }
+
   ngOnInit() {}
 }
