@@ -99,7 +99,7 @@
           <mat-table [dataSource]="dataSource3" matSort>
 
             <ng-container matColumnDef="name">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Patient Name </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header> NAMA PASIEN </mat-header-cell>
               <mat-cell *matCellDef="let row">
                 <button mat-button (click)="goDashboard(row)">
                   <img [src]="row.avatar" width="30" height="30" alt="" class="img ">
@@ -109,23 +109,21 @@
             </ng-container>
 
             <ng-container matColumnDef="condition1">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> HEIGHT (CM) </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header> NO. REGISTRAR </mat-header-cell>
               <mat-cell *matCellDef="let row">
                 {{row.condition1}}
               </mat-cell>
             </ng-container>
             <ng-container matColumnDef="condition2">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> WEIGHT (KG) </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header> JENIS KELAMIN </mat-header-cell>
               <mat-cell *matCellDef="let row">
                 {{row.condition2}}
               </mat-cell>
             </ng-container>
             <ng-container matColumnDef="condition3">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> DIAGNOSE </mat-header-cell>
-              <mat-cell *matCellDef="let row" [style.color]="row.color">
-                <i *ngIf="row.condition3===0" class="material-icons icon-fix" style="color:#4CAF50">lens</i>
-                <i *ngIf="row.condition3===1" class="material-icons icon-fix" style="color:#FFEB3B">lens</i>
-                <i *ngIf="row.condition3===2" class="material-icons icon-fix" style="color:#F44336">lens</i>
+              <mat-header-cell *matHeaderCellDef mat-sort-header> TANGGAL LAHIR </mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                {{row.condition3}}
               </mat-cell>
             </ng-container>
 

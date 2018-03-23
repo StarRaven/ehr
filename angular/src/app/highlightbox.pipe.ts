@@ -14,7 +14,7 @@ export class HighlightBoxPipe implements PipeTransform {
   transform(boxes: any[], search): any[] {
     const newboxes = [];
     for (const box of boxes) {
-       console.log(box.content);
+      // console.log(box.content);
       if (box.widgetType !== '') {
         switch (box.widgetType) {
           case 'information' : {
@@ -121,7 +121,7 @@ export class HighlightBoxPipe implements PipeTransform {
       return true;
     }
     const form = this.QService.getQuestions(id);
-     console.log(form);
+    // console.log(form);
     for (const Question of form) {
       if (this.include(Question.label, search)) {
         return true;

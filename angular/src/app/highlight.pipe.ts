@@ -94,17 +94,24 @@ export class HighlightPipe implements PipeTransform {
     return text;
   }
 
-  highlight(text: string, search): string {
+  highlight(text: string, search:string): string {
     //text = this.removeBR(text);
     text = this.removeHL(text);
     if (!search || !text) {
       return text;
     }
+    let strs = text.split('<br />');
+    text = '';
+
     let pattern = search.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
     pattern = pattern.split(' ').filter((t) => {
       return t.length > 0;
     }).join('|');
     const regex = new RegExp(pattern, 'gi');
-    return text.replace(regex, (match) => `<span class="search-highlight">${match}</span>`);
+    for (let i=0; i<strs.length-1; i++) {
+      text += strs[i].replace(regex, (match) => `<span class="search-highlight">${match}</span>`) + "<br />";
+    }
+    text += strs[strs.length-1].replace(regex, (match) => `<span class="search-highlight">${match}</span>`);
+    return text;
   }
 }

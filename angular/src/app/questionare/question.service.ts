@@ -1084,7 +1084,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'No. Registar',
+          label: 'No. Registrar',
           value: '123-4567',
           required: true,
           order: 1,
@@ -2707,7 +2707,7 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'No. Registar',
+          label: 'No. Registrar',
           value: '123-458',
           required: true,
           order: 2,
@@ -3068,8 +3068,8 @@ export class QuestionService {
 
         new TextboxQuestion({
           key: '',
-          label: 'No. Registar',
-          value: '',
+          label: 'No. Registrar',
+          value: '123-459',
           required: true,
           order: 2,
           group: 1,

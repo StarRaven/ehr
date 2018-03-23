@@ -54,8 +54,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
       this.condition1 = 'FALL FREQ';
       this.condition2 = 'SKIN BREAKDOWN';
       this.condition3 = 'DEVICE BREAKDOWN';
-    }
-    if (this.global.username === 'doctor2') {
+    } else if (this.global.username === 'doctor2') {
       this.condition1 = 'HEIGHT';
       this.condition2 = 'WEIGHT';
       this.condition3 = 'DIAGNOSE';
@@ -98,23 +97,23 @@ export class PatientListComponent implements OnInit, AfterViewInit {
     users3.push({
       avatar: '/assets/avatars/100.png',
       name: 'Yemima Tabuni',
-      condition1: 1,
-      condition2: 2,
-      condition3: 3
+      condition1: '123-4567',
+      condition2: 'Perempuan',
+      condition3: '03/01/1980',
     });
     users3.push({
       avatar: '/assets/avatars/101.png',
       name: 'Simon Magai',
-      condition1: 1,
-      condition2: 2,
-      condition3: 3
+      condition1: '123-458',
+      condition2: 'Laki-laki',
+      condition3: '02/10/2017',
     });
     users3.push({
       avatar: '/assets/avatars/102.png',
       name: 'Maria Magai',
-      condition1: 1,
-      condition2: 2,
-      condition3: 3
+      condition1: '123-459',
+      condition2: 'Perempuan',
+      condition3: '02/03/2015',
     });
     this.dataSource3 = new MatTableDataSource(users3);
   }
@@ -182,9 +181,9 @@ const NAMES = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
 export interface UserData {
   avatar: string;
   name: string;
-  condition1: number;
-  condition2: number;
-  condition3: number;
+  condition1: any;
+  condition2: any;
+  condition3: any;
 }
 
 interface Condition {
