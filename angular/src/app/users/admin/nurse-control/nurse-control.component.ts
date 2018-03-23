@@ -18,7 +18,7 @@ export class NurseControlComponent implements OnInit {
   nurses: Nurse[] = [];
   uids: number;
 
-  constructor(public dialog: MatDialog, private router: Router) {
+  constructor(public dialog: MatDialog, public router: Router) {
     let d = new Nurse();
     d.uid = 0;
     d.username = 'nurse1';

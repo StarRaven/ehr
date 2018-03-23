@@ -60,16 +60,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   // @ViewChild('line') line: ElementRef;
   private FORM_DATA: Form[] = [];
   private data: any;
-  private filter = '';
+  public filter = '';
   // private chart: any;
   private boxes: Array<Box> = [];
-  private newboxes: Array<Box> = [];
+  public newboxes: Array<Box> = [];
   private oridashconf: NgGridItemConfig[] = [];
 
   private rgb = '#efefef';
   private curNum;
   private oriboxes: Array<Box> = [];
-  private gridConfig: NgGridConfig = <NgGridConfig>{
+  public gridConfig: NgGridConfig = <NgGridConfig>{
     'margins': [5],
     'draggable': true,
     'resizable': true,
@@ -295,8 +295,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   ];
 
   constructor(
-    private router: Router,
-    private global: GlobalService,
+    public router: Router,
+    public global: GlobalService,
     private qcs: QuestionControlService,
     private qs: QuestionService,
     private hlbox: HighlightBoxPipe,

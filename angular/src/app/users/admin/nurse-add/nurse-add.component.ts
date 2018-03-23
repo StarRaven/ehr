@@ -11,6 +11,8 @@ export class NurseAddComponent implements OnInit {
   username: string;
   password: string;
   uid: number;
+  hide: boolean;
+
   constructor(
     public dialogRef: MatDialogRef<NurseAddComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -26,6 +28,7 @@ export class NurseAddComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.hide = true;
   }
 
 }

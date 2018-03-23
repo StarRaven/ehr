@@ -25,7 +25,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
 
   constructor(
     private router: Router,
-    private global: GlobalService,
+    public global: GlobalService,
   ) {
     const users: UserData[] = [];
     const users2: UserData[] = [];

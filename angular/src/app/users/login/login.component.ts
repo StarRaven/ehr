@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   type: string;
-  hide: string;
+  hide: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<LoginComponent>,
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.hide = 'password';
+    this.hide = true;
   }
 
 }

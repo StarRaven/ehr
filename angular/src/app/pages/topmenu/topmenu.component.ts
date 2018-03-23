@@ -10,7 +10,7 @@ import { GlobalService } from '../../global.service';
 })
 export class TopmenuComponent implements OnInit {
 
-  constructor(public global: GlobalService, private router: Router) { }
+  constructor(public global: GlobalService, public router: Router) { }
 
   Logout() {
     this.router.navigate(['users']);

@@ -18,7 +18,7 @@ export class PatientFormAddComponent implements OnInit {
     private _location: Location,
     service: QuestionService,
     private router: Router,
-    private global: GlobalService
+    public global: GlobalService
   ) {
     this.questions = service.getQuestions(1);
     for (const q of this.questions) {

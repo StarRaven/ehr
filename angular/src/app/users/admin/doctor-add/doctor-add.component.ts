@@ -11,6 +11,8 @@ export class DoctorAddComponent implements OnInit {
   username: string;
   password: string;
   uid: number;
+  hide: boolean;
+
   constructor(
     public dialogRef: MatDialogRef<DoctorAddComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -26,6 +28,7 @@ export class DoctorAddComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.hide = true;
   }
 
 }

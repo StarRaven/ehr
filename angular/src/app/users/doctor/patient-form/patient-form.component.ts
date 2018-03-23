@@ -18,8 +18,8 @@ export class PatientFormComponent implements OnInit {
     private _location: Location,
     service: QuestionService,
     private route: ActivatedRoute,
-    private router: Router,
-    private global: GlobalService
+    public router: Router,
+    public global: GlobalService
   ) {
     this.route.params.subscribe(params => {
       console.log(params);

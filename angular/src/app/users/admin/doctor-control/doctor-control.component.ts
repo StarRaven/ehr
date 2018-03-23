@@ -18,7 +18,7 @@ export class DoctorControlComponent implements OnInit {
   doctors: Doctor[] = [];
   uids: number;
 
-  constructor(public dialog: MatDialog, private router: Router) {
+  constructor(public dialog: MatDialog, public router: Router) {
     let d = new Doctor();
     d.uid = 0;
     d.username = 'doctor1';
