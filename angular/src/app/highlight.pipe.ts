@@ -95,7 +95,7 @@ export class HighlightPipe implements PipeTransform {
   }
 
   highlight(text: string, search): string {
-    text = this.removeBR(text);
+    //text = this.removeBR(text);
     text = this.removeHL(text);
     if (!search || !text) {
       return text;
