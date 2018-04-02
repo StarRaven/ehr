@@ -21,11 +21,11 @@ export class DynamicFormComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.form = this.qcs.toFormGroup(this.questions);
-    console.log(this.form);
   }
 
   onSubmit() {
     this.payLoad = JSON.stringify(this.form.value);
+    console.log(this.payLoad);
   }
 
   ngAfterViewInit() {
