@@ -6,7 +6,7 @@
 // **Be sure that you only ever include this mixin once!**
 
 $custom-typography: mat-typography-config(
-  $font-family: 'Lato-Regular, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif'
+  $font-family: 'Antonio-Regular, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif'
 );
 
 @include mat-core($custom-typography);
@@ -39,8 +39,42 @@ $custom-theme-2: mat-light-theme($custom-primary-2, $custom-accent-2, $custom-wa
   @include angular-material-theme($custom-theme-2);
 }
 
-$custom-primary-3: mat-palette($mat-pink, A200);
-$custom-accent-3: mat-palette($mat-pink, A200);
+
+$bv-brand: (
+    50: #ffffff,
+    100: #dde6f3,
+    200: #b4c9e4,
+    300: #7fa3d1,
+    400: #6992c9,
+    500: #59ADD3,
+    600: #4072b4,
+    700: #38649d,
+    800: #305687,
+    900: #1A4457,
+    A100: #ffffff,
+    A200: #dde6f3,
+    A400: #6992c9,
+    A700: #38649d,
+    contrast: (
+        50: $black-87-opacity,
+        100: $black-87-opacity,
+        200: $black-87-opacity,
+        300: $black-87-opacity,
+        400: $black-87-opacity,
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+        A100: $black-87-opacity,
+        A200: $black-87-opacity,
+        A400: $black-87-opacity,
+        A700: white,
+    )
+);
+
+$custom-primary-3: mat-palette($bv-brand, 900);
+$custom-accent-3: mat-palette($bv-brand, 500);
 $custom-warn-3: mat-palette($mat-red);
 
 $custom-theme-3: mat-light-theme($custom-primary-3, $custom-accent-3, $custom-warn-3);
@@ -48,3 +82,5 @@ $custom-theme-3: mat-light-theme($custom-primary-3, $custom-accent-3, $custom-wa
 .custom-theme-3 {
   @include angular-material-theme($custom-theme-3);
 }
+
+

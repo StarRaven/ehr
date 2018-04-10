@@ -8,12 +8,24 @@
   width: 53px;
 }
 
-.hand {
-  cursor: pointer;
+.banner-title {
+  font-size: 1.6em;
 }
 
 mat-toolbar-row {
   -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
   z-index: 3;
+}
+
+.banner {
+  height: 100px !important;
+}
+
+.pull-left {
+  margin-right: 26px;
+}
+
+.float-right {
+  float: right;
 }

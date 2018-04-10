@@ -4,10 +4,14 @@
     <mat-grid-tile [colspan]="1"></mat-grid-tile>
     <mat-grid-tile [colspan]="4">
       <mat-card class="patient-list-card">
-        <mat-form-field style="width:100%">
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Patient Name">
-          <i class="material-icons" matSuffix>search</i>
-        </mat-form-field>
+        <mat-card-header class="card-header">
+          <a class="card-title">Patient Records</a>
+          <mat-form-field style="width:50%;">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Patient Name">
+            <i class="material-icons" matSuffix>search</i>
+          </mat-form-field>
+        </mat-card-header>
+        <!--
         <div *ngIf="global.username === 'doctor1'">
           <mat-table [dataSource]="dataSource" matSort>
 
@@ -94,44 +98,54 @@
           <br>
           <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
         </div>
-
+      -->
         <div *ngIf="global.username === 'doctor'">
-          <mat-table [dataSource]="dataSource3" matSort>
+          <mat-table [dataSource]="dataSource3" class="center" matSort>
+
+            <ng-container matColumnDef="avatar">
+              <mat-header-cell *matHeaderCellDef mat-sort-header class="no-flex"></mat-header-cell>
+              <mat-cell *matCellDef="let row" class="no-flex display-flex">
+                <img (click)="goDashboard(row)" [src]="row.avatar" alt="" class="avatar clickable">
+              </mat-cell>
+            </ng-container>
 
             <ng-container matColumnDef="name">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> NAMA PASIEN </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header class="table-header" [ngStyle]="{'color': global.accentColor}"> NAMA PASIEN </mat-header-cell>
               <mat-cell *matCellDef="let row">
-                <button mat-button (click)="goDashboard(row)">
-                  <img [src]="row.avatar" width="30" height="30" alt="" class="img ">
-                  <a>&nbsp;{{row.name}}</a>
-                </button>
+                <a class="clickable" (click)="goDashboard(row)">&nbsp;{{row.name}}</a>
               </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="condition1">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> NO. REGISTRAR </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header class="table-header" [ngStyle]="{'color': global.accentColor}"> NO. REGISTRAR </mat-header-cell>
               <mat-cell *matCellDef="let row">
                 {{row.condition1}}
               </mat-cell>
             </ng-container>
             <ng-container matColumnDef="condition2">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> JENIS KELAMIN </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header class="table-header" [ngStyle]="{'color': global.accentColor}"> JENIS KELAMIN </mat-header-cell>
               <mat-cell *matCellDef="let row">
                 {{row.condition2}}
               </mat-cell>
             </ng-container>
             <ng-container matColumnDef="condition3">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> TANGGAL LAHIR </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header class="table-header" [ngStyle]="{'color': global.accentColor}"> TANGGAL LAHIR </mat-header-cell>
               <mat-cell *matCellDef="let row">
                 {{row.condition3}}
               </mat-cell>
             </ng-container>
-
+            <ng-container matColumnDef="operation">
+              <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <button mat-raised-button color="accent" (click)="goDashboard(row)">View</button>
+              </mat-cell>
+            </ng-container>
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            <mat-row style="line-height:80px" *matRowDef="let row; columns: displayedColumns;">
             </mat-row>
           </mat-table>
           <br>
+          <button mat-raised-button class="float-left" color="accent" (click)="goDashboard(row)">Add New Patient</button>
           <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
         </div>
       </mat-card>

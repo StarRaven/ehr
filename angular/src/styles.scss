@@ -6,8 +6,8 @@
 
 //@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @font-face {
-  font-family: Lato-Regular;
-  src: url('/assets/fonts/Lato/Lato-Regular.ttf');
+  font-family: Antonio-Regular;
+  src: url('/assets/fonts/Antonio/Antonio-Regular.ttf');
 }
 
 @import './theme.scss';
@@ -15,8 +15,9 @@
 @import '~@ngx-gallery/core/styles/lightbox';
 body {
   margin: 0;
-  font-family: Lato-Regular, "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-family: Antonio-Regular, "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   font-size: 16px !important;
+  letter-spacing: 0.1mm;
   -webkit-font-smoothing: antialiased;
   line-height: 1.8;
   background-color: #EEEEEE;
@@ -140,4 +141,12 @@ a {
 
 table {
   word-break: break-word;
+}
+
+.center {
+  text-align: center;
+}
+
+.clickable {
+  cursor: pointer;
 }

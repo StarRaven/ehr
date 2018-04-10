@@ -11,3 +11,37 @@
 a {
   color: black !important;
 }
+
+.card-header {
+  justify-content: space-between;
+}
+
+.card-title {
+  font-size: 1.6em;
+  width: 100%;
+  margin: auto;
+}
+
+.no-flex {
+  width: 50px;
+  flex: none;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.table-header {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.avatar {
+  margin: auto;
+  height: 50px;
+  width: 50px;
+}
+
+.float-left {
+  float: left;
+}

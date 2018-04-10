@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GlobalService} from '../../../global.service';
-
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import { GlobalService } from '../../../global.service';
+import { UserService } from '../../../services/user.service';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-patient-list',
@@ -11,7 +11,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 })
 export class PatientListComponent implements OnInit, AfterViewInit {
 
-  displayedColumns = ['name', 'condition1', 'condition2', 'condition3'];
+  displayedColumns = ['avatar', 'name', 'condition1', 'condition2', 'condition3', 'operation'];
   dataSource: MatTableDataSource<UserData>;
   dataSource2: MatTableDataSource<UserData>;
   dataSource3: MatTableDataSource<UserData>;
@@ -26,6 +26,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
   constructor(
     private router: Router,
     public global: GlobalService,
+    public us: UserService
   ) {
     const users: UserData[] = [];
     const users2: UserData[] = [];
@@ -64,17 +65,15 @@ export class PatientListComponent implements OnInit, AfterViewInit {
     this.dataSource2 = new MatTableDataSource(users2);
   }
 
-    /**
-   * Set the paginator and sort after the view init since this component will
-   * be able to query its view for the initialized paginator and sort.
-   */
+  /**
+ * Set the paginator and sort after the view init since this component will
+ * be able to query its view for the initialized paginator and sort.
+ */
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.dataSource2.paginator = this.paginator;
     this.dataSource2.sort = this.sort;
-    this.dataSource3.paginator = this.paginator;
-    this.dataSource3.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {
@@ -93,6 +92,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
   }
 
   createMotherChild() {
+    /*
     const users3: UserData[] = [];
     users3.push({
       avatar: '/assets/avatars/100.png',
@@ -114,58 +114,70 @@ export class PatientListComponent implements OnInit, AfterViewInit {
       condition1: '123-459',
       condition2: 'Perempuan',
       condition3: '02/03/2015',
-    });
-    this.dataSource3 = new MatTableDataSource(users3);
+    });*/
+    this.us.getPatientList().subscribe(
+      (jsonData) => {
+        let jsonDataBody = jsonData.json();
+        console.log(jsonDataBody);
+        this.dataSource3 = new MatTableDataSource(jsonDataBody);
+        this.dataSource3.paginator = this.paginator;
+        this.dataSource3.sort = this.sort;
+      },
+      // The 2nd callback handles errors.
+      (err) => console.error(err),
+      // The 3rd callback handles the "complete" event.
+      () => console.log("observable complete")
+    );
   }
   /** Builds and returns a new User. */
- createNewUser(id: number): UserData {
-  if (this.global.username === 'doctor1') {
-    const name =
+  createNewUser(id: number): UserData {
+    if (this.global.username === 'doctor1') {
+      const name =
         NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
         NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-    const condition1: Condition = {
-      label: 'FALL FREQ',
-      value: Math.round(Math.random() * 2)
-    };
-    const condition2: Condition = {
-      label: 'SKIN BREAKDOWN',
-      value: Math.round(Math.random() * 2)
-    };
-    const condition3: Condition = {
-      label: 'DEVICE BREAKDOWN',
-      value: Math.round(Math.random() * 2)
-    };
-    return {
-      avatar: '/assets/avatars/' + Math.round(Math.random() * 8 + 1).toString() + '.png',
-      name: name,
-      condition1: condition1.value,
-      condition2: condition2.value,
-      condition3: condition3.value,
-    };
-  } else if (this.global.username === 'doctor2') {
-    const name =
+      const condition1: Condition = {
+        label: 'FALL FREQ',
+        value: Math.round(Math.random() * 2)
+      };
+      const condition2: Condition = {
+        label: 'SKIN BREAKDOWN',
+        value: Math.round(Math.random() * 2)
+      };
+      const condition3: Condition = {
+        label: 'DEVICE BREAKDOWN',
+        value: Math.round(Math.random() * 2)
+      };
+      return {
+        avatar: '/assets/avatars/' + Math.round(Math.random() * 8 + 1).toString() + '.png',
+        name: name,
+        condition1: condition1.value,
+        condition2: condition2.value,
+        condition3: condition3.value,
+      };
+    } else if (this.global.username === 'doctor2') {
+      const name =
         NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
         NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-    const condition1: Condition = {
-      label: '',
-      value: Math.round(Math.random() * 40) + 150
-    };
-    const condition2: Condition = {
-      label: '',
-      value: Math.round(Math.random() * 40) + 40
-    };
-    const condition3: Condition = {
-      label: '',
-      value: Math.round(Math.random() * 2)
-    };
-    return {
-      avatar: '/assets/avatars/' + Math.round(Math.random() * 8 + 1).toString() + '.png',
-      name: name,
-      condition1: condition1.value,
-      condition2: condition2.value,
-      condition3: condition3.value,
-    };
-  }
+      const condition1: Condition = {
+        label: '',
+        value: Math.round(Math.random() * 40) + 150
+      };
+      const condition2: Condition = {
+        label: '',
+        value: Math.round(Math.random() * 40) + 40
+      };
+      const condition3: Condition = {
+        label: '',
+        value: Math.round(Math.random() * 2)
+      };
+      return {
+        avatar: '/assets/avatars/' + Math.round(Math.random() * 8 + 1).toString() + '.png',
+        name: name,
+        condition1: condition1.value,
+        condition2: condition2.value,
+        condition3: condition3.value,
+      };
+    }
   }
 }
 

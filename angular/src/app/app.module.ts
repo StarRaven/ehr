@@ -26,6 +26,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { UserService } from './services/user.service';
 import { GlobalService } from './global.service';
 import { LoginComponent } from './users/login/login.component';
 
@@ -131,6 +132,7 @@ import { LightboxModule } from  '@ngx-gallery/lightbox';
     NurseAddComponent,
   ],
   providers: [
+    UserService,
     GlobalService,
     QuestionService,
   ],
