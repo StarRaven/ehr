@@ -58,7 +58,9 @@ body {
 }
 
 .inner {
-  padding: 24px;
+  // padding: 24px;
+  border-bottom: 1px solid;
+  margin: 0 30px;
 }
 
 .center {
@@ -78,6 +80,9 @@ body {
 
 .expand-button {
   width: 100%;
+  height: 45px;
+  font-size: 1.2em;
+  margin-top: 20px !important;
 }
 
 .mat-card-title {
@@ -105,8 +110,7 @@ body {
 }
 
 .fix-form-card {
-  margin-bottom: 10px;
-  padding: 30px !important;
+  margin-bottom: 10px; // padding: 30px !important;
 }
 
 .t1 {
@@ -121,13 +125,63 @@ body {
 
 .gallery-item {
   display: inline-block;
-  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
   margin: 10px;
   height: 100px;
   cursor: pointer;
 }
 
-.auto-expand {
-  // width: 100% !important;
-  // height: auto !important;
+.grid-fix {
+  border: none;
+}
+
+.sidebar-left {
+  width: 50%;
+  float: left;
+}
+
+.sidebar-right {
+  padding: 5%;
+  width: 40%;
+  float: right;
+}
+
+.sidebar-wrapper {
+  padding: 0 30px;
+}
+
+.sidebar-title {
+  margin-left: 10px;
+  font-size: 2.6em;
+  color: #5B5D5F;
+}
+
+.right {
+  text-align: right;
+}
+
+.flip-wrapper {
+  margin: auto 0 !important;
+  -moz-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  transform: scaleX(-1);
+  /*IE*/
+  filter: FlipH;
+}
+
+.sidebar-icon {
+  font-size: 42px;
+  width: 42px !important;
+  height: 42px !important;
+  color: #5B5D5F;
+}
+
+.search-wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+.transparent {
+  background: transparent !important; // box-shadow: none !important;
 }

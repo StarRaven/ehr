@@ -27,6 +27,7 @@ $custom-theme: mat-light-theme($custom-primary, $custom-accent, $custom-warn);
 
 .custom-theme-1 {
   @include angular-material-theme($custom-theme);
+  height: 100%;
 }
 
 $custom-primary-2: mat-palette($mat-green, 800);
@@ -37,6 +38,7 @@ $custom-theme-2: mat-light-theme($custom-primary-2, $custom-accent-2, $custom-wa
 
 .custom-theme-2 {
   @include angular-material-theme($custom-theme-2);
+  height: 100%;
 }
 
 
@@ -81,6 +83,7 @@ $custom-theme-3: mat-light-theme($custom-primary-3, $custom-accent-3, $custom-wa
 
 .custom-theme-3 {
   @include angular-material-theme($custom-theme-3);
+  height: 100%;
 }
 
 

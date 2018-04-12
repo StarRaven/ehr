@@ -8,8 +8,9 @@ export class GlobalService {
   theme: string;
   patientName: string;
   patientAvator: string;
+  primaryColor: string;
   accentColor: string;
-
+  lightColor: string;
   server = "http://localhost:3000";
   
   constructor() {
@@ -19,7 +20,9 @@ export class GlobalService {
     this.theme = 'custom-theme-3';
     this.patientAvator = '/assets/avatars/100.png';
     this.patientName = 'Yemima Tabuni';
+    this.primaryColor = "#1A4457";
     this.accentColor = "#59ADD3";
+    this.lightColor = "#CEE8F3";
     //this.patientAvator = '/assets/avatars/101.png';
     //this.patientName = 'Simon Magai';
     //this.patientAvator = '/assets/avatars/102.png';

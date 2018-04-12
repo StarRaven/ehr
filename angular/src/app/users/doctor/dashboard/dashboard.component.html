@@ -1,5 +1,6 @@
 <div class="{{global.theme}}">
   <app-topmenu></app-topmenu>
+  <!--
   <mat-drawer-container class="example-container">
     <mat-drawer mode="side" opened="true">
       <div class="patient-list">
@@ -14,36 +15,76 @@
         <hr>
       </div>
     </mat-drawer>
-    <mat-drawer-content>
-      <div class="content-wrapper">
-        <button mat-raised-button color="primary" (click)="router.navigate(['doctor/']);">Patient List</button>
-        <br />
-        <mat-form-field class="search-field">
-          <input matInput [(ngModel)]="filter" placeholder="Search" (keyup)="filterSort()">
-          <mat-icon matSuffix>search</mat-icon>
-        </mat-form-field>
-        <div [ngGrid]="gridConfig">
-          <!--
+    <mat-drawer-content >
+      -->
+  <div class="container" fxLayout="row">
+    <div fxFlex="25" class="content-wrapper">
+      <div class="sidebar-wrapper">
+        <div style="display:flex">
+          <button mat-icon-button class="flip-wrapper">
+            <mat-icon class="sidebar-icon" (click)="router.navigate(['doctor/']);">play_circle_outline</mat-icon>
+          </button>
+          <a class="sidebar-title">Patient Details</a>
+        </div>
+        <div class="sidebar-left">
+          <img [src]="global.patientAvator" width="100%" height="auto" alt="" class="img">
+        </div>
+        <div class="sidebar-right">
+          <a style="font-size:1.4em;line-height: 2.4em;">{{global.patientName}}</a>
+          <a style="font-size:1.2em;line-height: 2.4em;">{{global.patientName}}</a>
+          <a style="font-size:1.2em;line-height: 2.4em;">{{global.patientName}}</a>
+          <a style="font-size:1.2em;line-height: 2.4em;">{{global.patientName}}</a>
+        </div>
+        <div>
+          <button mat-raised-button color="primary" class="expand-button" (click)="router.navigate(['doctor/newform'])">
+            Add New Form&nbsp;&nbsp;
+            <mat-icon matSuffix>add_circle_outline</mat-icon>
+          </button>
+          <button mat-raised-button color="primary" class="expand-button" (click)="addBox()">
+            Add New Box&nbsp;&nbsp;
+            <mat-icon matSuffix>add_circle_outline</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div fxFlex="75" class="content-wrapper">
+      <div class="scroll-wrapper" [ngStyle]="{'background': global.lightColor}">
+        <div class="content">
+          <!--<button mat-raised-button color="primary" (click)="router.navigate(['doctor/']);">Patient List</button>-->
+          <br />
+          <div class="search-wrapper">
+            <mat-form-field class="search-field">
+              <input matInput [(ngModel)]="filter" placeholder="Search" (keyup)="filterSort()">
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+          </div>
+          <div [ngGrid]="gridConfig">
+            <!--
           <div *ngFor="let box of boxes | highlightbox : filter; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)"
             (onResize)="onResize(i, $event)">-->
-          <div *ngFor="let box of newboxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)"
-            id="{{'b'+box.id}}" class="auto-expand">
-            <mat-card class="dashboard-card">
-              <div class="inner">
-                <mat-card-header>
-                  <div class="handle">
-                    <mat-card-title>{{box.title}}</mat-card-title>
+            <div *ngFor="let box of newboxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)"
+              id="{{'b'+box.id}}" class="grid-fix">
+              <mat-card class="transparent dashboard-card ">
+                <div class="inner">
+                  <mat-card-header>
+                    <div class="handle">
+
+                      <mat-card-title>{{box.title}}</mat-card-title>
+                      <!--
                     <div class="box-header-btns pull-right">
                       <a title="Remove widget" (click)="removeWidget(i);" style="display: block">
                         <mat-icon color="primary">delete</mat-icon>
                       </a>
                     </div>
-                  </div>
-                </mat-card-header>
-                <mat-card-content>
-                  <div [ngSwitch]="box.widgetType">
-                    <div *ngSwitchCase="'info-form'">
-                      <mat-card *ngFor="let group of questions[box.content]; let g = index" class="fix-form-card">
+                  -->
+                    </div>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <div [ngSwitch]="box.widgetType">
+                      <div *ngSwitchCase="'info-form'">
+                        <mat-card *ngFor="let group of questions[box.content]; let g = index" class=" transparent fix-form-card ">
+                          <!--
                         <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="0" fxLayoutGap.xs="0">
                           <div *ngIf='g === 0' fxFlex="30" class="center-avatar">
                             <img [src]="global.patientAvator" width="200" height="auto" alt="" class="img">
@@ -55,86 +96,94 @@
                             </div>
                           </form>
                         </div>
-                      </mat-card>
-                      <div *ngIf="box.editable" class="center">
-                        <button mat-raised-button color="primary" (click)="router.navigate(['doctor/form/', { id: box.content+100, search: filter }])">Edit Form</button>
+                      -->
+                          <form id="qForm" (ngSubmit)="onSubmit()" [formGroup]="form">
+                            <div *ngFor="let question of group | highlight : filter; let i = index" [ngClass]="question.layout">
+                              <app-dynamic-form-question-view [question]="question" [form]="form"></app-dynamic-form-question-view>
+                            </div>
+                          </form>
+                        </mat-card>
+                        <div *ngIf="box.editable" class="right">
+                          <button mat-raised-button color="primary" (click)="router.navigate(['doctor/form/', { id: box.content+100, search: filter }])">Edit Form</button>
+                        </div>
                       </div>
-                    </div>
-                    <div *ngSwitchCase="'pregnancy-form'">
-                      <mat-card *ngFor="let group of questions[box.content]; let g = index" class="fix-form-card">
-                        <form id="qForm" fxFlex="grow" (ngSubmit)="onSubmit()" [formGroup]="form">
-                          <div *ngFor="let question of group| highlight : filter; let i = index" [ngClass]="question.layout">
-                            <app-dynamic-form-question-view [question]="question" [form]="form"></app-dynamic-form-question-view>
-                          </div>
-                        </form>
-                      </mat-card>
-                      <div *ngIf="box.editable" class="center">
-                        <button mat-raised-button color="primary" (click)="router.navigate(['doctor/form/', { id: box.content+100, search: filter }])">Edit Form</button>
+                      <div *ngSwitchCase="'pregnancy-form'">
+                        <mat-card *ngFor="let group of questions[box.content]; let g = index" class="transparent fix-form-card ">
+                          <form id="qForm" fxFlex="grow" (ngSubmit)="onSubmit()" [formGroup]="form">
+                            <div *ngFor="let question of group| highlight : filter; let i = index" [ngClass]="question.layout">
+                              <app-dynamic-form-question-view [question]="question" [form]="form"></app-dynamic-form-question-view>
+                            </div>
+                          </form>
+                        </mat-card>
+                        <div *ngIf="box.editable" class="right">
+                          <button mat-raised-button color="primary" (click)="router.navigate(['doctor/form/', { id: box.content+100, search: filter }])">Edit Form</button>
+                        </div>
                       </div>
-                    </div>
-                    <div *ngSwitchCase="'information'">
-                      <mat-grid-list cols="3" rowHeight="150px">
-                        <mat-grid-tile colspan="1">
-                          <img [src]="global.patientAvator" width="60" height="60" alt="" class="img">
-                        </mat-grid-tile>
-                        <mat-grid-tile colspan="2">
-                          <table style="width:80%">
-                            <tr *ngFor="let info of box.content">
-                              <td [innerHTML]="info.label"></td>
-                              <td [innerHTML]="info.value"></td>
-                            </tr>
-                          </table>
-                        </mat-grid-tile>
-                      </mat-grid-list>
-                    </div>
-                    <div *ngSwitchCase="'chart'">
-                      <!--<canvas #line height="100"></canvas>-->
-                      <canvas baseChart height="100" [datasets]="box.content.datasets" [labels]="box.content.labels" [colors]="box.content.colors"
-                        [options]="box.content.options" [legend]="box.content.legends" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
-                        (chartClick)="chartClicked($event)"></canvas>
-                    </div>
-                    <div *ngSwitchCase="'form-list'">
-                      <table class="formTable">
-                        <tr>
-                          <th style="padding-left:20px">Type</th>
-                          <th style="padding-left:20px">Date</th>
-                          <th style="padding-left:20px">Operation</th>
-                        </tr>
+                      <div *ngSwitchCase="'information'">
+                        <mat-grid-list cols="3" rowHeight="150px">
+                          <mat-grid-tile colspan="1">
+                            <img [src]="global.patientAvator" width="60" height="60" alt="" class="img">
+                          </mat-grid-tile>
+                          <mat-grid-tile colspan="2">
+                            <table style="width:80%">
+                              <tr *ngFor="let info of box.content">
+                                <td [innerHTML]="info.label"></td>
+                                <td [innerHTML]="info.value"></td>
+                              </tr>
+                            </table>
+                          </mat-grid-tile>
+                        </mat-grid-list>
+                      </div>
+                      <div *ngSwitchCase="'chart'">
+                        <!--<canvas #line height="100"></canvas>-->
+                        <canvas baseChart height="100" [datasets]="box.content.datasets" [labels]="box.content.labels" [colors]="box.content.colors"
+                          [options]="box.content.options" [legend]="box.content.legends" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+                          (chartClick)="chartClicked($event)"></canvas>
+                      </div>
+                      <div *ngSwitchCase="'form-list'">
+                        <table class="formTable">
+                          <tr>
+                            <th style="padding-left:20px">Type</th>
+                            <th style="padding-left:20px">Date</th>
+                            <th style="padding-left:20px">Operation</th>
+                          </tr>
 
-                        <tr *ngFor="let form of box.content">
-                          <td *ngIf="form.show" style="padding-left:20px">{{form.type}}</td>
-                          <td *ngIf="form.show" style="padding-left:20px">{{form.date}}</td>
-                          <td *ngIf="form.show" style="padding-left:20px">
-                            <button mat-raised-button color="primary" (click)="router.navigate(['doctor/form/', { id: form.form, search: filter }])">View</button>
-                          </td>
-                        </tr>
-                      </table>
-                      <br />
-                    </div>
-                    <div *ngSwitchCase="'media'">
-                      <div class="gallery">
-                        <div class="gallery-item" *ngFor="let item of box.content.gallery; let i = index" (click)="lightbox.open(i)">
-                          <img [src]="item.data.thumbSrc">
+                          <tr *ngFor="let form of box.content">
+                            <td *ngIf="form.show" style="padding-left:20px">{{form.type}}</td>
+                            <td *ngIf="form.show" style="padding-left:20px">{{form.date}}</td>
+                            <td *ngIf="form.show" style="padding-left:20px">
+                              <button mat-raised-button color="primary" (click)="router.navigate(['doctor/form/', { id: form.form, search: filter }])">View</button>
+                            </td>
+                          </tr>
+                        </table>
+                        <br />
+                      </div>
+                      <div *ngSwitchCase="'media'">
+                        <div class="gallery">
+                          <div class="gallery-item" *ngFor="let item of box.content.gallery; let i = index" (click)="lightbox.open(i)">
+                            <img [src]="item.data.thumbSrc">
+                          </div>
+                        </div>
+                        <div class="audio">
+                          <div *ngFor="let source of box.content.audio;">
+                            <audio controls>
+                              <source [src]="source" type="audio/mpeg">
+                              <!--<embed [src]="source" />-->
+                              Your browser does not support the audio element.
+                            </audio>
+                          </div>
                         </div>
                       </div>
-                      <div class="audio">
-                        <div *ngFor="let source of box.content.audio;">
-                          <audio controls>
-                            <source [src]="source" type="audio/mpeg">
-                            <!--<embed [src]="source" />-->
-                            Your browser does not support the audio element.
-                          </audio>
-                        </div>
-                      </div>
                     </div>
-                  </div>
-                </mat-card-content>
-              </div>
-            </mat-card>
+                  </mat-card-content>
+                </div>
+              </mat-card>
+            </div>
           </div>
         </div>
-
       </div>
+    </div>
+    <!--</div>
     </mat-drawer-content>
-  </mat-drawer-container>
-</div>
+  </mat-drawer-container>-->
+  </div>

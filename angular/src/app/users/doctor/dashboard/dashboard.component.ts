@@ -70,11 +70,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   private curNum;
   private oriboxes: Array<Box> = [];
   public gridConfig: NgGridConfig = <NgGridConfig>{
-    /*
     'margins': [5],
     'draggable': true,
     'resizable': true,
-    'max_cols': 0,
+    'max_cols': 1,
     'max_rows': 0,
     'visible_cols': 0,
     'visible_rows': 0,
@@ -87,16 +86,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     'min_height': 50,
     'fix_to_grid': false,
     'auto_style': true,
-    'auto_resize': false,
+    'auto_resize': true,
     'maintain_ratio': false,
     'prefer_new': false,
     'zoom_on_drag': false,
     'limit_to_screen': true
-    */ 
-auto_resize: true,
-'cascade': 'up',   
-'max_cols': 1,
-'row_height': 2,
   };
   private itemPositions: Array<any> = [];
 
@@ -143,10 +137,10 @@ auto_resize: true,
         }
       }],
     },
-    
+
     tooltips: {
       callbacks: {
-        title: function (tooltipItem, data) { 
+        title: function (tooltipItem, data) {
           var xlabel = '    Umur: ' + tooltipItem[0].xLabel + ' (bln)';
           return xlabel;
         },
@@ -159,10 +153,10 @@ auto_resize: true,
   };
 
   // Chart Labels
-  public lineChartLabels1: number[] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
+  public lineChartLabels1: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
   public lineChartType1 = 'line';
   public lineChartLegend1 = false;
-  public lineChartColors1:Array<any> = [
+  public lineChartColors1: Array<any> = [
     {
       backgroundColor: '#000',
       borderColor: '#F44336',
@@ -199,17 +193,17 @@ auto_resize: true,
       pointBackgroundColor: 'rgba(0,0,0,0)',
       pointBorderColor: 'rgba(0,0,0,0)',
     }
-    
+
   ];
   // Chart data
   public lineChartData1: any[] = [
     //{ data: [3,3.5,4,4,4,4.5,5,5.5,5.5,6,6,6.5,6.75,6.75,6.75,6.75,7,7.25,7.5,7.5,8,8,8.25,8.25,8.25], label: 'data', fill: false },
-    { data: [3,4,5,5.5,6,,7,,7.5,8,8.2,,8.5], label: 'data', fill: false },
-    { data: [4.3,5.7,  7,7.9,8.6, 9.2, 9.75,10.2,10.6,10.9,11.2,11.5,11.8,12.1,12.4,12.7,  13,13.25,13.5,13.8,  14.05,14.3,14.55,14.8,15.1], label: '97th', fill: 2 },
-    { data: [3.8,5.1,6.3,7.2,7.8, 8.4, 8.9, 9.3, 9.6,  10,10.3,10.5,10.8,11.1,11.3,11.6,11.8,  12,12.3,12.55,12.8,  12.95,13.15,13.4,13.7], label: '85th', fill: 3 },
-    { data: [3.3,4.5,5.6,6.4,  7, 7.5,   8, 8.3, 8.6, 8.9, 9.2, 9.4, 9.6, 9.9,10.1,10.3,10.5,10.7,  11,11.2,11.4,11.6,11.8,  12,12.2], label: '50th', fill: 4 },
-    { data: [2.8,3.8,4.9,5.65,6.2,6.7, 7.1, 7.4, 7.7,7.95, 8.2, 8.4, 8.6, 8.8,   9, 9.2, 9.4, 9.6, 9.8, 9.95,10.1,10.3,10.4,10.6,10.8], label: '15th', fill: 5 },
-    { data: [2.4,3.4,4.4,5.1,5.65,6.05,6.45,6.75,  7, 7.2, 7.4, 7.6, 7.8,   8, 8.2, 8.4, 8.6, 8.75, 8.9,   9.05, 9.2, 9.35, 9.5, 9.65, 9.8], label: '3rd', fill: false }
+    { data: [3, 4, 5, 5.5, 6, , 7, , 7.5, 8, 8.2, , 8.5], label: 'data', fill: false },
+    { data: [4.3, 5.7, 7, 7.9, 8.6, 9.2, 9.75, 10.2, 10.6, 10.9, 11.2, 11.5, 11.8, 12.1, 12.4, 12.7, 13, 13.25, 13.5, 13.8, 14.05, 14.3, 14.55, 14.8, 15.1], label: '97th', fill: 2 },
+    { data: [3.8, 5.1, 6.3, 7.2, 7.8, 8.4, 8.9, 9.3, 9.6, 10, 10.3, 10.5, 10.8, 11.1, 11.3, 11.6, 11.8, 12, 12.3, 12.55, 12.8, 12.95, 13.15, 13.4, 13.7], label: '85th', fill: 3 },
+    { data: [3.3, 4.5, 5.6, 6.4, 7, 7.5, 8, 8.3, 8.6, 8.9, 9.2, 9.4, 9.6, 9.9, 10.1, 10.3, 10.5, 10.7, 11, 11.2, 11.4, 11.6, 11.8, 12, 12.2], label: '50th', fill: 4 },
+    { data: [2.8, 3.8, 4.9, 5.65, 6.2, 6.7, 7.1, 7.4, 7.7, 7.95, 8.2, 8.4, 8.6, 8.8, 9, 9.2, 9.4, 9.6, 9.8, 9.95, 10.1, 10.3, 10.4, 10.6, 10.8], label: '15th', fill: 5 },
+    { data: [2.4, 3.4, 4.4, 5.1, 5.65, 6.05, 6.45, 6.75, 7, 7.2, 7.4, 7.6, 7.8, 8, 8.2, 8.4, 8.6, 8.75, 8.9, 9.05, 9.2, 9.35, 9.5, 9.65, 9.8], label: '3rd', fill: false }
   ];
 
   public lineChartOptions2: any = {
@@ -230,10 +224,10 @@ auto_resize: true,
         }
       }],
     },
-    
+
     tooltips: {
       callbacks: {
-        title: function (tooltipItem, data) { 
+        title: function (tooltipItem, data) {
           var xlabel = '    Umur: ' + tooltipItem[0].xLabel + ' (bln)';
           return xlabel;
         },
@@ -246,10 +240,10 @@ auto_resize: true,
   };
 
   // Chart Labels
-  public lineChartLabels2: number[] = [24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48];
+  public lineChartLabels2: number[] = [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48];
   public lineChartType2 = 'line';
   public lineChartLegend2 = false;
-  public lineChartColors2:Array<any> = [
+  public lineChartColors2: Array<any> = [
     {
       backgroundColor: '#000',
       borderColor: '#F44336',
@@ -286,17 +280,17 @@ auto_resize: true,
       pointBackgroundColor: 'rgba(0,0,0,0)',
       pointBorderColor: 'rgba(0,0,0,0)',
     }
-    
+
   ];
   // Chart data
   public lineChartData2: any[] = [
     //{ data: [3,3.5,4,4,4,4.5,5,5.5,5.5,6,6,6.5,6.75,6.75,6.75,6.75,7,7.25,7.5,7.5,8,8,8.25,8.25,8.25], label: 'data', fill: false },
-    { data: [,9,,,9.5,,,10,,10.2,,10,,10], label: 'data', fill: false },
-    { data: [15.3,,,,,,,,,,,,,,,,,,,,,,,,,,,24.2], label: '97th', fill: 2 },
-    { data: [13.6,,,,,,,,,,,,,,,,,,,,,,,,,,,21.1], label: '85th', fill: 3 },
-    { data: [12.2,,,,,,,,,,,,,,,,,,,,,,,,,,,18.4], label: '50th', fill: 4 },
-    { data: [10.9,,,,,,,,,,,,,,,,,,,,,,,,,,,16.1], label: '15th', fill: 5 },
-    { data: [9.8,,,,,,,,,,,,,,,,,,,,,,,,,,,14.1], label: '3rd', fill: false }
+    { data: [, 9, , , 9.5, , , 10, , 10.2, , 10, , 10], label: 'data', fill: false },
+    { data: [15.3, , , , , , , , , , , , , , , , , , , , , , , , , , , 24.2], label: '97th', fill: 2 },
+    { data: [13.6, , , , , , , , , , , , , , , , , , , , , , , , , , , 21.1], label: '85th', fill: 3 },
+    { data: [12.2, , , , , , , , , , , , , , , , , , , , , , , , , , , 18.4], label: '50th', fill: 4 },
+    { data: [10.9, , , , , , , , , , , , , , , , , , , , , , , , , , , 16.1], label: '15th', fill: 5 },
+    { data: [9.8, , , , , , , , , , , , , , , , , , , , , , , , , , , 14.1], label: '3rd', fill: false }
 
   ];
 
@@ -306,43 +300,43 @@ auto_resize: true,
     private qcs: QuestionControlService,
     private qs: QuestionService,
     private hlbox: HighlightBoxPipe,
-    public gallery: Gallery, 
+    public gallery: Gallery,
     public lightbox: Lightbox
   ) {
     this.setid = 0;
-    if (this.global.patientName=='Yemima Tabuni') {
+    if (this.global.patientName == 'Yemima Tabuni') {
       this.setid = 100; // mother
-    } else if (this.global.patientName=='Simon Magai') {
+    } else if (this.global.patientName == 'Simon Magai') {
       this.setid = 101; // child
-    } else if (this.global.patientName=='Maria Magai') {
+    } else if (this.global.patientName == 'Maria Magai') {
       this.setid = 102; // child
     }
 
-    
-      var question = this.qs.getQuestions(100);
-      var result = _(question)
-              .groupBy(x => x.group)
-              .map((value, key) => (value))
-              .value();
-      this.questions.push(result);
-      this.form = this.qcs.toFormGroup(question);
-    
-    
-    for (let i=101; i<114; i++) {
-    var question = this.qs.getQuestions(i);
+
+    var question = this.qs.getQuestions(100);
     var result = _(question)
-            .groupBy(x => x.group)
-            .map((value, key) => (value))
-            .value();
+      .groupBy(x => x.group)
+      .map((value, key) => (value))
+      .value();
     this.questions.push(result);
+    this.form = this.qcs.toFormGroup(question);
+
+
+    for (let i = 101; i < 114; i++) {
+      var question = this.qs.getQuestions(i);
+      var result = _(question)
+        .groupBy(x => x.group)
+        .map((value, key) => (value))
+        .value();
+      this.questions.push(result);
     }
-    
+
   }
 
   filterSort() {
     this.newboxes = [];
     // console.log(this.boxes);
-    this.boxes =_.cloneDeep(this.oriboxes);
+    this.boxes = _.cloneDeep(this.oriboxes);
     // console.log(this.oriboxes);
     this.newboxes = this.hlbox.transform(this.boxes, this.filter);
     // console.log(this.newboxes);
@@ -506,14 +500,14 @@ auto_resize: true,
         'col': 1,
         'row': 81,
         'sizex': 95,
-        'sizey': 36 
+        'sizey': 36
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 81,
         'sizex': 95,
-        'sizey': 40 
+        'sizey': 40
       },
       {
         'dragHandle': '.handle',
@@ -527,7 +521,7 @@ auto_resize: true,
         'col': 1,
         'row': 81,
         'sizex': 95,
-        'sizey': 25 
+        'sizey': 25
       },
       {
         'dragHandle': '.handle',
@@ -557,14 +551,14 @@ auto_resize: true,
         'col': 1,
         'row': 81,
         'sizex': 95,
-        'sizey': 36 
+        'sizey': 36
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 81,
         'sizex': 95,
-        'sizey': 40 
+        'sizey': 40
       },
       {
         'dragHandle': '.handle',
@@ -578,7 +572,7 @@ auto_resize: true,
         'col': 1,
         'row': 81,
         'sizex': 95,
-        'sizey': 25 
+        'sizey': 25
       },
       {
         'dragHandle': '.handle',
@@ -602,7 +596,7 @@ auto_resize: true,
         'sizey': 98
       },
       ];
-    }  
+    }
   }
 
   openLightbox(index: number) {
@@ -685,7 +679,7 @@ auto_resize: true,
       ]
       this.boxes[3].content = {
         gallery: galleryItems,
-        audio: ['assets/media/SampleAudio1.mp3','assets/media/SampleAudio2.mp3']
+        audio: ['assets/media/SampleAudio1.mp3', 'assets/media/SampleAudio2.mp3']
       };
 
       this.gallery.ref('lightbox').load(galleryItems);
@@ -728,7 +722,7 @@ auto_resize: true,
       ]
       this.boxes[3].content = {
         gallery: galleryItems,
-        audio: ['assets/media/SampleAudio1.mp3','assets/media/SampleAudio2.mp3']
+        audio: ['assets/media/SampleAudio1.mp3', 'assets/media/SampleAudio2.mp3']
       };
 
       this.gallery.ref('lightbox').load(galleryItems);
@@ -746,11 +740,11 @@ auto_resize: true,
       this.boxes[7].id = 7;
       this.boxes[7].widgetType = 'pregnancy-form';
       this.boxes[7].content = 13;
-    } 
+    }
     //console.log(this.boxes);
     this.newboxes = this.boxes;
     this.oriboxes = _.cloneDeep(this.boxes);
-    
+
   }
 
   private loadDashboard() {
@@ -787,36 +781,36 @@ auto_resize: true,
 
   ngOnInit() {
     this.loadDashboard();
-    if ((this.setid !== 100)&&(this.setid !== 101)&&(this.setid !== 102)) {
-    const ELEMENT_DATA: Contact[] = [
-      { avatar: '1.png', name: 'Toby Moody' },
-      { avatar: '2.png', name: 'Kathleen Erickson' },
-      { avatar: '3.png', name: 'Freddie Nelson' },
-      { avatar: '4.png', name: 'Duane Evans' },
-      { avatar: '5.png', name: 'Vernon Henry' },
-      { avatar: '6.png', name: 'Mary Townsend' },
-      { avatar: '7.png', name: 'Lorene	Chapman' },
-      { avatar: '8.png', name: 'Ginger	Mills' },
-      { avatar: '9.png', name: 'Gordon	Miles' }
-    ];
-    this.dataSource = new MatTableDataSource<Contact>(ELEMENT_DATA);
+    if ((this.setid !== 100) && (this.setid !== 101) && (this.setid !== 102)) {
+      const ELEMENT_DATA: Contact[] = [
+        { avatar: '1.png', name: 'Toby Moody' },
+        { avatar: '2.png', name: 'Kathleen Erickson' },
+        { avatar: '3.png', name: 'Freddie Nelson' },
+        { avatar: '4.png', name: 'Duane Evans' },
+        { avatar: '5.png', name: 'Vernon Henry' },
+        { avatar: '6.png', name: 'Mary Townsend' },
+        { avatar: '7.png', name: 'Lorene	Chapman' },
+        { avatar: '8.png', name: 'Ginger	Mills' },
+        { avatar: '9.png', name: 'Gordon	Miles' }
+      ];
+      this.dataSource = new MatTableDataSource<Contact>(ELEMENT_DATA);
 
-    this.FORM_DATA = [
-      { type: 'Initial Form', date: this.newDate(8, 8).format('DD MMM YYYY'), form: 1, show: true },
-      { type: 'Following Form', date: this.newDate(10, 8).format('DD MMM YYYY'), form: 2, show: false },
-      { type: 'Following Form', date: this.newDate(12, 8).format('DD MMM YYYY'), form: 2, show: true },
-      { type: 'Following Form', date: this.newDate(17, 8).format('DD MMM YYYY'), form: 2, show: true },
-      { type: 'Following Form', date: this.newDate(21, 8).format('DD MMM YYYY'), form: 2, show: true },
-      { type: 'Following Form', date: this.newDate(23, 8).format('DD MMM YYYY'), form: 2, show: true },
-      { type: 'Following Form', date: this.newDate(28, 8).format('DD MMM YYYY'), form: 2, show: true },
-      { type: 'Following Form', date: this.newDate(1, 9).format('DD MMM YYYY'), form: 2, show: true },
-      { type: 'Following Form', date: this.newDate(4, 9).format('DD MMM YYYY'), form: 2, show: true },
-    ];
-    // to make sure it gets value, wait to fix
-    this.boxes[2].content = this.FORM_DATA;
-    // this.dataSource_form = new MatTableDataSource<Form>(ELEMENT_DATA2);
-    this.oriboxes = _.cloneDeep(this.boxes);
-    // console.log(this.oriboxes);
+      this.FORM_DATA = [
+        { type: 'Initial Form', date: this.newDate(8, 8).format('DD MMM YYYY'), form: 1, show: true },
+        { type: 'Following Form', date: this.newDate(10, 8).format('DD MMM YYYY'), form: 2, show: false },
+        { type: 'Following Form', date: this.newDate(12, 8).format('DD MMM YYYY'), form: 2, show: true },
+        { type: 'Following Form', date: this.newDate(17, 8).format('DD MMM YYYY'), form: 2, show: true },
+        { type: 'Following Form', date: this.newDate(21, 8).format('DD MMM YYYY'), form: 2, show: true },
+        { type: 'Following Form', date: this.newDate(23, 8).format('DD MMM YYYY'), form: 2, show: true },
+        { type: 'Following Form', date: this.newDate(28, 8).format('DD MMM YYYY'), form: 2, show: true },
+        { type: 'Following Form', date: this.newDate(1, 9).format('DD MMM YYYY'), form: 2, show: true },
+        { type: 'Following Form', date: this.newDate(4, 9).format('DD MMM YYYY'), form: 2, show: true },
+      ];
+      // to make sure it gets value, wait to fix
+      this.boxes[2].content = this.FORM_DATA;
+      // this.dataSource_form = new MatTableDataSource<Form>(ELEMENT_DATA2);
+      this.oriboxes = _.cloneDeep(this.boxes);
+      // console.log(this.oriboxes);
     }
   }
 }

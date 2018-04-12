@@ -21,6 +21,7 @@ body {
   -webkit-font-smoothing: antialiased;
   line-height: 1.8;
   background-color: #EEEEEE;
+  height: 100vh;
 }
 
 .inner-container {
@@ -34,6 +35,7 @@ body {
   padding: 0 100px;
 }
 
+/*
 .mat-drawer {
   -webkit-box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
   box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
@@ -41,11 +43,16 @@ body {
 }
 
 .mat-drawer-container {
-  min-height: 100vh;
+  height: calc(100vh - 144px);
 }
 
 .mat-drawer-content {
   margin-left: 240px;
+}
+*/
+
+.container {
+  height: calc(100vh - 144px);
 }
 
 .sidebar-top {
@@ -120,9 +127,18 @@ body {
 }
 
 .content-wrapper {
-  padding: 32px;
-  min-height: 100vh;
-  overflow: hidden;
+  padding: 36px;
+  height: 100%;
+}
+
+.content {
+  overflow: overlay;
+  height: 100%;
+}
+
+.scroll-wrapper {
+  height: 100%;
+  padding: 12px 24px;
 }
 
 th {
@@ -149,4 +165,27 @@ table {
 
 .clickable {
   cursor: pointer;
+}
+
+/*定义滚动条整体宽高及背景*/
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 8px;
+  background-color: transparent;
+}
+
+/*定义滑块,内阴影及圆角*/
+
+::-webkit-scrollbar-thumb {
+  height: 188px;
+  border-radius: 10px;
+  background-color: #888B8C;
+}
+
+/*定义滚动条的轨道,内阴影及圆角*/
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #C7C8CA;
 }
