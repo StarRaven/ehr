@@ -70,6 +70,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   private curNum;
   private oriboxes: Array<Box> = [];
   public gridConfig: NgGridConfig = <NgGridConfig>{
+    /*
     'margins': [5],
     'draggable': true,
     'resizable': true,
@@ -91,6 +92,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     'prefer_new': false,
     'zoom_on_drag': false,
     'limit_to_screen': true
+    */ 
+auto_resize: true,
+'cascade': 'up',   
+'max_cols': 1,
+'row_height': 2,
   };
   private itemPositions: Array<any> = [];
 
@@ -469,21 +475,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         'dragHandle': '.handle',
         'col': 1,
         'row': 1,
-        'sizex': 95,
+        //'sizex': 95,
         'sizey': 87
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 88,
-        'sizex': 95,
+        //'sizex': 95,
         'sizey': 286
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 374,
-        'sizex': 95,
+        //'sizex': 95,
         'sizey': 396
       },
       ];

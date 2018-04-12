@@ -27,7 +27,7 @@
           <div *ngFor="let box of boxes | highlightbox : filter; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)"
             (onResize)="onResize(i, $event)">-->
           <div *ngFor="let box of newboxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)"
-            id="{{'b'+box.id}}">
+            id="{{'b'+box.id}}" class="auto-expand">
             <mat-card class="dashboard-card">
               <div class="inner">
                 <mat-card-header>
