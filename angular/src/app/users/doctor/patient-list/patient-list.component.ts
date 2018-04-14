@@ -88,7 +88,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
     console.log(patient);
     this.global.patientAvator = patient.avatar;
     this.global.patientName = patient.name;
-    this.router.navigate(['doctor/dashboard']);
+    this.router.navigate(['doctor/dashboard', patient.id]);
   }
 
   createMotherChild() {
@@ -118,8 +118,19 @@ export class PatientListComponent implements OnInit, AfterViewInit {
     this.us.getPatientList().subscribe(
       (jsonData) => {
         let jsonDataBody = jsonData.json();
-        console.log(jsonDataBody);
-        this.dataSource3 = new MatTableDataSource(jsonDataBody);
+        // console.log(jsonDataBody);
+        const users3: UserData[] = [];
+        for (let patient of jsonDataBody) {
+          users3.push({
+            id: patient.id,
+            avatar: patient.avatar,
+            name: patient.name,
+            condition1: patient.number,
+            condition2: patient.gender,
+            condition3: patient.birthday,
+          });
+        }
+        this.dataSource3 = new MatTableDataSource(users3);
         this.dataSource3.paginator = this.paginator;
         this.dataSource3.sort = this.sort;
       },
@@ -148,6 +159,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
         value: Math.round(Math.random() * 2)
       };
       return {
+        id: 0,
         avatar: '/assets/avatars/' + Math.round(Math.random() * 8 + 1).toString() + '.png',
         name: name,
         condition1: condition1.value,
@@ -171,6 +183,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
         value: Math.round(Math.random() * 2)
       };
       return {
+        id: 0,
         avatar: '/assets/avatars/' + Math.round(Math.random() * 8 + 1).toString() + '.png',
         name: name,
         condition1: condition1.value,
@@ -191,6 +204,7 @@ const NAMES = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
   'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
 
 export interface UserData {
+  id: number;
   avatar: string;
   name: string;
   condition1: any;

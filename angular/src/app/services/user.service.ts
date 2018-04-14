@@ -17,4 +17,10 @@ export class UserService {
       .map(response => response);
   }
 
+  getPatient(id: number) {
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    return this.http.get(this.global.server + '/patients/' + id, { headers: headers })
+      .map(response => response);
+  }
+
 }

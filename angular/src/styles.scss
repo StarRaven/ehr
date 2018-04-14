@@ -10,18 +10,26 @@
   src: url('/assets/fonts/Antonio/Antonio-Regular.ttf');
 }
 
+@font-face {
+  font-family: Lato-Regular;
+  src: url('/assets/fonts/Lato/Lato-Regular.ttf');
+}
+
 @import './theme.scss';
 @import '~@ngx-gallery/core/styles/gallery';
 @import '~@ngx-gallery/core/styles/lightbox';
 body {
   margin: 0;
-  font-family: Antonio-Regular, "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-family: Lato-Regular, "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px !important;
-  letter-spacing: 0.1mm;
   -webkit-font-smoothing: antialiased;
   line-height: 1.8;
   background-color: #EEEEEE;
   height: 100vh;
+} 
+
+.mat-cell {
+  font-size: 16px;
 }
 
 .inner-container {
@@ -155,6 +163,12 @@ a {
   color: black;
 }
 
+.t1 {
+  font-size: 48px;
+  font-weight: normal;
+  text-align: left;
+}
+
 table {
   word-break: break-word;
 }
@@ -188,4 +202,8 @@ table {
 ::-webkit-scrollbar-track {
   border-radius: 10px;
   background-color: #C7C8CA;
+}
+
+.title-font {
+  font-family: Antonio-Regular;
 }

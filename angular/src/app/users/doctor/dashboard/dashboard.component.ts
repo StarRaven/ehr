@@ -1,8 +1,9 @@
 import { ViewChild, Component, ElementRef, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { NgGrid, NgGridItem, NgGridConfig, NgGridItemConfig, NgGridItemEvent } from 'angular2-grid';
 import { MatTableDataSource } from '@angular/material';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
+import { UserService } from '../../../services/user.service';
 import { GlobalService } from '../../../global.service';
 
 import { FormGroup } from '@angular/forms';
@@ -57,6 +58,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   questions: Array<Array<Array<QuestionBase<any>>>> = [];
   form: FormGroup;
+  private patient;
   // @ViewChild('line') line: ElementRef;
   private FORM_DATA: Form[] = [];
   private data: any;
@@ -71,8 +73,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   private oriboxes: Array<Box> = [];
   public gridConfig: NgGridConfig = <NgGridConfig>{
     'margins': [5],
-    'draggable': true,
-    'resizable': true,
+    // 'draggable': true,
+    // 'resizable': true,
+    'draggable': false,
+    'resizable': false,
     'max_cols': 1,
     'max_rows': 0,
     'visible_cols': 0,
@@ -296,6 +300,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   constructor(
     public router: Router,
+    private route: ActivatedRoute,
+    private us: UserService,
     public global: GlobalService,
     private qcs: QuestionControlService,
     private qs: QuestionService,
@@ -303,14 +309,17 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     public gallery: Gallery,
     public lightbox: Lightbox
   ) {
+    /*
     this.setid = 0;
+    
     if (this.global.patientName == 'Yemima Tabuni') {
-      this.setid = 100; // mother
+      this.setid = 100; 
     } else if (this.global.patientName == 'Simon Magai') {
-      this.setid = 101; // child
+      this.setid = 101; 
     } else if (this.global.patientName == 'Maria Magai') {
-      this.setid = 102; // child
-    }
+      this.setid = 102; 
+      
+    }*/
 
 
     var question = this.qs.getQuestions(100);
@@ -492,49 +501,49 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         'dragHandle': '.handle',
         'col': 1,
         'row': 1,
-        'sizex': 95,
-        'sizey': 37
+        //'sizex': 95,
+        'sizey': 32
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 81,
-        'sizex': 95,
-        'sizey': 36
+        //'sizex': 95,
+        'sizey': 28
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 81,
-        'sizex': 95,
-        'sizey': 40
+        //'sizex': 95,
+        'sizey': 45
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 81,
-        'sizex': 95,
-        'sizey': 26
+        //'sizex': 95,
+        'sizey': 28
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 81,
-        'sizex': 95,
-        'sizey': 25
+        //'sizex': 95,
+        'sizey': 12
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 121,
-        'sizex': 95,
+        //'sizex': 95,
         'sizey': 57
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 181,
-        'sizex': 95,
+        //'sizex': 95,
         'sizey': 85
       },
       ];
@@ -543,56 +552,56 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         'dragHandle': '.handle',
         'col': 1,
         'row': 1,
-        'sizex': 95,
+        //'sizex': 95,
         'sizey': 37
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 81,
-        'sizex': 95,
+        //'sizex': 95,
         'sizey': 36
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 81,
-        'sizex': 95,
+        //'sizex': 95,
         'sizey': 40
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 81,
-        'sizex': 95,
+        //'sizex': 95,
         'sizey': 26
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 81,
-        'sizex': 95,
+        //'sizex': 95,
         'sizey': 25
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 121,
-        'sizex': 95,
+        //'sizex': 95,
         'sizey': 57
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 181,
-        'sizex': 95,
+        //'sizex': 95,
         'sizey': 93
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 181,
-        'sizex': 95,
+        //'sizex': 95,
         'sizey': 98
       },
       ];
@@ -779,7 +788,23 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.loadFakeChart();
   }
 
+  getPatientInfo(id: number) {
+    this.us.getPatient(id).subscribe(
+      (jsonData) => {
+        this.patient = jsonData.json();
+      },
+      // The 2nd callback handles errors.
+      (err) => console.error(err),
+      // The 3rd callback handles the "complete" event.
+      () => console.log("observable complete")
+    );
+  }
+
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.setid = +params['id'];
+      this.getPatientInfo(this.setid);
+    });
     this.loadDashboard();
     if ((this.setid !== 100) && (this.setid !== 101) && (this.setid !== 102)) {
       const ELEMENT_DATA: Contact[] = [

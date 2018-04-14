@@ -1,25 +1,28 @@
 {
   "patients": [
     {
+      "id": 100,
       "avatar": "/assets/avatars/100.png",
       "name": "Yemima Tabuni",
-      "condition1": "123-4567",
-      "condition2": "Perempuan",
-      "condition3": "03/01/1980"
+      "number": "123-4567",
+      "gender": "Perempuan",
+      "birthday": "03/01/1980"
     },
     {
+      "id": 101,
       "avatar": "/assets/avatars/101.png",
       "name": "Simon Magai",
-      "condition1": "123-458",
-      "condition2": "Laki-laki",
-      "condition3": "02/10/2017"
+      "number": "123-458",
+      "gender": "Laki-laki",
+      "birthday": "02/10/2017"
     },
     {
+      "id": 102,
       "avatar": "/assets/avatars/102.png",
       "name": "Maria Magai",
-      "condition1": "123-459",
-      "condition2": "Perempuan",
-      "condition3": "02/03/2015"
+      "number": "123-459",
+      "gender": "Perempuan",
+      "birthday": "02/03/2015"
     }
   ],
   "forms": [

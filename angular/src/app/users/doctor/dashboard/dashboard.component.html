@@ -20,7 +20,7 @@
   <div class="container" fxLayout="row">
     <div fxFlex="25" class="content-wrapper">
       <div class="sidebar-wrapper">
-        <div style="display:flex">
+        <div style="display:flex; margin-bottom: 10px;">
           <button mat-icon-button class="flip-wrapper">
             <mat-icon class="sidebar-icon" (click)="router.navigate(['doctor/']);">play_circle_outline</mat-icon>
           </button>
@@ -30,10 +30,10 @@
           <img [src]="global.patientAvator" width="100%" height="auto" alt="" class="img">
         </div>
         <div class="sidebar-right">
-          <a style="font-size:1.4em;line-height: 2.4em;">{{global.patientName}}</a>
-          <a style="font-size:1.2em;line-height: 2.4em;">{{global.patientName}}</a>
-          <a style="font-size:1.2em;line-height: 2.4em;">{{global.patientName}}</a>
-          <a style="font-size:1.2em;line-height: 2.4em;">{{global.patientName}}</a>
+          <a style="font-size:1.6em;line-height: 2em;">{{patient.name}}</a>
+          <a style="font-size:1.2em;line-height: 2em;">{{patient.number}}</a>
+          <a style="font-size:1.2em;line-height: 2em;">{{patient.gender}}</a>
+          <a style="font-size:1.2em;line-height: 2em;">{{patient.birthday}}</a>
         </div>
         <div>
           <button mat-raised-button color="primary" class="expand-button" (click)="router.navigate(['doctor/newform'])">
@@ -69,8 +69,7 @@
                 <div class="inner">
                   <mat-card-header>
                     <div class="handle">
-
-                      <mat-card-title>{{box.title}}</mat-card-title>
+                      <a class="t1" [ngStyle]="{'color': global.primaryColor}">{{box.title}}</a>
                       <!--
                     <div class="box-header-btns pull-right">
                       <a title="Remove widget" (click)="removeWidget(i);" style="display: block">

@@ -59,6 +59,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { GalleryModule } from  '@ngx-gallery/core';
 import { LightboxModule } from  '@ngx-gallery/lightbox';
+import { PatientAddComponent } from './users/doctor/patient-add/patient-add.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { LightboxModule } from  '@ngx-gallery/lightbox';
     DashboardComponent,
     HighlightBoxPipe,
     PatientListComponent,
-    DynamicFormViewComponent
+    DynamicFormViewComponent,
+    PatientAddComponent
   ],
   imports: [
     BrowserModule,
@@ -123,10 +125,11 @@ import { LightboxModule } from  '@ngx-gallery/lightbox';
       { path: 'doctor', component: PatientListComponent },
       { path: 'doctor/form', component: PatientFormComponent },
       { path: 'doctor/newform', component: PatientFormAddComponent },
-      { path: 'doctor/dashboard', component: DashboardComponent }
+      { path: 'doctor/dashboard/:id', component: DashboardComponent }
     ])
   ],
   entryComponents: [
+    PatientAddComponent,
     LoginComponent,
     DoctorAddComponent,
     NurseAddComponent,

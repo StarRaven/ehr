@@ -4,9 +4,9 @@
 
     <div *ngSwitchCase="'textbox'">
       <label [attr.for]="question.key" [innerHTML]="question.key+question.label+': '"></label>
-
+<!--
       <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type" class="HIDEME"
-      />
+      />-->
       <div class="fake-input" [innerHTML]="question.value"></div>
       <div class="inline" [innerHTML]="question.suffix"></div>
       <!--<div *ngIf="question.suffix !== ''" [innerHTML]="question.suffix"></div>-->
