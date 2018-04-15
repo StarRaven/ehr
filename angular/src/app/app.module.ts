@@ -60,6 +60,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { GalleryModule } from  '@ngx-gallery/core';
 import { LightboxModule } from  '@ngx-gallery/lightbox';
 import { PatientAddComponent } from './users/doctor/patient-add/patient-add.component';
+import { PatientMediaAddComponent } from './users/doctor/patient-media-add/patient-media-add.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { PatientAddComponent } from './users/doctor/patient-add/patient-add.comp
     HighlightBoxPipe,
     PatientListComponent,
     DynamicFormViewComponent,
-    PatientAddComponent
+    PatientAddComponent,
+    PatientMediaAddComponent
   ],
   imports: [
     BrowserModule,
@@ -129,6 +131,7 @@ import { PatientAddComponent } from './users/doctor/patient-add/patient-add.comp
     ])
   ],
   entryComponents: [
+    PatientMediaAddComponent,
     PatientAddComponent,
     LoginComponent,
     DoctorAddComponent,

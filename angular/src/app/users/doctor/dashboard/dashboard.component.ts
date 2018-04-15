@@ -14,9 +14,12 @@ import { RemoteQuestionService } from '../../../questionare/remote-question.serv
 
 import { HighlightBoxPipe } from '../../../highlightbox.pipe';
 
-import { ImageItem } from '@ngx-gallery/core';
+import { ImageItem, VideoItem } from '@ngx-gallery/core';
 import { Gallery, GalleryItem } from '@ngx-gallery/core';
 import { Lightbox } from '@ngx-gallery/lightbox';
+
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { PatientMediaAddComponent } from '../patient-media-add/patient-media-add.component';
 
 import * as Chart from 'chart.js';
 import * as moment from 'moment';
@@ -88,7 +91,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     'row_height': 2,
     'cascade': 'up',
     'min_width': 50,
-    'min_height': 50,
+    'min_height': 10,
     'fix_to_grid': false,
     'auto_style': true,
     'auto_resize': true,
@@ -300,6 +303,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   ];
 
   constructor(
+    public dialog: MatDialog,
     public router: Router,
     private route: ActivatedRoute,
     private us: UserService,
@@ -461,21 +465,28 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         'col': 1,
         'row': 1,
         //'sizex': 95,
-        'sizey': 87
+        'sizey': 78
+      },
+      {
+        'dragHandle': '.handle',
+        'col': 1,
+        'row': 1,
+        //'sizex': 95,
+        'sizey': 74
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 88,
         //'sizex': 95,
-        'sizey': 286
+        'sizey': 270
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 374,
         //'sizex': 95,
-        'sizey': 396
+        'sizey': 346
       },
       ];
     } else if (this.setid === 101) {
@@ -484,14 +495,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         'col': 1,
         'row': 1,
         //'sizex': 95,
-        'sizey': 32
+        'sizey': 30
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 81,
         //'sizex': 95,
-        'sizey': 28
+        'sizey': 24
       },
       {
         'dragHandle': '.handle',
@@ -505,29 +516,36 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         'col': 1,
         'row': 81,
         //'sizex': 95,
-        'sizey': 28
+        'sizey': 99
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 81,
         //'sizex': 95,
-        'sizey': 12
+        'sizey': 18
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 121,
         //'sizex': 95,
-        'sizey': 57
+        'sizey': 51
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 181,
         //'sizex': 95,
-        'sizey': 85
+        'sizey': 79
       },
+      {
+        'dragHandle': '.handle',
+        'col': 1,
+        'row': 181,
+        //'sizex': 95,
+        'sizey': 82
+      }
       ];
     } else if (this.setid === 102) {
       return [{
@@ -535,57 +553,50 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         'col': 1,
         'row': 1,
         //'sizex': 95,
-        'sizey': 37
+        'sizey': 30
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 81,
         //'sizex': 95,
-        'sizey': 36
+        'sizey': 22
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 81,
         //'sizex': 95,
-        'sizey': 40
+        'sizey': 45
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 81,
         //'sizex': 95,
-        'sizey': 26
+        'sizey': 74
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 81,
         //'sizex': 95,
-        'sizey': 25
+        'sizey': 16
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 121,
         //'sizex': 95,
-        'sizey': 57
+        'sizey': 51
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 181,
         //'sizex': 95,
-        'sizey': 93
-      },
-      {
-        'dragHandle': '.handle',
-        'col': 1,
-        'row': 181,
-        //'sizex': 95,
-        'sizey': 98
-      },
+        'sizey': 87
+      }
       ];
     } else {
       console.log('new');
@@ -601,6 +612,59 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   openLightbox(index: number) {
     this.lightbox.open(index, 'lightbox');
+  }
+
+  replaceSlash(s: string) {
+    return s.replace(/\\/g, "\/");
+  }
+
+  uploadGallery(boxid: number) {
+    console.log(boxid);
+    let dialogRef = this.dialog.open(PatientMediaAddComponent, {
+      width: '940px',
+      height: '700px',
+      data: this.setid
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getMedia(boxid, this.setid);
+    });
+  }
+
+  getMedia(boxid: number, patientid: number) {
+    this.us.getPatientMedia(patientid).subscribe(
+      (jsonData) => {
+        let jsonDataBody = jsonData.json();
+        console.log(jsonDataBody);
+        const galleryItems = [];
+        const galleryItemsRaw = [];
+        for (let pic of jsonDataBody.pictures) {
+          galleryItemsRaw.push(new ImageItem(this.global.server + this.replaceSlash(pic.src), this.global.server + this.replaceSlash(pic.thumbnail)));
+          galleryItems.push({
+            src: new ImageItem(this.global.server + pic.src, this.global.server + pic.thumbnail),
+            desc: pic.desc
+          });
+        }
+        for (let video of jsonDataBody.videos) {
+          galleryItemsRaw.push(new VideoItem(this.global.server + this.replaceSlash(video.src), this.global.server + this.replaceSlash(video.thumbnail)));
+          galleryItems.push({
+            src: new VideoItem(this.global.server + video.src, this.global.server + video.thumbnail),
+            desc: video.desc
+          });
+        }
+        for (let audio of jsonDataBody.audios) {
+          audio.src = this.global.server + audio.src;
+        }
+        this.boxes[boxid].content = {
+          gallery: galleryItems,
+          audios: jsonDataBody.audios
+        };
+        console.log(this.boxes[boxid].content);
+        this.gallery.ref('lightbox').load(galleryItemsRaw);
+      },
+      (err) => console.error(err),
+      () => console.log("observable complete")
+    );
   }
 
   private loadFakewidget() {
@@ -646,11 +710,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.boxes[0].widgetType = 'info-form';
       this.boxes[0].content = 0;
       this.boxes[1].id = 1;
-      this.boxes[1].widgetType = 'pregnancy-form';
-      this.boxes[1].content = 1;
+      this.boxes[1].title = "Media";
+      this.boxes[1].widgetType = 'media';
+      this.getMedia(1, this.setid);
       this.boxes[2].id = 2;
       this.boxes[2].widgetType = 'pregnancy-form';
-      this.boxes[2].content = 2;
+      this.boxes[2].content = 1;
+      this.boxes[3].id = 3;
+      this.boxes[3].widgetType = 'pregnancy-form';
+      this.boxes[3].content = 2;
     } else if (this.setid === 101) {
       this.boxes[0].id = 0;
       this.boxes[0].widgetType = 'info-form';
@@ -669,20 +737,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         legends: this.lineChartLegend1,
         options: this.lineChartOptions1
       };
+
       this.boxes[3].id = 3;
       this.boxes[3].widgetType = 'media';
-      this.boxes[3].title = "Media"
-      const galleryItems: GalleryItem[] = [
-        new ImageItem('assets/media/pic1.jpg', 'assets/media/pic1-thumb.jpg'),
-        new ImageItem('assets/media/pic2.jpg', 'assets/media/pic2-thumb.jpg'),
-        new ImageItem('assets/media/pic3.jpg', 'assets/media/pic3-thumb.jpg')
-      ]
-      this.boxes[3].content = {
-        gallery: galleryItems,
-        audio: ['assets/media/SampleAudio1.mp3', 'assets/media/SampleAudio2.mp3']
-      };
-
-      this.gallery.ref('lightbox').load(galleryItems);
+      this.boxes[3].title = "Media";
+      this.getMedia(3, this.setid);
 
       this.boxes[4].id = 4;
       this.boxes[4].widgetType = 'pregnancy-form';
@@ -694,6 +753,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.boxes[6].id = 6;
       this.boxes[6].widgetType = 'pregnancy-form';
       this.boxes[6].content = 7;
+      this.boxes[7].id = 7;
+      this.boxes[7].widgetType = 'pregnancy-form';
+      this.boxes[7].content = 13;
+
     } else if (this.setid === 102) {
       this.boxes[0].id = 0;
       this.boxes[0].widgetType = 'info-form';
@@ -714,7 +777,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       };
       this.boxes[3].id = 3;
       this.boxes[3].widgetType = 'media';
-      this.boxes[3].title = "Media"
+      this.boxes[3].title = "Media";
+      /*
       const galleryItems: GalleryItem[] = [
         new ImageItem('assets/media/pic1.jpg', 'assets/media/pic1-thumb.jpg'),
         new ImageItem('assets/media/pic2.jpg', 'assets/media/pic2-thumb.jpg'),
@@ -726,6 +790,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       };
 
       this.gallery.ref('lightbox').load(galleryItems);
+      */
+      this.getMedia(3, this.setid);
 
       this.boxes[4].id = 4;
       this.boxes[4].widgetType = 'pregnancy-form';
@@ -737,9 +803,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.boxes[6].id = 6;
       this.boxes[6].widgetType = 'pregnancy-form';
       this.boxes[6].content = 12;
-      this.boxes[7].id = 7;
-      this.boxes[7].widgetType = 'pregnancy-form';
-      this.boxes[7].content = 13;
     } else {
       this.boxes[0].id = 0;
       this.boxes[0].widgetType = 'info-form';
@@ -865,9 +928,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         { type: 'Following Form', date: this.newDate(1, 9).format('DD MMM YYYY'), form: 2, show: true },
         { type: 'Following Form', date: this.newDate(4, 9).format('DD MMM YYYY'), form: 2, show: true },
       ];
-      */
+      
     if (this.boxes[2])
       this.boxes[2].content = this.FORM_DATA;
+      */
     this.oriboxes = _.cloneDeep(this.boxes);
   }
 

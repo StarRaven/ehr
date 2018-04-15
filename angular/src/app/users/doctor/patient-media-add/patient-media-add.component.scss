@@ -1,0 +1,92 @@
+.dialog-title-wrapper {
+  margin: 0;
+  height: 70px;
+  text-align: center;
+  display: flex;
+}
+
+.dialog-title {
+  font-size: 32px;
+  font-family: Antonio-Regular;
+  margin: auto;
+  color: white;
+}
+
+.dialog-close-wrapper {
+  margin: auto 5px;
+}
+
+.dialog-close {
+  color: white;
+}
+
+.dialog-button-wrapper {
+  margin: auto;
+}
+
+.dialog-button {
+  width: 300px;
+}
+
+.dialog-content-wrapper {
+  height: 510px;
+  margin: 0;
+  display: flex;
+}
+
+::ng-deep.mat-tab-label,
+::ng-deep.mat-tab-label-active {
+  width: 33%;
+}
+
+::ng-deep.mat-tab-body-wrapper {
+  height: 580px;
+}
+
+.file-button {
+  height: 36px;
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
+  flex-grow: 0;
+}
+
+.file-path {
+  height: 36px;
+  margin-left: 10px;
+  width: auto;
+  flex-grow: 1;
+  color: black !important;
+}
+
+.clear {
+  clear: both;
+  height: 0;
+  line-height: 0;
+  font-size: 0;
+}
+
+.file-wrapper {
+  width: 100%;
+  display: flex;
+  margin-bottom: 26px;
+}
+
+.perview-wrapper {
+  width: 100%;
+  display: flex;
+}
+
+.file-all-wrapper {
+  margin: auto;
+}
+
+.shadow {
+  min-width: 320px;
+  height: auto;
+  box-shadow: 0 1px 2px -1px rgba(0, 0, 0, .2), 0 3px 4px 1px rgba(0, 0, 0, .14), 0 1px 5px 1px rgba(0, 0, 0, .12);
+}
+
+.video-margin {
+  margin-bottom: 20px;
+}

@@ -2820,7 +2820,8 @@ export class QuestionService {
           'value': '',
           'contents': [
             ['Keterangan Waktu Kelahiran tanggal 10 Feb 2017', 5, 4],
-            ['Keterangan Imunisasi', 6, 5]
+            ['Keterangan Imunisasi', 6, 5],
+            ['Anamnesis – Campak', 7, 13]
           ],
           'required': true,
           'order': 10,

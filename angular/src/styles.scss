@@ -26,7 +26,7 @@ body {
   line-height: 1.8;
   background-color: #EEEEEE;
   height: 100vh;
-} 
+}
 
 .mat-cell {
   font-size: 16px;
@@ -140,7 +140,8 @@ body {
 }
 
 .content {
-  overflow: overlay;
+  overflow: auto;
+  overflow-x: hidden;
   height: 100%;
 }
 
@@ -175,7 +176,7 @@ a {
 }
 
 table {
-  word-break: break-word;
+  word-break: break-all;
 }
 
 .center {
@@ -184,6 +185,10 @@ table {
 
 .clickable {
   cursor: pointer;
+}
+
+.title-font {
+  font-family: Antonio-Regular;
 }
 
 /*定义滚动条整体宽高及背景*/
@@ -207,8 +212,4 @@ table {
 ::-webkit-scrollbar-track {
   border-radius: 10px;
   background-color: #C7C8CA;
-}
-
-.title-font {
-  font-family: Antonio-Regular;
 }

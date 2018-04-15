@@ -1,5 +1,6 @@
 <div class="{{global.theme}}">
-<app-topmenu></app-topmenu>
+  <app-topmenu></app-topmenu>
+  <!--
 <mat-drawer-container class="example-container">
   <mat-drawer mode="side" opened="true">
     <div class="sidebar-top">
@@ -46,4 +47,12 @@
     </div>
   </mat-drawer-content>
 </mat-drawer-container>
+-->
+<div class="page-wrapper">
+  <button mat-raised-button color="primary" (click)="goBack()">Back</button>
+  <button mat-raised-button color="primary" (click)="router.navigate(['doctor/newform']);">Add New Form</button>
+  <br />
+  <br />
+  <app-dynamic-form [questions]="questions" [filter]=filter></app-dynamic-form>
+  </div>  
 </div>

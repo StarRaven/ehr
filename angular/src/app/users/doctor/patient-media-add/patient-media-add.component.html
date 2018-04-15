@@ -1,0 +1,110 @@
+<div class="{{global.theme}}">
+  <div mat-dialog-title class="dialog-title-wrapper" [ngStyle]="{'background': global.primaryColor}">
+    <a class="dialog-title">Upload New Media</a>
+    <button mat-icon-button class="dialog-close-wrapper">
+      <mat-icon class="dialog-close" (click)="dialogRef.close()">close</mat-icon>
+    </button>
+  </div>
+  <mat-tab-group>
+    <mat-tab label="Image">
+      <div mat-dialog-content class="dialog-content-wrapper">
+        <div class="file-all-wrapper">
+          <div class="file-wrapper">
+            <button mat-raised-button class="file-button" color="primary" (click)="imageFileInput.click()">Choose File</button>
+            <input hidden type="file" #imageFileInput (change)="previewImage($event)" accept="image/png,image/gif,image/jpeg" />
+            <input matInput class="file-path" placeholder="File Path" disabled [(ngModel)]="imageSrcRaw">
+          </div>
+          <div class="preview-wrapper">
+            <div *ngIf="imageSrc !== ''">
+              <img [src]="global.server+imageSrc" width="200" height="auto" alt="" class="shadow">
+            </div>
+          </div>
+          <mat-form-field style="min-width:400px">
+            <textarea matInput placeholder="Description" [(ngModel)]="imageDesc"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div mat-dialog-actions style="display:flex">
+        <div class="dialog-button-wrapper">
+          <button mat-raised-button color="primary" class="dialog-button" (click)="dialogRef.close()">
+            Cancel
+          </button>
+          <button mat-raised-button color="primary" class="dialog-button" type="submit" [disabled]="((imageSrc === '')||(imageDesc === ''))"
+            (click)="uploadImage()">
+            Upload
+          </button>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Video">
+      <div mat-dialog-content class="dialog-content-wrapper">
+        <div class="file-all-wrapper">
+          <div class="file-wrapper">
+            <button mat-raised-button class="file-button" color="primary" (click)="videoFileInput.click()">Choose File</button>
+            <input hidden type="file" #videoFileInput (change)="previewVideo($event)" accept="video/mp4,video/mpeg,video/3gpp" />
+            <input matInput class="file-path" placeholder="File Path" disabled [(ngModel)]="videoSrcRaw">
+          </div>
+          <div class="preview-wrapper">
+            <div *ngIf="videoSrc !== ''">
+              <video id="video" controls class="shadow video-margin">
+                <source [src]="global.server+videoSrc" type="video/mp4">
+                <source [src]="global.server+videoSrc" type="video/ogg"> Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <mat-form-field style="min-width:400px">
+            <textarea matInput placeholder="Description" [(ngModel)]="videoDesc"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div mat-dialog-actions style="display:flex">
+        <div class="dialog-button-wrapper">
+          <button mat-raised-button color="primary" class="dialog-button" (click)="dialogRef.close()">
+            Cancel
+          </button>
+          <button mat-raised-button color="primary" class="dialog-button" type="submit" [disabled]="((videoSrc === '')||(videoDesc === ''))"
+            (click)="uploadVideo()">
+            Upload
+          </button>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Audio">
+      <div mat-dialog-content class="dialog-content-wrapper">
+        <div class="file-all-wrapper">
+          <div class="file-wrapper">
+            <button mat-raised-button class="file-button" color="primary" (click)="audioFileInput.click()">Choose File</button>
+            <input hidden type="file" #audioFileInput (change)="previewAudio($event)" accept="audio/mpeg" />
+            <input matInput class="file-path" placeholder="File Path" disabled [(ngModel)]="audioSrcRaw">
+          </div>
+          <div class="preview-wrapper">
+            <div *ngIf="audioSrc !== ''">
+              <audio controls>
+                <source [src]="global.server+audioSrc" type="audio/mpeg"> Your browser does not support the audio element.
+              </audio>
+            </div>
+          </div>
+          <mat-form-field style="min-width:400px">
+            <textarea matInput placeholder="Description" [(ngModel)]="audioDesc"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div mat-dialog-actions style="display:flex">
+        <div class="dialog-button-wrapper">
+          <button mat-raised-button color="primary" class="dialog-button" (click)="dialogRef.close()">
+            Cancel
+          </button>
+          <button mat-raised-button color="primary" class="dialog-button" type="submit" [disabled]="((audioSrc === '')||(audioDesc === ''))"
+            (click)="uploadAudio()">
+            Upload
+          </button>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+
+</div>

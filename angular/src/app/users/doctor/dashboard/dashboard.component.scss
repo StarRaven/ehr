@@ -185,6 +185,45 @@ body {
   top: 0px;
 }
 
+.gallery-thumbnail {
+  width: 200px;
+  vertical-align: middle;
+  box-shadow: 0 1px 2px -1px rgba(0, 0, 0, .2), 0 3px 4px 1px rgba(0, 0, 0, .14), 0 1px 5px 1px rgba(0, 0, 0, .12);
+}
+
+.media-table-wrapper {
+  width: 90%;
+  padding: 0 5%;
+}
+
+.media-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.vertical-center {
+  vertical-align: middle;
+}
+
+.center {
+  text-align: center;
+}
+
+.media-table td {
+  padding: 0 2%;
+}
+
+.media-table th {
+  font-family: Antonio-Regular;
+  font-size: 32px;
+  padding: 0 2%;
+}
+
+.box-button {
+  width: 100px;
+}
+
 .transparent {
-  background: transparent !important; // box-shadow: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }

@@ -111,7 +111,7 @@
                           </form>
                         </mat-card>
                         <div *ngIf="box.editable" class="right">
-                          <button mat-raised-button color="primary" (click)="router.navigate(['doctor/form/', { id: box.content+100, search: filter }])">Edit Form</button>
+                          <button mat-raised-button color="primary" class="box-button" (click)="router.navigate(['doctor/form/', { id: box.content+100, search: filter }])">Edit Form</button>
                         </div>
                       </div>
                       <div *ngSwitchCase="'pregnancy-form'">
@@ -123,7 +123,7 @@
                           </form>
                         </mat-card>
                         <div *ngIf="box.editable" class="right">
-                          <button mat-raised-button color="primary" (click)="router.navigate(['doctor/form/', { id: box.content+100, search: filter }])">Edit Form</button>
+                          <button mat-raised-button color="primary" class="box-button" (click)="router.navigate(['doctor/form/', { id: box.content+100, search: filter }])">Edit Form</button>
                         </div>
                       </div>
                       <div *ngSwitchCase="'information'">
@@ -166,19 +166,31 @@
                         <br />
                       </div>
                       <div *ngSwitchCase="'media'">
-                        <div class="gallery">
-                          <div class="gallery-item" *ngFor="let item of box.content.gallery; let i = index" (click)="lightbox.open(i)">
-                            <img [src]="item.data.thumbSrc">
-                          </div>
+                        <div class="media-table-wrapper">
+                          <table class="media-table" border="1">
+                            <tr>
+                              <th>Media</th>
+                              <th>Description</th>
+                            </tr>
+                            <tr *ngFor="let item of box.content.gallery; let i = index" (click)="lightbox.open(i)">
+                              <td width="300px" class="center">
+                                <img class="gallery-thumbnail clickable" [src]="item.src.data.thumbSrc">
+                              </td>
+                              <td>{{item.desc}}</td>
+                            </tr>
+                            <tr *ngFor="let audio of box.content.audios">
+                              <td width="300px">
+                                <audio class="vertical-center" controls>
+                                  <source [src]="audio.src" type="audio/mpeg"> Your browser does not support the audio element.
+                                </audio>
+                              </td>
+                              <td>{{audio.desc}}</td>
+                            </tr>
+                          </table>
                         </div>
-                        <div class="audio">
-                          <div *ngFor="let source of box.content.audio;">
-                            <audio controls>
-                              <source [src]="source" type="audio/mpeg">
-                              <!--<embed [src]="source" />-->
-                              Your browser does not support the audio element.
-                            </audio>
-                          </div>
+                        <br />
+                        <div *ngIf="box.editable" class="right">
+                          <button mat-raised-button color="primary" class="box-button" (click)="uploadGallery(box.id)">Upload</button>
                         </div>
                       </div>
                     </div>

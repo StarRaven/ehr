@@ -12,7 +12,7 @@ var fs = require('fs');
 // var express = require('express');
 var multer = require('multer')
 
-let storage = multer.diskStorage({
+let storage_avatar = multer.diskStorage({
   //设置上传后文件路径，uploads文件夹会自动创建。
   destination: function (req, file, cb) {
     cb(null, './uploads/avatars')
@@ -24,36 +24,135 @@ let storage = multer.diskStorage({
     cb(null, filename);
   }
 });
-let upload = multer({
-  storage: storage
+let upload_avatar = multer({
+  storage: storage_avatar
 });
 
 // 单图上传
-server.post('/upload-avatar', upload.single('avatar'), function (req, res, next) {
+server.post('/upload-avatar', upload_avatar.single('avatar'), function (req, res, next) {
   var file = req.file;
 
   console.log('文件类型：%s', file.mimetype);
   console.log('原始文件名：%s', file.originalname);
   console.log('文件大小：%s', file.size);
   console.log('文件保存路径：%s', file.path);
-  // console.log(req);
-  // console.log(res);
+
   res.send({
     ret_code: '0',
     path: file.path.slice(8)
   });
 });
-/*
-server.get('/form', function (req, res, next) {
-  var form = fs.readFileSync('./form.html', {
-    encoding: 'utf8'
-  });
-  res.send(form);
+
+let storage_audio = multer.diskStorage({
+  //设置上传后文件路径，uploads文件夹会自动创建。
+  destination: function (req, file, cb) {
+    cb(null, './uploads/audios')
+  },
+  //给上传文件重命名，获取添加后缀名
+  filename: function (req, file, cb) {
+    let fileFormat = (file.originalname).split(".");
+    let filename = file.fieldname + '-' + Date.now() + "." + fileFormat[fileFormat.length - 1]
+    cb(null, filename);
+  }
 });
-*/
+let upload_audio = multer({
+  storage: storage_audio
+});
+
+// 单图上传
+server.post('/upload-audio', upload_audio.single('audio'), function (req, res, next) {
+  var file = req.file;
+
+  console.log('文件类型：%s', file.mimetype);
+  console.log('原始文件名：%s', file.originalname);
+  console.log('文件大小：%s', file.size);
+  console.log('文件保存路径：%s', file.path);
+
+  res.send({
+    ret_code: '0',
+    path: file.path.slice(8)
+  });
+});
+
+let storage_image = multer.diskStorage({
+  //设置上传后文件路径，uploads文件夹会自动创建。
+  destination: function (req, file, cb) {
+    cb(null, './uploads/pictures')
+  },
+  //给上传文件重命名，获取添加后缀名
+  filename: function (req, file, cb) {
+    let fileFormat = (file.originalname).split(".");
+    let filename = file.fieldname + '-' + Date.now() + "." + fileFormat[fileFormat.length - 1]
+    cb(null, filename);
+  }
+});
+let upload_image = multer({
+  storage: storage_image
+});
+
+// 单图上传
+server.post('/upload-image', upload_image.single('image'), function (req, res, next) {
+  var file = req.file;
+
+  console.log('文件类型：%s', file.mimetype);
+  console.log('原始文件名：%s', file.originalname);
+  console.log('文件大小：%s', file.size);
+  console.log('文件保存路径：%s', file.path);
+
+  res.send({
+    ret_code: '0',
+    path: file.path.slice(8)
+  });
+});
+
+let storage_video = multer.diskStorage({
+  //设置上传后文件路径，uploads文件夹会自动创建。
+  destination: function (req, file, cb) {
+    cb(null, './uploads/videos')
+  },
+  //给上传文件重命名，获取添加后缀名
+  filename: function (req, file, cb) {
+    let fileFormat = (file.originalname).split(".");
+    let filename = file.fieldname + '-' + Date.now() + "." + fileFormat[fileFormat.length - 1]
+    cb(null, filename);
+  }
+});
+let upload_video = multer({
+  storage: storage_video
+});
+
+// 单图上传
+server.post('/upload-video-video', upload_video.single('video-video'), function (req, res, next) {
+  var file = req.file;
+
+  console.log('文件类型：%s', file.mimetype);
+  console.log('原始文件名：%s', file.originalname);
+  console.log('文件大小：%s', file.size);
+  console.log('文件保存路径：%s', file.path);
+
+  res.send({
+    ret_code: '0',
+    path: file.path.slice(8)
+  });
+});
+
+// 单图上传
+server.post('/upload-video-thumb', upload_video.single('video-thumb'), function (req, res, next) {
+  var file = req.file;
+
+  console.log('文件类型：%s', file.mimetype);
+  console.log('原始文件名：%s', file.originalname);
+  console.log('文件大小：%s', file.size);
+  console.log('文件保存路径：%s', file.path);
+
+  res.send({
+    ret_code: '0',
+    path: file.path.slice(8)
+  });
+});
 
 // Use default router
 server.use(router)
 server.listen(3000, () => {
-  console.log('JSON Server is running')
+  console.log("JSON Server is running. Listening on port 3000...");
 })
