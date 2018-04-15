@@ -3,7 +3,8 @@
     <div *ngSwitchCase="'title'" [ngClass]="question.layout" [ngStyle]="{'color': global.primaryColor}" [innerHTML]="question.label"></div>
 
     <div *ngSwitchCase="'textbox'">
-      <label [attr.for]="question.key" [innerHTML]="question.key+question.label+': '"></label>
+      <!--<label [attr.for]="question.key" [innerHTML]="question.key+question.label+': '"></label>-->
+      <label [attr.for]="question.key" [innerHTML]="question.label+': '"></label>
 <!--
       <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type" class="HIDEME"
       />-->

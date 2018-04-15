@@ -94,9 +94,18 @@
     <div *ngSwitchCase="'title'" [ngClass]="question.layout" [innerHTML]="question.label"></div>
 
     <div *ngSwitchCase="'textbox'">
+      <!--
       <label [attr.for]="question.key" [innerHTML]="question.key+' '+question.label+': '"></label>
-
-      <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type" [value]="question.value">
+      -->
+      <div class="inline" *ngIf="question.required">
+        <label [attr.for]="question.key" [innerHTML]="'* ' + question.label+': '"></label>
+        <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type" [value]="question.value"
+        required="required">
+      </div>
+      <div class="inline" *ngIf="!question.required">
+        <label [attr.for]="question.key" [innerHTML]="question.label+': '"></label>
+        <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type" [value]="question.value">
+      </div>
       <div class="inline" [innerHTML]="question.suffix"></div>
     </div>
 
@@ -215,8 +224,8 @@
         </tr>
         <tr *ngFor="let contents of question.contents[1];">
           <td *ngFor="let content of contents;">
-              <a *ngIf="content[1] !== ''" class="hyperlink" [innerHTML]="content[0]" (click)="goForm(content[1])"></a>
-              <input *ngIf="content[1] === ''" class="table-input" [value]="content[0]">
+            <a *ngIf="content[1] !== ''" class="hyperlink" [innerHTML]="content[0]" (click)="goForm(content[1])"></a>
+            <input *ngIf="content[1] === ''" class="table-input" [value]="content[0]">
           </td>
         </tr>
       </table>
@@ -229,12 +238,11 @@
     </div>
 
     <div *ngSwitchCase="'freetext'">
-        <div>              
-          <textarea style="width:100%; height:200px">{{relpaceBR(question.contents)}}</textarea>
-        </div>
+      <div>
+        <textarea style="width:100%; height:200px">{{relpaceBR(question.contents)}}</textarea>
       </div>
+    </div>
 
   </div>
   <!--<div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>-->
 </div>
-

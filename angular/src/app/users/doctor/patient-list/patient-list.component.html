@@ -105,7 +105,8 @@
             <ng-container matColumnDef="avatar">
               <mat-header-cell *matHeaderCellDef mat-sort-header class="no-flex"></mat-header-cell>
               <mat-cell *matCellDef="let row" class="no-flex display-flex">
-                <img (click)="goDashboard(row)" [src]="row.avatar" alt="" class="avatar clickable">
+                <img *ngIf="row.avatar!==''" (click)="goDashboard(row)" [src]="global.server+row.avatar" alt="" class="avatar clickable">
+                <img *ngIf="row.avatar===''" (click)="goDashboard(row)" src="/assets/avatars/blank.jpg" alt="" class="avatar clickable">
               </mat-cell>
             </ng-container>
 
@@ -145,7 +146,7 @@
             </mat-row>
           </mat-table>
           <br>
-          <button mat-raised-button class="float-left" color="accent" (click)="goDashboard(row)">Add New Patient</button>
+          <button mat-raised-button class="float-left" color="accent" (click)="addNewPatient()">Add New Patient</button>
           <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
         </div>
       </mat-card>

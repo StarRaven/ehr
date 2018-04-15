@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { GlobalService } from '../../../global.service';
 import { UserService } from '../../../services/user.service';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { PatientAddComponent } from '../patient-add/patient-add.component';
 @Component({
   selector: 'app-patient-list',
   templateUrl: './patient-list.component.html',
@@ -24,6 +25,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
   condition3: string;
 
   constructor(
+    public dialog: MatDialog,
     private router: Router,
     public global: GlobalService,
     public us: UserService
@@ -84,11 +86,50 @@ export class PatientListComponent implements OnInit, AfterViewInit {
     this.dataSource3.filter = filterValue;
   }
 
+  addNewPatient() {
+    let dialogRef = this.dialog.open(PatientAddComponent, {
+      width: '940px',
+      height: '700px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getPatientList();
+    });
+  }
+
   goDashboard(patient: UserData) {
     console.log(patient);
     this.global.patientAvator = patient.avatar;
     this.global.patientName = patient.name;
     this.router.navigate(['doctor/dashboard', patient.id]);
+  }
+
+  getPatientList() {
+    this.us.getPatientList().subscribe(
+      (jsonData) => {
+        let jsonDataBody = jsonData.json();
+        // console.log(jsonDataBody);
+        const users3: UserData[] = [];
+        for (let patient of jsonDataBody) {
+          let user = {
+            id: patient.id,
+            avatar: patient.avatar,
+            name: patient.name,
+            condition1: patient.number,
+            condition2: patient.gender,
+            condition3: patient.birthday,
+          }
+          users3.push(user);
+        }
+        this.dataSource3 = new MatTableDataSource(users3);
+        this.dataSource3.paginator = this.paginator;
+        this.dataSource3.sort = this.sort;
+      },
+      // The 2nd callback handles errors.
+      (err) => console.error(err),
+      // The 3rd callback handles the "complete" event.
+      () => console.log("observable complete")
+    );
   }
 
   createMotherChild() {
@@ -115,30 +156,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
       condition2: 'Perempuan',
       condition3: '02/03/2015',
     });*/
-    this.us.getPatientList().subscribe(
-      (jsonData) => {
-        let jsonDataBody = jsonData.json();
-        // console.log(jsonDataBody);
-        const users3: UserData[] = [];
-        for (let patient of jsonDataBody) {
-          users3.push({
-            id: patient.id,
-            avatar: patient.avatar,
-            name: patient.name,
-            condition1: patient.number,
-            condition2: patient.gender,
-            condition3: patient.birthday,
-          });
-        }
-        this.dataSource3 = new MatTableDataSource(users3);
-        this.dataSource3.paginator = this.paginator;
-        this.dataSource3.sort = this.sort;
-      },
-      // The 2nd callback handles errors.
-      (err) => console.error(err),
-      // The 3rd callback handles the "complete" event.
-      () => console.log("observable complete")
-    );
+    this.getPatientList();
   }
   /** Builds and returns a new User. */
   createNewUser(id: number): UserData {

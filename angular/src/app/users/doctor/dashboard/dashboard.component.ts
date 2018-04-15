@@ -10,6 +10,7 @@ import { FormGroup } from '@angular/forms';
 import { QuestionBase } from '../../../questionare/question-base';
 import { QuestionControlService } from '../../../questionare/question-control.service';
 import { QuestionService } from '../../../questionare/question.service';
+import { RemoteQuestionService } from '../../../questionare/remote-question.service';
 
 import { HighlightBoxPipe } from '../../../highlightbox.pipe';
 
@@ -51,7 +52,7 @@ interface Info {
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  providers: [QuestionControlService, HighlightBoxPipe],
+  providers: [QuestionControlService, RemoteQuestionService, HighlightBoxPipe],
   encapsulation: ViewEncapsulation.None,
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
@@ -305,41 +306,22 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     public global: GlobalService,
     private qcs: QuestionControlService,
     private qs: QuestionService,
+    private rqs: RemoteQuestionService,
     private hlbox: HighlightBoxPipe,
     public gallery: Gallery,
     public lightbox: Lightbox
   ) {
-    /*
-    this.setid = 0;
-    
-    if (this.global.patientName == 'Yemima Tabuni') {
-      this.setid = 100; 
-    } else if (this.global.patientName == 'Simon Magai') {
-      this.setid = 101; 
-    } else if (this.global.patientName == 'Maria Magai') {
-      this.setid = 102; 
-      
-    }*/
+  }
 
-
-    var question = this.qs.getQuestions(100);
-    var result = _(question)
-      .groupBy(x => x.group)
-      .map((value, key) => (value))
-      .value();
-    this.questions.push(result);
-    this.form = this.qcs.toFormGroup(question);
-
-
-    for (let i = 101; i < 114; i++) {
-      var question = this.qs.getQuestions(i);
-      var result = _(question)
-        .groupBy(x => x.group)
-        .map((value, key) => (value))
-        .value();
-      this.questions.push(result);
-    }
-
+  uploadAvatar($event) {
+    const files = $event.target.files || $event.srcElement.files;
+    const file = files[0];
+    const formData = new FormData();
+    console.log(file);
+    formData.append('avatar', file, file.name);
+    this.us.updatePatientAvatar(this.setid, formData).then((result) => {
+      this.getPatientInfo(this.setid);
+    });
   }
 
   filterSort() {
@@ -605,6 +587,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         'sizey': 98
       },
       ];
+    } else {
+      console.log('new');
+      return [{
+        'dragHandle': '.handle',
+        'col': 1,
+        'row': 1,
+        //'sizex': 95,
+        'sizey': 47
+      }];
     }
   }
 
@@ -749,6 +740,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.boxes[7].id = 7;
       this.boxes[7].widgetType = 'pregnancy-form';
       this.boxes[7].content = 13;
+    } else {
+      this.boxes[0].id = 0;
+      this.boxes[0].widgetType = 'info-form';
+      this.boxes[0].content = 0;
     }
     //console.log(this.boxes);
     this.newboxes = this.boxes;
@@ -800,12 +795,51 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     );
   }
 
+  loadQuestions() {
+    if (this.setid >= 103) {
+      /*
+      var question = this.qs.getQuestions(201);
+      var result = _(question)
+        .groupBy(x => x.group)
+        .map((value, key) => (value))
+        .value();
+      this.questions.push(result);
+      this.form = this.qcs.toFormGroup(question);
+      */
+      this.rqs.getQuestions(201).then((result) => {
+        this.questions.push([result]);
+        this.form = this.qcs.toFormGroup(this.questions[0][0]);
+      });
+    }
+    else {
+      var question = this.qs.getQuestions(100);
+      var result = _(question)
+        .groupBy(x => x.group)
+        .map((value, key) => (value))
+        .value();
+      this.questions.push(result);
+      this.form = this.qcs.toFormGroup(question);
+
+      for (let i = 101; i < 114; i++) {
+        var question = this.qs.getQuestions(i);
+        var result = _(question)
+          .groupBy(x => x.group)
+          .map((value, key) => (value))
+          .value();
+        this.questions.push(result);
+      }
+    }
+  }
+
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.setid = +params['id'];
+      console.log(this.setid);
       this.getPatientInfo(this.setid);
+      this.loadDashboard();
+      this.loadQuestions();
     });
-    this.loadDashboard();
+    /*
     if ((this.setid !== 100) && (this.setid !== 101) && (this.setid !== 102)) {
       const ELEMENT_DATA: Contact[] = [
         { avatar: '1.png', name: 'Toby Moody' },
@@ -831,11 +865,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         { type: 'Following Form', date: this.newDate(1, 9).format('DD MMM YYYY'), form: 2, show: true },
         { type: 'Following Form', date: this.newDate(4, 9).format('DD MMM YYYY'), form: 2, show: true },
       ];
-      // to make sure it gets value, wait to fix
+      */
+    if (this.boxes[2])
       this.boxes[2].content = this.FORM_DATA;
-      // this.dataSource_form = new MatTableDataSource<Form>(ELEMENT_DATA2);
-      this.oriboxes = _.cloneDeep(this.boxes);
-      // console.log(this.oriboxes);
-    }
+    this.oriboxes = _.cloneDeep(this.boxes);
   }
+
 }

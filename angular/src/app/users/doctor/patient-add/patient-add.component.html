@@ -1,3 +1,26 @@
-<p>
-  patient-add works!
-</p>
+<div class="{{global.theme}}">
+  <div mat-dialog-title class="dialog-title-wrapper" [ngStyle]="{'background': global.primaryColor}">
+    <a class="dialog-title">Add New Patient</a>
+    <button mat-icon-button class="dialog-close-wrapper">
+      <mat-icon class="dialog-close" (click)="dialogRef.close()">close</mat-icon>
+    </button>
+  </div>
+  <form id="qForm" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div mat-dialog-content class="dialog-content-wrapper">
+      <div *ngFor="let question of questions; let i = index" [ngClass]="question.layout">
+        <app-question [question]="question" [form]="form"></app-question>
+      </div>
+    </div>
+
+    <div mat-dialog-actions style="display:flex">
+      <div class="dialog-button-wrapper">
+        <button mat-raised-button color="primary" class="dialog-button" (click)="dialogRef.close()">
+          Cancel
+        </button>
+        <button mat-raised-button color="primary" class="dialog-button" type="submit" [disabled]="!form.valid">
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

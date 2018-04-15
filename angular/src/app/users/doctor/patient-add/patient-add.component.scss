@@ -1,0 +1,48 @@
+.dialog-title-wrapper {
+  height: 70px;
+  text-align: center;
+  display: flex;
+}
+
+.dialog-title {
+  font-size: 32px;
+  font-family: Antonio-Regular;
+  margin: auto;
+  color: white;
+}
+
+.dialog-close-wrapper {
+  margin: auto 5px;
+}
+
+.dialog-close {
+  color: white;
+}
+
+.dialog-button-wrapper {
+  margin: auto;
+}
+
+.dialog-button {
+  width: 300px;
+}
+
+.dialog-content-wrapper {
+  height: 550px;
+  margin: 0;
+}
+
+.full {
+    width: 100%;
+    display: inline-block;
+  }
+  
+  .half {
+    width: 50%;
+    display: inline-block;
+  }
+  
+  .third {
+    width: 33%;
+    display: inline-block;
+  }

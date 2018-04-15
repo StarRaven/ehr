@@ -11,7 +11,7 @@ export class GlobalService {
   primaryColor: string;
   accentColor: string;
   lightColor: string;
-  server = "http://localhost:3000";
+  server = "http://localhost:3000/";
   
   constructor() {
     this.username = 'doctor';

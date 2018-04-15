@@ -27,13 +27,21 @@
           <a class="sidebar-title">Patient Details</a>
         </div>
         <div class="sidebar-left">
-          <img [src]="global.patientAvator" width="100%" height="auto" alt="" class="img">
+          <div style="position: relative;">
+            <input type="file" id="browse" size="1" class="input-file clickable" (change)="uploadAvatar($event)" />
+            <img *ngIf="patient.avatar!==''" [src]="global.server+patient.avatar" width="100%" height="auto" alt="" class="img">
+            <img *ngIf="patient.avatar===''" src="/assets/avatars/blank.jpg" width="100%" height="auto" alt="" class="img">
+          </div>
         </div>
         <div class="sidebar-right">
           <a style="font-size:1.6em;line-height: 2em;">{{patient.name}}</a>
+          <br />
           <a style="font-size:1.2em;line-height: 2em;">{{patient.number}}</a>
+          <br />
           <a style="font-size:1.2em;line-height: 2em;">{{patient.gender}}</a>
+          <br />
           <a style="font-size:1.2em;line-height: 2em;">{{patient.birthday}}</a>
+          <br />
         </div>
         <div>
           <button mat-raised-button color="primary" class="expand-button" (click)="router.navigate(['doctor/newform'])">
