@@ -62,7 +62,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   questions: Array<Array<Array<QuestionBase<any>>>> = [];
   form: FormGroup;
-  private patient;
+  public patient = {
+    "id": -1,
+    "avatar": "",
+    "name": "",
+    "number": "",
+    "gender": "",
+    "birthday": ""
+  };
   // @ViewChild('line') line: ElementRef;
   private FORM_DATA: Form[] = [];
   private data: any;

@@ -9,15 +9,15 @@ import { UserService } from '../../../services/user.service';
   styleUrls: ['./patient-media-add.component.scss']
 })
 export class PatientMediaAddComponent implements OnInit {
-  private audioSrc = '';
-  private audioSrcRaw = '';
-  private audioDesc = '';
-  private imageSrc = '';
-  private imageSrcRaw = '';
-  private imageDesc = '';
-  private videoSrc = '';
-  private videoSrcRaw = '';
-  private videoDesc = '';
+  public audioSrc = '';
+  public audioSrcRaw = '';
+  public audioDesc = '';
+  public imageSrc = '';
+  public imageSrcRaw = '';
+  public imageDesc = '';
+  public videoSrc = '';
+  public videoSrcRaw = '';
+  public videoDesc = '';
   private video: any;
   private id = -1;
   constructor(
