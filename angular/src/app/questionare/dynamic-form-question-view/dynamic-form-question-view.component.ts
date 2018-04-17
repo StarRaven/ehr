@@ -52,6 +52,8 @@ export class DynamicFormQuestionViewComponent implements OnInit {
     }
 
   goForm(id: number) {
+    this.router.navigate(['doctor/dashboard', id]);
+    /*
     if (id === 0) {
       this.global.patientAvator = '/assets/avatars/101.png';
       this.global.patientName = 'Simon Magai';
@@ -61,6 +63,7 @@ export class DynamicFormQuestionViewComponent implements OnInit {
       this.global.patientName = 'Maria Magai';
       this.onRefresh();
     }
+    */
   }
 
   scroll(href: string) {

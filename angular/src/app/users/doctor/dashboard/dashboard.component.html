@@ -40,19 +40,19 @@
           <a style="font-size:1.2em;line-height: 2em;">{{patient.status}}</a>
           <br />-->
           <div style="display:flex;font-size:1.2em;line-height: 2em;">
-              <div *ngIf="patient.status===1" style="margin:auto 0; display:flex;">?&nbsp;?&nbsp;&nbsp;
-                <mat-icon class="icon-fix" style="margin:auto; color:#FFEB3B">warning</mat-icon>
-              </div>
-              <div *ngIf="patient.status===2" style="margin:auto 0; display:flex;">D2&nbsp;
-                <mat-icon class="icon-fix" style="margin:auto; color:#FFEB3B">info</mat-icon>
-              </div>
-              <div *ngIf="patient.status===3" style="margin:auto 0; display:flex;">D1&nbsp;
-                <mat-icon class="icon-fix" style="margin:auto; color:#F44336">warning</mat-icon>
-              </div>
+            <div *ngIf="patient.status===1" style="margin:auto 0; display:flex;">?&nbsp;?&nbsp;&nbsp;
+              <mat-icon class="icon-fix" style="margin:auto; color:#FFEB3B">warning</mat-icon>
             </div>
+            <div *ngIf="patient.status===2" style="margin:auto 0; display:flex;">D2&nbsp;
+              <mat-icon class="icon-fix" style="margin:auto; color:#FFEB3B">info</mat-icon>
+            </div>
+            <div *ngIf="patient.status===3" style="margin:auto 0; display:flex;">D1&nbsp;
+              <mat-icon class="icon-fix" style="margin:auto; color:#F44336">warning</mat-icon>
+            </div>
+          </div>
           <a style="font-size:1.2em;line-height: 2em;">{{patient.number}}</a>
           <br />
-          
+
           <a style="font-size:1.2em;line-height: 2em;">{{patient.birthday}}</a>
           <br />
         </div>
@@ -62,7 +62,7 @@
             <mat-icon matSuffix>add_circle_outline</mat-icon>
           </button>
           <button mat-raised-button color="primary" class="expand-button" (click)="addBox()">
-            Add New Box&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;Add New Box&nbsp;&nbsp;&nbsp;&nbsp;
             <mat-icon matSuffix>add_circle_outline</mat-icon>
           </button>
           <button mat-raised-button color="primary" class="expand-button" (click)="deletePatient()">

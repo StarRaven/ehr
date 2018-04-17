@@ -1264,8 +1264,8 @@ export class QuestionService {
               ['Nama', 'Umur', 'Kondisi']
             ],
             [
-              [['Maria Magai',1],[3,''],['Baik','']],
-              [['Simon Magai',0],[1,''],['Baik','']]
+              [['Maria Magai',102],[3,''],['Baik','']],
+              [['Simon Magai',101],[1,''],['Baik','']]
             ]
           ],
           'required': true,
@@ -1289,8 +1289,8 @@ export class QuestionService {
           'label': '',
           'value': '',
           'contents': [
-            ['Kehamilan tanggal 2/2/2015',1,1],
-            ['Kehamilan tanggal 4/1/2017',2,2]
+            ['Kehamilan tanggal 2/2/2015',2,2],
+            ['Kehamilan tanggal 4/1/2017',3,3]
           ],
           'required': true,
           'order': 17,
