@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     "avatar": "",
     "name": "",
     "number": "",
-    "gender": "",
+    "status": -1,
     "birthday": ""
   };
   // @ViewChild('line') line: ElementRef;
