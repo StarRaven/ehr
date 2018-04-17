@@ -472,14 +472,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         'col': 1,
         'row': 1,
         //'sizex': 95,
-        'sizey': 78
+        'sizey': 82
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 1,
         //'sizex': 95,
-        'sizey': 74
+        'sizey': 59
       },
       {
         'dragHandle': '.handle',
@@ -502,7 +502,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         'col': 1,
         'row': 1,
         //'sizex': 95,
-        'sizey': 30
+        'sizey': 33
       },
       {
         'dragHandle': '.handle',
@@ -523,7 +523,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         'col': 1,
         'row': 81,
         //'sizex': 95,
-        'sizey': 99
+        'sizey': 58
       },
       {
         'dragHandle': '.handle',
@@ -560,7 +560,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         'col': 1,
         'row': 1,
         //'sizex': 95,
-        'sizey': 30
+        'sizey': 33
       },
       {
         'dragHandle': '.handle',
@@ -574,28 +574,28 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         'col': 1,
         'row': 81,
         //'sizex': 95,
-        'sizey': 45
+        'sizey': 46
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 81,
         //'sizex': 95,
-        'sizey': 74
+        'sizey': 44
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 81,
         //'sizex': 95,
-        'sizey': 16
+        'sizey': 17
       },
       {
         'dragHandle': '.handle',
         'col': 1,
         'row': 121,
         //'sizex': 95,
-        'sizey': 51
+        'sizey': 52
       },
       {
         'dragHandle': '.handle',
@@ -649,17 +649,22 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           galleryItemsRaw.push(new ImageItem(this.global.server + this.replaceSlash(pic.src), this.global.server + this.replaceSlash(pic.thumbnail)));
           galleryItems.push({
             src: new ImageItem(this.global.server + pic.src, this.global.server + pic.thumbnail),
-            desc: pic.desc
+            desc: pic.desc,
+            rawsrc: pic.src,
+            rawthumb: pic.thumbnail
           });
         }
         for (let video of jsonDataBody.videos) {
           galleryItemsRaw.push(new VideoItem(this.global.server + this.replaceSlash(video.src), this.global.server + this.replaceSlash(video.thumbnail)));
           galleryItems.push({
             src: new VideoItem(this.global.server + video.src, this.global.server + video.thumbnail),
-            desc: video.desc
+            desc: video.desc,
+            rawsrc: video.src,
+            rawthumb: video.thumbnail
           });
         }
         for (let audio of jsonDataBody.audios) {
+          audio.rawsrc = audio.src;
           audio.src = this.global.server + audio.src;
         }
         this.boxes[boxid].content = {
@@ -899,6 +904,38 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.questions.push(result);
       }
     }
+  }
+
+  deletePicAndVideo(boxid: number, src: string, thumbSrc: string) {
+    console.log(boxid);
+    this.us.deleteMediaDB(this.setid, src).then((result) => {
+      this.us.deleteMediaFile(src).then((result) => {
+        if (src !== thumbSrc) {
+          this.us.deleteMediaFile(thumbSrc).then((result) => {
+            this.getMedia(boxid,this.setid);
+          });
+        } else {
+          this.getMedia(boxid,this.setid);
+        }
+      });
+    });
+  }
+
+  deleteAudio(boxid: number, src: string) {
+    console.log(boxid);
+    this.us.deleteMediaDB(this.setid, src).then((result) => {
+      this.us.deleteMediaFile(src).then((result) => {
+          this.getMedia(boxid,this.setid);
+      });
+    });
+  }
+
+  deletePatient() {
+    // console.log(this.setid);
+    this.us.deletePatient(this.setid).then((result) => {
+      console.log(result);
+      this.router.navigate(['doctor/']);
+    });
   }
 
   ngOnInit() {

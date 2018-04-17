@@ -1104,6 +1104,16 @@ export class QuestionService {
 
         new TextboxQuestion({
           'key': '',
+          'label': 'Tanggal lahir',
+          'value': '03/01/1980',
+          'required': true,
+          'order': 2.5,
+          'group': 1,
+          'layout': 'half'
+        }),
+
+        new TextboxQuestion({
+          'key': '',
           'label': 'Nama suami',
           'value': 'OKTAVIANUS MAGAI',
           'required': true,
@@ -1111,7 +1121,7 @@ export class QuestionService {
           'group': 1,
           'layout': 'half'
         }),
-
+        
         new TextboxQuestion({
           'key': '',
           'label': 'Pekerjaan ibu',
@@ -2727,6 +2737,16 @@ export class QuestionService {
 
         new TextboxQuestion({
           'key': '3.',
+          'label': 'Tanggal lahir',
+          'value': '02/10/2017',
+          'required': true,
+          'order': 3.5,
+          'group': 1,
+          'layout': 'full'
+        }),
+
+        new TextboxQuestion({
+          'key': '4.',
           'label': 'Umur',
           'value': '1',
           suffix: 'tahun',
@@ -2737,7 +2757,7 @@ export class QuestionService {
         }),
 
         new TextboxQuestion({
-          'key': '4.',
+          'key': '5.',
           'label': 'Alamat',
           'value': 'Sentani, Jayapura',
           'required': true,
@@ -2747,7 +2767,7 @@ export class QuestionService {
         }),
         
         new TextboxQuestion({
-          'key': '5a.',
+          'key': '6a.',
           'label': 'RT',
           'value': '12',
           'required': true,
@@ -2757,7 +2777,7 @@ export class QuestionService {
         }),
 
         new TextboxQuestion({
-          'key': '5b.',
+          'key': '6b.',
           'label': 'RW',
           'value': '003',
           'required': true,
@@ -2767,7 +2787,7 @@ export class QuestionService {
         }),
 
         new TextboxQuestion({
-          'key': '5c.',
+          'key': '6c.',
           'label': 'Desa',
           'value': 'Dobonsolo',
           'required': true,
@@ -3083,6 +3103,16 @@ export class QuestionService {
           'value': 'MARIA MAGAI',
           'required': true,
           'order': 3, 
+          'group': 1,
+          'layout': 'full'
+        }),
+
+        new TextboxQuestion({
+          'key': '',
+          'label': 'Tanggal lahir',
+          'value': '02/03/2015',
+          'required': true,
+          'order': 3.5,
           'group': 1,
           'layout': 'full'
         }),

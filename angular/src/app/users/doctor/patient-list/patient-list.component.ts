@@ -115,8 +115,8 @@ export class PatientListComponent implements OnInit, AfterViewInit {
             id: patient.id,
             avatar: patient.avatar,
             name: patient.name,
-            condition1: patient.number,
-            condition2: patient.gender,
+            condition1: patient.status,
+            condition2: patient.number,
             condition3: patient.birthday,
           }
           users3.push(user);

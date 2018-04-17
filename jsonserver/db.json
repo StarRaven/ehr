@@ -5,7 +5,7 @@
       "avatar": "avatars\\100.png",
       "name": "Yemima Tabuni",
       "number": "123-4567",
-      "gender": "Perempuan",
+      "status": 1,
       "birthday": "03/01/1980"
     },
     {
@@ -13,7 +13,7 @@
       "avatar": "avatars\\101.png",
       "name": "Simon Magai",
       "number": "123-458",
-      "gender": "Laki-laki",
+      "status": 2,
       "birthday": "02/10/2017"
     },
     {
@@ -21,138 +21,31 @@
       "avatar": "avatars\\102.png",
       "name": "Maria Magai",
       "number": "123-459",
-      "gender": "Perempuan",
+      "status": 3,
       "birthday": "02/03/2015"
-    },
-    {
-      "avatar": "avatars\\avatar-1523753805509.jpg",
-      "name": "a",
-      "number": "11",
-      "gender": "",
-      "birthday": "",
-      "id": 103
     }
   ],
   "media": [
     {
       "id": 100,
-      "pictures": [
-        {
-          "thumbnail": "pictures\\pic1.jpg",
-          "src": "pictures\\pic1.jpg",
-          "desc": "123"
-        },
-        {
-          "thumbnail": "pictures\\pic2.jpg",
-          "src": "pictures\\pic2.jpg",
-          "desc": "123"
-        },
-        {
-          "thumbnail": "pictures\\pic3.jpg",
-          "src": "pictures\\pic3.jpg",
-          "desc": "123"
-        }
-      ],
-      "audios": [
-        {
-          "src": "audios\\SampleAudio1.mp3",
-          "desc": "123"
-        },
-        {
-          "src": "audios\\SampleAudio2.mp3",
-          "desc": "123"
-        }
-      ],
-      "videos": [
-        {
-          "thumbnail": "videos\\mov_bbb-thumb.jpg",
-          "src": "videos\\mov_bbb.mp4",
-          "desc": "123"
-        }
-      ]
+      "pictures": [],
+      "audios": [],
+      "videos": []
     },
     {
       "id": 101,
-      "pictures": [
-        {
-          "thumbnail": "pictures\\pic1.jpg",
-          "src": "pictures\\pic1.jpg",
-          "desc": "123"
-        },
-        {
-          "thumbnail": "pictures\\pic2.jpg",
-          "src": "pictures\\pic2.jpg",
-          "desc": "123"
-        },
-        {
-          "thumbnail": "pictures\\pic3.jpg",
-          "src": "pictures\\pic3.jpg",
-          "desc": "123"
-        }
-      ],
-      "audios": [
-        {
-          "src": "audios\\SampleAudio1.mp3",
-          "desc": "123"
-        },
-        {
-          "src": "audios\\SampleAudio2.mp3",
-          "desc": "123"
-        }
-      ],
-      "videos": [
-        {
-          "thumbnail": "videos\\mov_bbb-thumb.jpg",
-          "src": "videos\\mov_bbb.mp4",
-          "desc": "123"
-        }
-      ]
+      "pictures": [],
+      "audios": [],
+      "videos": []
     },
     {
       "id": 102,
-      "pictures": [
-        {
-          "thumbnail": "pictures\\pic1.jpg",
-          "src": "pictures\\pic1.jpg",
-          "desc": "123"
-        },
-        {
-          "thumbnail": "pictures\\pic2.jpg",
-          "src": "pictures\\pic2.jpg",
-          "desc": "123"
-        },
-        {
-          "thumbnail": "pictures\\pic3.jpg",
-          "src": "pictures\\pic3.jpg",
-          "desc": "123"
-        }
-      ],
-      "audios": [
-        {
-          "src": "audios\\SampleAudio1.mp3",
-          "desc": "123"
-        },
-        {
-          "src": "audios\\SampleAudio2.mp3",
-          "desc": "123"
-        }
-      ],
-      "videos": [
-        {
-          "thumbnail": "videos\\mov_bbb-thumb.jpg",
-          "src": "videos\\mov_bbb.mp4",
-          "desc": "123"
-        }
-      ]
+      "pictures": [],
+      "audios": [],
+      "videos": []
     }
   ],
-  "patient-form": [
-    {
-      "patientID": 103,
-      "formID": 201,
-      "id": 1
-    }
-  ],
+  "patient-form": [],
   "forms": [
     {
       "id": 200,
@@ -199,18 +92,18 @@
         },
         {
           "type": "TextboxQuestion",
-          "key": "3a.",
-          "label": "Pekerjaan ibu",
+          "key": "3.",
+          "label": "Tanggal lahir",
           "value": "",
-          "required": false,
+          "required": true,
           "order": 4,
           "group": 1,
-          "layout": "half"
+          "layout": "full"
         },
         {
           "type": "TextboxQuestion",
-          "key": "3b.",
-          "label": "Pekerjaan suami",
+          "key": "4a.",
+          "label": "Pekerjaan ibu",
           "value": "",
           "required": false,
           "order": 5,
@@ -219,22 +112,21 @@
         },
         {
           "type": "TextboxQuestion",
-          "key": "4.",
+          "key": "4b.",
+          "label": "Pekerjaan suami",
+          "value": "",
+          "required": false,
+          "order": 6,
+          "group": 1,
+          "layout": "half"
+        },
+        {
+          "type": "TextboxQuestion",
+          "key": "5.",
           "label": "Umur",
           "value": "",
           "suffix": "tahun",
           "required": false,
-          "order": 6,
-          "group": 1,
-          "layout": "full"
-        },
-        {
-          "type": "TextboxQuestion",
-          "key": "5.",
-          "label": "Tinggi badan",
-          "value": "",
-          "suffix": "cm",
-          "required": false,
           "order": 7,
           "group": 1,
           "layout": "full"
@@ -242,7 +134,7 @@
         {
           "type": "TextboxQuestion",
           "key": "6.",
-          "label": "Lila",
+          "label": "Tinggi badan",
           "value": "",
           "suffix": "cm",
           "required": false,
@@ -253,8 +145,9 @@
         {
           "type": "TextboxQuestion",
           "key": "7.",
-          "label": "Alamat",
+          "label": "Lila",
           "value": "",
+          "suffix": "cm",
           "required": false,
           "order": 9,
           "group": 1,
@@ -262,28 +155,18 @@
         },
         {
           "type": "TextboxQuestion",
-          "key": "8a.",
-          "label": "RT",
-          "value": "",
-          "required": false,
-          "order": 9,
-          "group": 1,
-          "layout": "third"
-        },
-        {
-          "type": "TextboxQuestion",
-          "key": "8b.",
-          "label": "RW",
+          "key": "8.",
+          "label": "Alamat",
           "value": "",
           "required": false,
           "order": 10,
           "group": 1,
-          "layout": "third"
+          "layout": "full"
         },
         {
           "type": "TextboxQuestion",
-          "key": "8c.",
-          "label": "Desa",
+          "key": "9a.",
+          "label": "RT",
           "value": "",
           "required": false,
           "order": 11,
@@ -292,199 +175,55 @@
         },
         {
           "type": "TextboxQuestion",
-          "key": "9a.",
-          "label": "Dasa Wisma",
+          "key": "9b.",
+          "label": "RW",
           "value": "",
           "required": false,
           "order": 12,
           "group": 1,
-          "layout": "half"
+          "layout": "third"
         },
         {
           "type": "TextboxQuestion",
-          "key": "9b.",
-          "label": "Posyandu",
+          "key": "9c.",
+          "label": "Desa",
           "value": "",
           "required": false,
           "order": 13,
+          "group": 1,
+          "layout": "third"
+        },
+        {
+          "type": "TextboxQuestion",
+          "key": "10a.",
+          "label": "Dasa Wisma",
+          "value": "",
+          "required": false,
+          "order": 14,
           "group": 1,
           "layout": "half"
         },
         {
           "type": "TextboxQuestion",
-          "key": "10.",
+          "key": "10b.",
+          "label": "Posyandu",
+          "value": "",
+          "required": false,
+          "order": 15,
+          "group": 1,
+          "layout": "half"
+        },
+        {
+          "type": "TextboxQuestion",
+          "key": "11.",
           "label": "Puskesmas",
           "value": "",
           "required": false,
-          "order": 14,
+          "order": 16,
           "group": 1,
           "layout": "full"
         }
       ]
-    },
-    {
-      "data": [
-        {
-          "type": "Title",
-          "key": "0.",
-          "label": "IDENTITAS",
-          "required": false,
-          "order": 0,
-          "group": 1,
-          "layout": "t1"
-        },
-        {
-          "type": "TextboxQuestion",
-          "key": "1.",
-          "label": "No. Registrar",
-          "value": "11",
-          "required": true,
-          "order": 1,
-          "group": 1,
-          "layout": "full"
-        },
-        {
-          "type": "TextboxQuestion",
-          "key": "2a.",
-          "label": "Nama",
-          "value": "a",
-          "required": true,
-          "order": 2,
-          "group": 1,
-          "layout": "half"
-        },
-        {
-          "type": "TextboxQuestion",
-          "key": "2b.",
-          "label": "Nama suami",
-          "value": "",
-          "required": false,
-          "order": 3,
-          "group": 1,
-          "layout": "half"
-        },
-        {
-          "type": "TextboxQuestion",
-          "key": "3a.",
-          "label": "Pekerjaan ibu",
-          "value": "",
-          "required": false,
-          "order": 4,
-          "group": 1,
-          "layout": "half"
-        },
-        {
-          "type": "TextboxQuestion",
-          "key": "3b.",
-          "label": "Pekerjaan suami",
-          "value": "",
-          "required": false,
-          "order": 5,
-          "group": 1,
-          "layout": "half"
-        },
-        {
-          "type": "TextboxQuestion",
-          "key": "4.",
-          "label": "Umur",
-          "value": "",
-          "required": false,
-          "order": 6,
-          "group": 1,
-          "layout": "full"
-        },
-        {
-          "type": "TextboxQuestion",
-          "key": "5.",
-          "label": "Tinggi badan",
-          "value": "",
-          "required": false,
-          "order": 7,
-          "group": 1,
-          "layout": "full"
-        },
-        {
-          "type": "TextboxQuestion",
-          "key": "6.",
-          "label": "Lila",
-          "value": "",
-          "required": false,
-          "order": 8,
-          "group": 1,
-          "layout": "full"
-        },
-        {
-          "type": "TextboxQuestion",
-          "key": "7.",
-          "label": "Alamat",
-          "value": "",
-          "required": false,
-          "order": 9,
-          "group": 1,
-          "layout": "full"
-        },
-        {
-          "type": "TextboxQuestion",
-          "key": "8a.",
-          "label": "RT",
-          "value": "",
-          "required": false,
-          "order": 9,
-          "group": 1,
-          "layout": "third"
-        },
-        {
-          "type": "TextboxQuestion",
-          "key": "8b.",
-          "label": "RW",
-          "value": "",
-          "required": false,
-          "order": 10,
-          "group": 1,
-          "layout": "third"
-        },
-        {
-          "type": "TextboxQuestion",
-          "key": "8c.",
-          "label": "Desa",
-          "value": "",
-          "required": false,
-          "order": 11,
-          "group": 1,
-          "layout": "third"
-        },
-        {
-          "type": "TextboxQuestion",
-          "key": "9a.",
-          "label": "Dasa Wisma",
-          "value": "",
-          "required": false,
-          "order": 12,
-          "group": 1,
-          "layout": "half"
-        },
-        {
-          "type": "TextboxQuestion",
-          "key": "9b.",
-          "label": "Posyandu",
-          "value": "",
-          "required": false,
-          "order": 13,
-          "group": 1,
-          "layout": "half"
-        },
-        {
-          "type": "TextboxQuestion",
-          "key": "10.",
-          "label": "Puskesmas",
-          "value": "",
-          "required": false,
-          "order": 14,
-          "group": 1,
-          "layout": "full"
-        }
-      ],
-      "id": 201
     }
   ]
 }

@@ -118,13 +118,23 @@
             </ng-container>
 
             <ng-container matColumnDef="condition1">
-              <mat-header-cell *matHeaderCellDef mat-sort-header class="table-header" [ngStyle]="{'color': global.accentColor}"> NO. REGISTRAR </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header class="table-header" [ngStyle]="{'color': global.accentColor}"> STATUS </mat-header-cell>
               <mat-cell *matCellDef="let row">
-                {{row.condition1}}
+                <div style="display:flex">
+                  <div *ngIf="row.condition1===1" style="margin:auto; display:flex;">?&nbsp;?&nbsp;&nbsp;
+                    <mat-icon class="icon-fix" style="margin:auto; color:#FFEB3B">warning</mat-icon>
+                  </div>
+                  <div *ngIf="row.condition1===2" style="margin:auto; display:flex;">D2&nbsp;
+                    <mat-icon class="icon-fix" style="margin:auto; color:#FFEB3B">info</mat-icon>
+                  </div>
+                  <div *ngIf="row.condition1===3" style="margin:auto; display:flex;">D1&nbsp;
+                    <mat-icon class="icon-fix" style="margin:auto; color:#F44336">warning</mat-icon>
+                  </div>
+                </div>
               </mat-cell>
             </ng-container>
             <ng-container matColumnDef="condition2">
-              <mat-header-cell *matHeaderCellDef mat-sort-header class="table-header" [ngStyle]="{'color': global.accentColor}"> JENIS KELAMIN </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header class="table-header" [ngStyle]="{'color': global.accentColor}"> NO. REGISTRAR </mat-header-cell>
               <mat-cell *matCellDef="let row">
                 {{row.condition2}}
               </mat-cell>

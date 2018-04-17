@@ -2,7 +2,7 @@
   <div mat-dialog-title class="dialog-title-wrapper" [ngStyle]="{'background': global.primaryColor}">
     <a class="dialog-title">Add New Patient</a>
     <button mat-icon-button class="dialog-close-wrapper">
-      <mat-icon class="dialog-close" (click)="dialogRef.close()">close</mat-icon>
+      <mat-icon class="dialog-close" (click)="close()">close</mat-icon>
     </button>
   </div>
   <form id="qForm" (ngSubmit)="onSubmit()" [formGroup]="form">
@@ -14,7 +14,7 @@
 
     <div mat-dialog-actions style="display:flex">
       <div class="dialog-button-wrapper">
-        <button mat-raised-button color="primary" class="dialog-button" (click)="dialogRef.close()">
+        <button mat-raised-button color="primary" class="dialog-button" type="button" (click)="close()">
           Cancel
         </button>
         <button mat-raised-button color="primary" class="dialog-button" type="submit" [disabled]="!form.valid">

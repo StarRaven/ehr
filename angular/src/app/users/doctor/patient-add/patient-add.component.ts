@@ -33,6 +33,11 @@ export class PatientAddComponent implements OnInit {
       this.form = this.qcs.toFormGroup(this.questions);
     });
     //this.form = this.qcs.toFormGroup(this.questions);
+
+    this.dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      console.log('closing');
+    });
   }
 
   onSubmit() {
@@ -46,6 +51,8 @@ export class PatientAddComponent implements OnInit {
     });
   }
   
-
+  close() {
+    this.dialogRef.close();
+  }
 
 }

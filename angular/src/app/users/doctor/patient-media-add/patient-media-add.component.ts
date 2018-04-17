@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { GlobalService } from '../../../global.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { UserService } from '../../../services/user.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-patient-media-add',
@@ -10,17 +11,21 @@ import { UserService } from '../../../services/user.service';
 })
 export class PatientMediaAddComponent implements OnInit {
   public audioSrc = '';
-  public audioSrcRaw = '';
+  public audioFormData: any;
   public audioDesc = '';
+  public audioSrcRaw = '';
   public imageSrc = '';
-  public imageSrcRaw = '';
+  public imageFormData: any;
   public imageDesc = '';
+  public imageSrcRaw = '';
   public videoSrc = '';
-  public videoSrcRaw = '';
+  public videoFormData: any;
   public videoDesc = '';
+  public videoSrcRaw = '';
   private video: any;
   private id = -1;
   constructor(
+    private sanitizer: DomSanitizer,
     public dialogRef: MatDialogRef<PatientMediaAddComponent>,
     public global: GlobalService,
     private us: UserService,
@@ -42,6 +47,7 @@ export class PatientMediaAddComponent implements OnInit {
   }
 
   previewVideo($event) {
+    /*
     this.videoSrcRaw = $event.target.value;
     const files = $event.target.files || $event.srcElement.files;
     const file = files[0];
@@ -51,6 +57,15 @@ export class PatientMediaAddComponent implements OnInit {
     this.us.tryPatientMediaVideo(this.id, formData).then((result) => {
       this.videoSrc = result.toString();
     });
+    */
+    this.videoSrcRaw = $event.target.value;
+    const files = $event.target.files || $event.srcElement.files;
+    const file = files[0];
+    this.videoSrc = URL.createObjectURL(file);
+
+    this.videoFormData = new FormData();
+    console.log(file);
+    this.videoFormData.append('video-video', file, file.name);
   }
 
   uploadVideo() {
@@ -68,16 +83,17 @@ export class PatientMediaAddComponent implements OnInit {
         image.onload = function () {
           const formData = new FormData();
           formData.append('video-thumb', self.dataURItoBlob(canvas.toDataURL('image/png')), `${+new Date()}.png`);
-          self.us.uploadPatientMediaVideo(self.id, self.videoSrc, formData, self.videoDesc).then((result) => {
+          self.us.uploadPatientMediaVideo(self.id, self.videoFormData, formData, self.videoDesc).then((result) => {
             self.dialogRef.close();
           });
         }
       }, 300);
     }, false);
-    video.src = URL.createObjectURL(this.video);
+    video.src = this.videoSrc;
   }
 
   previewImage($event) {
+    /*
     this.imageSrcRaw = $event.target.value;
     const files = $event.target.files || $event.srcElement.files;
     const file = files[0];
@@ -86,16 +102,25 @@ export class PatientMediaAddComponent implements OnInit {
     formData.append('image', file, file.name);
     this.us.tryPatientMediaImage(this.id, formData).then((result) => {
       this.imageSrc = result.toString();
-    });
+    });*/
+    this.imageSrcRaw = $event.target.value;
+    const files = $event.target.files || $event.srcElement.files;
+    const file = files[0];
+    this.imageSrc = URL.createObjectURL(file);
+
+    this.imageFormData = new FormData();
+    console.log(file);
+    this.imageFormData.append('image', file, file.name);
   }
 
   uploadImage() {
-    this.us.uploadPatientMediaImage(this.id, this.imageSrc, this.imageDesc).then((result) => {
+    this.us.uploadPatientMediaImage(this.id, this.imageFormData, this.imageDesc).then((result) => {
       this.dialogRef.close();
     });
   }
 
   previewAudio($event) {
+    /*
     this.audioSrcRaw = $event.target.value;
     const files = $event.target.files || $event.srcElement.files;
     const file = files[0];
@@ -105,10 +130,19 @@ export class PatientMediaAddComponent implements OnInit {
     this.us.tryPatientMediaAudio(this.id, formData).then((result) => {
       this.audioSrc = result.toString();
     });
+    */
+    this.audioSrcRaw = $event.target.value;
+    const files = $event.target.files || $event.srcElement.files;
+    const file = files[0];
+    this.audioSrc = URL.createObjectURL(file);
+
+    this.audioFormData = new FormData();
+    console.log(file);
+    this.audioFormData.append('audio', file, file.name);
   }
 
   uploadAudio() {
-    this.us.uploadPatientMediaAudio(this.id, this.audioSrc, this.audioDesc).then((result) => {
+    this.us.uploadPatientMediaAudio(this.id, this.audioFormData, this.audioDesc).then((result) => {
       this.dialogRef.close();
     });
   }

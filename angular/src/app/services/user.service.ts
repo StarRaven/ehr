@@ -66,38 +66,148 @@ export class UserService {
           path = jsonData.json().path;
           resolve(path);
         },
-        // The 2nd callback handles errors.
         (err) => reject(err),
-        // The 3rd callback handles the "complete" event.
         () => {
         });
     });
     return promise;
   }
 
-  uploadPatientMediaVideo(id: number, src: string, thumbnail: FormData, desc: string) {
+  uploadPatientMediaVideo(id: number, formData: FormData, thumbnail: FormData, desc: string) {
     let thumbPath = '';
     let promise = new Promise((resolve, reject) => {
+      let path = '';
       const headers1 = new Headers({});
-      this.http.post(this.global.server + 'upload-video-thumb', thumbnail, { headers: headers1 }).subscribe(
+      this.http.post(this.global.server + 'upload-video-video', formData, { headers: headers1 }).subscribe(
         (jsonData) => {
-          thumbPath = jsonData.json().path;
+          path = jsonData.json().path;
         },
         (err) => reject(err),
         () => {
-          console.log(thumbPath);
-          let body = null;
+          const headers1 = new Headers({});
+          this.http.post(this.global.server + 'upload-video-thumb', thumbnail, { headers: headers1 }).subscribe(
+            (jsonData) => {
+              thumbPath = jsonData.json().path;
+            },
+            (err) => reject(err),
+            () => {
+              console.log(thumbPath);
+              let body = null;
+              const headers = new Headers({ 'Content-Type': 'application/json' });
+              this.http.get(this.global.server + 'media/' + id, { headers: headers }).subscribe(
+                (jsonData) => {
+                  let jsonDataBody = jsonData.json();
+                  jsonDataBody.videos.push({
+                    thumbnail: thumbPath,
+                    src: path,
+                    desc: desc
+                  })
+                  body = jsonDataBody;
+                  console.log(body);
+                },
+                (err) => reject(err),
+                () => {
+                  this.http.patch(this.global.server + 'media/' + id, JSON.stringify(body), { headers: headers }).subscribe(
+                    (jsonData) => {
+                    },
+                    (err) => reject(err),
+                    () => { resolve(); });
+                });
+            });
+        });
+    });
+    return promise;
+  }
+
+  /*
+  tryPatientMediaImage(id: number, formData: FormData) {
+    let promise = new Promise((resolve, reject) => {
+      let path = '';
+      const headers1 = new Headers({});
+      this.http.post(this.global.server + 'upload-image', formData, { headers: headers1 }).subscribe(
+        (jsonData) => {
+          path = jsonData.json().path;
+          resolve(path);
+        },
+        (err) => reject(err),
+        () => {
+        });
+    });
+    return promise;
+  }
+*/
+
+  uploadPatientMediaImage(id: number, formData: FormData, desc: string) {
+    let promise = new Promise((resolve, reject) => {
+      let path = '';
+      let body = null;
+      const headers1 = new Headers({});
+      this.http.post(this.global.server + 'upload-image', formData, { headers: headers1 }).subscribe(
+        (jsonData) => {
+          path = jsonData.json().path;
+        },
+        (err) => reject(err),
+        () => {
           const headers = new Headers({ 'Content-Type': 'application/json' });
           this.http.get(this.global.server + 'media/' + id, { headers: headers }).subscribe(
             (jsonData) => {
               let jsonDataBody = jsonData.json();
-              jsonDataBody.videos.push({
-                thumbnail: thumbPath,
-                src: src,
+              jsonDataBody.pictures.push({
+                thumbnail: path,
+                src: path,
                 desc: desc
               })
               body = jsonDataBody;
-              console.log(body);
+            },
+            (err) => reject(err),
+            () => {
+              this.http.patch(this.global.server + 'media/' + id, JSON.stringify(body), { headers: headers }).subscribe(
+                (jsonData) => {
+                },
+                (err) => reject(err),
+                () => { resolve(); });
+            });
+        });
+    });
+    return promise;
+  }
+  /*
+    tryPatientMediaAudio(id: number, formData: FormData) {
+      let promise = new Promise((resolve, reject) => {
+        let path = '';
+        const headers1 = new Headers({});
+        this.http.post(this.global.server + 'upload-audio', formData, { headers: headers1 }).subscribe(
+          (jsonData) => {
+            path = jsonData.json().path;
+            resolve(path);
+          },
+          (err) => reject(err),
+          () => {
+          });
+      });
+      return promise;
+    }
+  */
+  uploadPatientMediaAudio(id: number, formData: FormData, desc: string) {
+    let body = null;
+    let promise = new Promise((resolve, reject) => {
+      let path = '';
+      const headers1 = new Headers({});
+      this.http.post(this.global.server + 'upload-audio', formData, { headers: headers1 }).subscribe(
+        (jsonData) => {
+          path = jsonData.json().path;
+        },
+        (err) => reject(err),
+        () => {
+          const headers = new Headers({ 'Content-Type': 'application/json' });
+          this.http.get(this.global.server + 'media/' + id, { headers: headers }).subscribe(
+            (jsonData) => {
+              let jsonDataBody = jsonData.json();
+              jsonDataBody.audios.push({
+                src: path,
+                desc: desc
+              })
+              body = jsonDataBody;
             },
             (err) => reject(err),
             () => {
@@ -112,37 +222,48 @@ export class UserService {
     return promise;
   }
 
-  tryPatientMediaImage(id: number, formData: FormData) {
+  deleteMediaFile(src: string) {
     let promise = new Promise((resolve, reject) => {
-      let path = '';
-      const headers1 = new Headers({});
-      this.http.post(this.global.server + 'upload-image', formData, { headers: headers1 }).subscribe(
+      const headers = new Headers({ 'Content-Type': 'application/json' });
+      this.http.post(this.global.server + 'delete-media-file', { "path": src }, { headers: headers }).subscribe(
         (jsonData) => {
-          path = jsonData.json().path;
-          resolve(path);
+          //console.log(jsonData.json());
         },
-        // The 2nd callback handles errors.
         (err) => reject(err),
-        // The 3rd callback handles the "complete" event.
         () => {
+          console.log('delete media file success');
+          resolve();
         });
     });
     return promise;
   }
 
-  uploadPatientMediaImage(id: number, src: string, desc: string) {
+  deleteMediaDB(id: number, src: string) {
     let body = null;
     let promise = new Promise((resolve, reject) => {
       const headers = new Headers({ 'Content-Type': 'application/json' });
       this.http.get(this.global.server + 'media/' + id, { headers: headers }).subscribe(
         (jsonData) => {
-          let jsonDataBody = jsonData.json();
-          jsonDataBody.pictures.push({
-            thumbnail: src,
-            src: src,
-            desc: desc
-          })
-          body = jsonDataBody;
+          body = jsonData.json();
+          console.log('deleting...');
+          console.log(body);
+          for (var i = 0; i < body.pictures.length; i++) {
+            //src include localhost:3000
+            if (src === body.pictures[i].src) {
+              body.pictures.splice(i, 1);
+            }
+          }
+          for (var i = 0; i < body.audios.length; i++) {
+            if (src === body.audios[i].src) {
+              body.audios.splice(i, 1);
+            }
+          }
+          for (var i = 0; i < body.videos.length; i++) {
+            if (src === body.videos[i].src) {
+              body.videos.splice(i, 1);
+            }
+          }
+          console.log(body);
         },
         (err) => reject(err),
         () => {
@@ -156,44 +277,79 @@ export class UserService {
     return promise;
   }
 
-  tryPatientMediaAudio(id: number, formData: FormData) {
+  /*
+  deletePatient(id: number) {
     let promise = new Promise((resolve, reject) => {
-      let path = '';
-      const headers1 = new Headers({});
-      this.http.post(this.global.server + 'upload-audio', formData, { headers: headers1 }).subscribe(
+      const headers = new Headers({ 'Content-Type': 'application/json' });
+      this.http.post(this.global.server + 'delete-patient', {id}, { headers: headers }).subscribe(
         (jsonData) => {
-          path = jsonData.json().path;
-          resolve(path);
         },
-        // The 2nd callback handles errors.
         (err) => reject(err),
-        // The 3rd callback handles the "complete" event.
         () => {
         });
     });
     return promise;
-  }
+  }*/
 
-  uploadPatientMediaAudio(id: number, src: string, desc: string) {
-    let body = null;
+  deletePatient(id: number) {
+    let patientFormId = -1;
+    let formId = -1;
+    let avatarPath = "";
     let promise = new Promise((resolve, reject) => {
       const headers = new Headers({ 'Content-Type': 'application/json' });
-      this.http.get(this.global.server + 'media/' + id, { headers: headers }).subscribe(
+      this.http.get(this.global.server + 'patients/' + id, { headers: headers }).subscribe(
         (jsonData) => {
-          let jsonDataBody = jsonData.json();
-          jsonDataBody.audios.push({
-            src: src,
-            desc: desc
-          })
-          body = jsonDataBody;
+          avatarPath = jsonData.json().avatar;
+          // console.log(jsonDataBody);
         },
         (err) => reject(err),
         () => {
-          this.http.patch(this.global.server + 'media/' + id, JSON.stringify(body), { headers: headers }).subscribe(
+          // console.log('get avatar path success');
+          this.http.delete(this.global.server + 'patients/' + id).subscribe(
             (jsonData) => {
             },
             (err) => reject(err),
-            () => { resolve(); });
+            () => {
+              //console.log('delete patient success');
+              this.http.get(this.global.server + 'patient-form?patientID=' + id, { headers: headers }).subscribe(
+                (jsonData) => {
+                  let jsonDataBody = jsonData.json();
+                  patientFormId = jsonDataBody[0].id;
+                  formId = jsonDataBody[0].formID;
+                  //console.log(jsonData.json());
+                },
+                (err) => reject(err),
+                () => {
+                  //console.log('get patient-form id success');
+                  this.http.delete(this.global.server + 'patient-form/' + patientFormId).subscribe(
+                    (jsonData) => {
+                      //console.log(jsonData.json());
+                    },
+                    (err) => reject(err),
+                    () => {
+                      // console.log("delete patient-form success");
+                      this.http.delete(this.global.server + 'forms/' + formId).subscribe(
+                        (jsonData) => {
+                          //console.log(jsonData.json());
+                        },
+                        (err) => reject(err),
+                        () => {
+                          //console.log("delete form success");
+                          console.log(avatarPath);
+                          const headers = new Headers({ 'Content-Type': 'application/json' });
+                          this.http.post(this.global.server + 'delete-patient-file', { "path": avatarPath }, { headers: headers }).subscribe(
+                            (jsonData) => {
+                              //console.log(jsonData.json());
+                            },
+                            (err) => reject(err),
+                            () => {
+                              console.log('delete avatar success');
+                              resolve();
+                            });
+                        });
+                    });
+                });
+            });
         });
     });
     return promise;
@@ -208,14 +364,16 @@ export class UserService {
       this.http.post(this.global.server + 'forms', JSON.stringify(form), { headers: headers }).subscribe(
         (jsonData) => {
           let jsonDataBody = jsonData.json();
+          console.log(jsonDataBody);
           formid = jsonDataBody.id;
           patient = {
             "avatar": "",
             "name": jsonDataBody.data[2].value,
             "number": jsonDataBody.data[1].value,
-            "gender": "",
-            "birthday": ""
+            "status": "",
+            "birthday": jsonDataBody.data[4].value
           };
+          console.log(patient);
         },
         // The 2nd callback handles errors.
         (err) => reject(err),
@@ -225,9 +383,7 @@ export class UserService {
             (jsonData) => {
               patientid = jsonData.json().id;
             },
-            // The 2nd callback handles errors.
             (err) => reject(err),
-            // The 3rd callback handles the "complete" event.
             () => {
               let patientForm = {
                 "patientID": patientid,
@@ -237,9 +393,7 @@ export class UserService {
                 (jsonData) => {
                   resolve(patientid);
                 },
-                // The 2nd callback handles errors.
                 (err) => reject(err),
-                // The 3rd callback handles the "complete" event.
                 () => console.log('observable complete')
               );
             }

@@ -7,7 +7,36 @@ const middlewares = jsonServer.defaults({
 
 // Set default middlewares (logger, static, cors and no-cache)
 server.use(middlewares)
+server.use(jsonServer.bodyParser)
 
+server.post('/delete-media-file', (req, res) => {
+  console.log(req.body);
+  console.log(req.body.path);
+  fs.unlinkSync('./uploads/' + req.body.path);
+  res.jsonp({
+    success: true
+  });
+})
+
+server.post('/delete-patient-file', (req, res) => {
+  console.log(req.body);
+  console.log(req.body.path);
+  fs.unlinkSync('./uploads/' + req.body.path);
+  res.jsonp({
+    success: true
+  });
+})
+
+/*
+server.post('/delete-patient', (req, res) => {
+  console.log(req.body.id);
+  router.db.get('patients').removeById(req.body.id).write().then(()=>{
+    res.jsonp({
+      success: true
+    });
+  })
+})
+*/
 var fs = require('fs');
 // var express = require('express');
 var multer = require('multer')

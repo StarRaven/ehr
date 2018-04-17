@@ -16,7 +16,7 @@
           </div>
           <div class="preview-wrapper">
             <div *ngIf="imageSrc !== ''">
-              <img [src]="global.server+imageSrc" width="200" height="auto" alt="" class="shadow">
+              <img [src]="sanitizer.bypassSecurityTrustResourceUrl(imageSrc)" width="200" height="auto" alt="" class="shadow">
             </div>
           </div>
           <mat-form-field style="min-width:400px">
@@ -48,8 +48,8 @@
           <div class="preview-wrapper">
             <div *ngIf="videoSrc !== ''">
               <video id="video" controls class="shadow video-margin">
-                <source [src]="global.server+videoSrc" type="video/mp4">
-                <source [src]="global.server+videoSrc" type="video/ogg"> Your browser does not support the video tag.
+                <source [src]="sanitizer.bypassSecurityTrustResourceUrl(videoSrc)" type="video/mp4">
+                <source [src]="sanitizer.bypassSecurityTrustResourceUrl(videoSrc)" type="video/ogg"> Your browser does not support the video tag.
               </video>
             </div>
           </div>
@@ -76,13 +76,15 @@
         <div class="file-all-wrapper">
           <div class="file-wrapper">
             <button mat-raised-button class="file-button" color="primary" (click)="audioFileInput.click()">Choose File</button>
-            <input hidden type="file" #audioFileInput (change)="previewAudio($event)" accept="audio/mpeg" />
+            <input hidden type="file" #audioFileInput (change)="previewAudio($event)" accept="audio/*" />
             <input matInput class="file-path" placeholder="File Path" disabled [(ngModel)]="audioSrcRaw">
           </div>
           <div class="preview-wrapper">
             <div *ngIf="audioSrc !== ''">
               <audio controls>
-                <source [src]="global.server+audioSrc" type="audio/mpeg"> Your browser does not support the audio element.
+                  <source [src]="sanitizer.bypassSecurityTrustResourceUrl(audioSrc)" type="audio/wav">
+                  <source [src]="sanitizer.bypassSecurityTrustResourceUrl(audioSrc)" type="audio/mpeg">
+                 Your browser does not support the audio element.
               </audio>
             </div>
           </div>
