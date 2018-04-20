@@ -24,6 +24,7 @@ import { PatientMediaAddComponent } from '../patient-media-add/patient-media-add
 import * as Chart from 'chart.js';
 import * as moment from 'moment';
 import * as _ from 'lodash';
+import {ChatDialogComponent} from '../chat-dialog/chat-dialog.component';
 
 interface Box {
   title: string;
@@ -972,11 +973,20 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         { type: 'Following Form', date: this.newDate(1, 9).format('DD MMM YYYY'), form: 2, show: true },
         { type: 'Following Form', date: this.newDate(4, 9).format('DD MMM YYYY'), form: 2, show: true },
       ];
-      
+
     if (this.boxes[2])
       this.boxes[2].content = this.FORM_DATA;
       */
     this.oriboxes = _.cloneDeep(this.boxes);
+  }
+
+  startChat(){
+    this.dialog.open(ChatDialogComponent,{
+      data:{
+        patientId:this.patient.id,
+        user:this.global.chatUsername
+      }
+    })
   }
 
 }

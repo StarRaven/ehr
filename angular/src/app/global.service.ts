@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
+import {environment} from '../environments/environment';
+
+
 
 @Injectable()
 export class GlobalService {
   username: string;
+  chatUsername:string
   login: boolean;
   role: string;
   theme: string;
@@ -12,7 +16,7 @@ export class GlobalService {
   accentColor: string;
   lightColor: string;
   server = "http://localhost:3000/";
-  
+
   constructor() {
     this.username = 'doctor';
     this.login = false;
@@ -23,6 +27,9 @@ export class GlobalService {
     this.primaryColor = "#1A4457";
     this.accentColor = "#59ADD3";
     this.lightColor = "#CEE8F3";
+    if(environment.production){
+      this.server = "/"
+    }
     //this.patientAvator = '/assets/avatars/101.png';
     //this.patientName = 'Simon Magai';
     //this.patientAvator = '/assets/avatars/102.png';

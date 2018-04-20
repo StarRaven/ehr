@@ -61,6 +61,7 @@ import { GalleryModule } from  '@ngx-gallery/core';
 import { LightboxModule } from  '@ngx-gallery/lightbox';
 import { PatientAddComponent } from './users/doctor/patient-add/patient-add.component';
 import { PatientMediaAddComponent } from './users/doctor/patient-media-add/patient-media-add.component';
+import { ChatDialogComponent } from './users/doctor/chat-dialog/chat-dialog.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { PatientMediaAddComponent } from './users/doctor/patient-media-add/patie
     PatientListComponent,
     DynamicFormViewComponent,
     PatientAddComponent,
-    PatientMediaAddComponent
+    PatientMediaAddComponent,
+    ChatDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -109,6 +111,7 @@ import { PatientMediaAddComponent } from './users/doctor/patient-media-add/patie
     MatPaginatorModule,
     MatSidenavModule,
     MatTooltipModule,
+    MatDialogModule,
 
     NgGridModule,
     ChartsModule,
@@ -116,7 +119,7 @@ import { PatientMediaAddComponent } from './users/doctor/patient-media-add/patie
 
     GalleryModule.forRoot(),
     LightboxModule.forRoot(),
-    
+
     PipeModule.forRoot(),
 
     RouterModule.forRoot([
@@ -136,6 +139,7 @@ import { PatientMediaAddComponent } from './users/doctor/patient-media-add/patie
     LoginComponent,
     DoctorAddComponent,
     NurseAddComponent,
+    ChatDialogComponent
   ],
   providers: [
     UserService,

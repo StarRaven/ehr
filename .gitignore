@@ -2,3 +2,5 @@ angular/node_modules/*
 angular/dist/*
 jsonserver/node_modules/*
 .idea/*
+**/.idea
+.DS_Store

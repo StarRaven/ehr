@@ -34,6 +34,13 @@ export class IndexComponent implements OnInit {
       this.global.theme = 'custom-theme-2';
       this.router.navigate(['doctor']);
     }
+    if(this.username === 'Andi' || this.username === 'Jonathan'){
+      this.global.username = 'doctor';
+      this.global.chatUsername = this.username
+      this.global.role = 'doctor';
+      this.global.theme = 'custom-theme-3';
+      this.router.navigate(['doctor']);
+    }
     if ((this.username === 'doctor') && (this.password === 'doctor')) {
       this.global.username = 'doctor';
       this.global.role = 'doctor';
@@ -45,7 +52,7 @@ export class IndexComponent implements OnInit {
   Register() {
 
   }
-  
+
   ngOnInit() {
   }
 

@@ -21,7 +21,7 @@
     <div fxFlex="25" class="content-wrapper">
       <div class="sidebar-wrapper">
         <div style="display:flex; margin-bottom: 10px;">
-          <button mat-icon-button class="flip-wrapper">
+          <button mat-icon-button class="flip-wrapper" routerLink="/doctor">
             <mat-icon class="sidebar-icon" (click)="router.navigate(['doctor/']);">play_circle_outline</mat-icon>
           </button>
           <a class="sidebar-title">Patient Details</a>
@@ -68,6 +68,10 @@
           <button mat-raised-button color="primary" class="expand-button" (click)="deletePatient()">
             Delete Patient&nbsp;&nbsp;&nbsp;
             <mat-icon matSuffix>remove_circle_outline</mat-icon>
+          </button>
+          <button mat-raised-button color="primary" class="expand-button" (click)="startChat()">
+            Discussion
+            <mat-icon matSuffix>chat</mat-icon>
           </button>
         </div>
       </div>
@@ -224,6 +228,7 @@
               </mat-card>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -231,3 +236,5 @@
     </mat-drawer-content>
   </mat-drawer-container>-->
   </div>
+
+</div>

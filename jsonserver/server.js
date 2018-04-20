@@ -4,9 +4,13 @@ const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults({
   static: './uploads'
 })
+const express = require('express')
+const path = require('path')
+
 
 // Set default middlewares (logger, static, cors and no-cache)
 server.use(middlewares)
+server.use(express.static(path.join(__dirname,"www")))
 server.use(jsonServer.bodyParser)
 
 server.post('/delete-media-file', (req, res) => {
@@ -182,6 +186,9 @@ server.post('/upload-video-thumb', upload_video.single('video-thumb'), function 
 
 // Use default router
 server.use(router)
+server.get("/*",(req,res)=>{
+  res.sendFile(path.join(__dirname,"www/index.html"))
+})
 server.listen(3000, () => {
   console.log("JSON Server is running. Listening on port 3000...");
 })

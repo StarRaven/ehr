@@ -30,6 +30,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
     public global: GlobalService,
     public us: UserService
   ) {
+
     const users: UserData[] = [];
     const users2: UserData[] = [];
 
@@ -98,7 +99,6 @@ export class PatientListComponent implements OnInit, AfterViewInit {
   }
 
   goDashboard(patient: UserData) {
-    console.log(patient);
     this.global.patientAvator = patient.avatar;
     this.global.patientName = patient.name;
     this.router.navigate(['doctor/dashboard', patient.id]);
@@ -108,7 +108,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
     this.us.getPatientList().subscribe(
       (jsonData) => {
         let jsonDataBody = jsonData.json();
-        // console.log(jsonDataBody);
+
         const users3: UserData[] = [];
         for (let patient of jsonDataBody) {
           let user = {
@@ -121,6 +121,7 @@ export class PatientListComponent implements OnInit, AfterViewInit {
           }
           users3.push(user);
         }
+        console.log(jsonDataBody);
         this.dataSource3 = new MatTableDataSource(users3);
         this.dataSource3.paginator = this.paginator;
         this.dataSource3.sort = this.sort;

@@ -20,9 +20,11 @@ export class LoginComponent implements OnInit {
     private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.type = data.type;
+
     }
 
   Login() {
+
     if (this.type === 'admin') {
       if ((this.username === 'admin') && (this.password === 'admin')) {
           this.dialogRef.close();
@@ -45,7 +47,19 @@ export class LoginComponent implements OnInit {
         this.global.theme = 'custom-theme-2';
         this.router.navigate(['doctor']);
       }
+
+      // (this.username === 'Andi' || this.username === 'Jonathan')
+      if ((this.username === 'Andi') && (this.password === 'doctor')) {
+        console.log(this.username);
+        this.dialogRef.close();
+        this.global.username = 'doctor';
+        this.global.role = 'doctor';
+        this.global.theme = 'custom-theme-3';
+        this.router.navigate(['doctor']);
+      }
+
       if ((this.username === 'doctor') && (this.password === 'doctor')) {
+        console.log(this.username);
         this.dialogRef.close();
         this.global.username = 'doctor';
         this.global.role = 'doctor';
